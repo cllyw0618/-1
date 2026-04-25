@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>立即试用 | IntraHC</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/custom-pages.css" rel="stylesheet" />
+    <link href="css/custom-demo.css" rel="stylesheet" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="assets/img/navbar-logo.svg" alt="logo" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars ms-1"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
+                <li class="nav-item"><a class="nav-link" href="algorithm.html">算法方法</a></li>
+                <li class="nav-item"><a class="nav-link" href="results.html">实验结果</a></li>
+                <li class="nav-item"><a class="nav-link" href="workflow.html">技术流程</a></li>
+                <li class="nav-item"><a class="nav-link" href="team.html">团队成员</a></li>
+                <li class="nav-item"><a class="nav-link" href="resources.html">项目资源</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">研究日志</a></li>
+                <li class="nav-item nav-cta-item"><a class="nav-link nav-trial-btn active" href="demo.html">立即试用</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="demo-hero">
+    <div class="container demo-hero-inner">
+        <span class="demo-kicker">Interactive Demo</span>
+        <h1>在线试用演示</h1>
+        <p>选择数据集，查看从输入到结果展示的完整流程，快速体验 IntraHC 聚类分析展示页。</p>
+
+        <div class="dataset-selector">
+            <button type="button" class="dataset-selector-btn" id="datasetSelectorBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="datasetDropdown">
+                <span id="selectorName">Cora</span>
+                <span class="selector-divider">|</span>
+                <span class="selector-arrow">▼</span>
+            </button>
+            <ul class="dataset-dropdown" id="datasetDropdown" role="listbox" aria-label="选择数据集">
+                <li><button type="button" class="dataset-option" data-dataset="Cora">Cora</button></li>
+                <li><button type="button" class="dataset-option" data-dataset="Citeseer">Citeseer</button></li>
+                <li><button type="button" class="dataset-option" data-dataset="Pubmed">Pubmed</button></li>
+                <li><button type="button" class="dataset-option" data-dataset="DBLP">DBLP</button></li>
+                <li><button type="button" class="dataset-option" data-dataset="ACM">ACM</button></li>
+            </ul>
+        </div>
+        <p class="demo-scroll-hint">点击中间选择器或切换数据集后，页面会自动平滑滚动至下方展示区。</p>
+    </div>
+
+    <div class="demo-floating demo-floating-left">
+        <h6>Live Snapshot</h6>
+        <p>Embedding + Cluster confidence</p>
+    </div>
+    <div class="demo-floating demo-floating-right">
+        <h6>Fast Preview</h6>
+        <p>Metrics update in one click</p>
+    </div>
+</header>
+
+<section class="demo-section" id="demo-showcase">
+    <div class="container">
+        <div class="demo-showcase-header text-center">
+            <h2>输入一个对象，发现它的聚类位置与相关关系</h2>
+            <p>选择数据集后，你可以输入论文、作者或关键词，系统将展示其所属聚类、相关对象、推荐依据与降维可视化结果。</p>
+        </div>
+
+        <div class="demo-search-card">
+            <div class="demo-search-row">
+                <input class="demo-search-input" id="demoSearchInput" type="text" placeholder="输入论文标题、关键词或研究主题" />
+                <button class="demo-search-button" id="demoSearchButton" type="button">查看关联结果</button>
+            </div>
+            <div class="demo-example-chips-wrap">
+                <span class="demo-example-label">示例搜索：</span>
+                <div class="demo-example-chips" id="demoExampleChips">
+                    <button class="demo-chip" type="button">graph learning</button>
+                    <button class="demo-chip" type="button">semi-supervised learning</button>
+                    <button class="demo-chip" type="button">citation network</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-main-showcase row g-4 align-items-stretch">
+            <div class="col-lg-4">
+                <div class="demo-insight-panel">
+                    <div class="demo-insight-kicker">当前查询</div>
+                    <h3 id="demoCurrentQuery">graph learning</h3>
+                    <div class="demo-cluster-label" id="demoClusterName">Cluster 3：Graph Learning / Citation Network</div>
+                    <p id="demoExplanation">该对象被模型识别为图学习相关主题，并与同簇论文在结构关系和语义表征上更接近。</p>
+                    <div class="demo-mini-grid">
+                        <div class="demo-mini-card">
+                            <span>所属数据集</span>
+                            <strong id="demoDatasetName">Cora</strong>
+                        </div>
+                        <div class="demo-mini-card">
+                            <span>节点类型</span>
+                            <strong id="demoNodeType">论文</strong>
+                        </div>
+                        <div class="demo-mini-card">
+                            <span>推荐模式</span>
+                            <strong id="demoRecommendMode">同簇 + 表征相似 + 高阶关系</strong>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary text-uppercase mt-4" type="button">高亮相关节点</button>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="demo-visual-panel">
+                    <div class="demo-visual-head">
+                        <h3 id="demoVisualTitle">Cora 降维聚类可视化</h3>
+                        <span class="demo-visual-tag">2D Projection</span>
+                    </div>
+                    <div class="demo-scatter-stage" id="demoScatterStage">
+                        <span class="demo-scatter-dot c1" style="left: 10%; top: 63%;"></span>
+                        <span class="demo-scatter-dot c1" style="left: 18%; top: 58%;"></span>
+                        <span class="demo-scatter-dot c1" style="left: 24%; top: 68%;"></span>
+                        <span class="demo-scatter-dot c2" style="left: 30%; top: 28%;"></span>
+                        <span class="demo-scatter-dot c2" style="left: 36%; top: 37%;"></span>
+                        <span class="demo-scatter-dot c2" style="left: 42%; top: 24%;"></span>
+                        <span class="demo-scatter-dot c3" style="left: 55%; top: 46%;"></span>
+                        <span class="demo-scatter-dot c3" style="left: 62%; top: 54%;"></span>
+                        <span class="demo-scatter-dot c3" style="left: 66%; top: 39%;"></span>
+                        <span class="demo-scatter-dot c4" style="left: 76%; top: 26%;"></span>
+                        <span class="demo-scatter-dot c4" style="left: 84%; top: 35%;"></span>
+                        <span class="demo-scatter-dot c4" style="left: 88%; top: 22%;"></span>
+                        <span class="demo-scatter-dot c5" style="left: 72%; top: 72%;"></span>
+                        <span class="demo-scatter-dot c5" style="left: 81%; top: 64%;"></span>
+                        <span class="demo-scatter-dot c5" style="left: 89%; top: 74%;"></span>
+                        <span class="demo-scatter-dot active" id="demoActiveDot"></span>
+                    </div>
+                    <div class="demo-legend">
+                        <span><i class="lg c1"></i>Cluster A</span>
+                        <span><i class="lg c2"></i>Cluster B</span>
+                        <span><i class="lg c3"></i>Cluster C</span>
+                        <span><i class="lg c4"></i>Cluster D</span>
+                        <span><i class="lg active"></i>当前查询点</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-related-section">
+            <div class="demo-section-head">
+                <h3>相关对象推荐</h3>
+                <p>系统基于聚类结果、嵌入相似度与高阶结构关系返回 Top 相关对象。</p>
+            </div>
+            <div class="demo-related-grid" id="demoRelatedGrid"></div>
+        </div>
+
+        <div class="demo-reason-section">
+            <div class="demo-section-head">
+                <h3>为什么推荐这些对象？</h3>
+            </div>
+            <div class="demo-reason-grid">
+                <div class="demo-reason-card">
+                    <h4><i class="fas fa-layer-group"></i> 同簇关系</h4>
+                    <p>与查询对象被模型分配到相同潜在聚类。当前主题聚焦于 <strong id="demoReasonKey1">Graph Learning</strong>。</p>
+                </div>
+                <div class="demo-reason-card">
+                    <h4><i class="fas fa-vector-square"></i> 表征相似</h4>
+                    <p>在嵌入空间中距离更近，属性与结构模式更接近。核心信号来自 <strong id="demoReasonKey2">语义嵌入</strong>。</p>
+                </div>
+                <div class="demo-reason-card">
+                    <h4><i class="fas fa-project-diagram"></i> 高阶结构</h4>
+                    <p>通过超边捕获多节点共同关系，而不只是成对边。此处重点体现 <strong id="demoReasonKey3">高阶超边</strong>。</p>
+                </div>
+                <div class="demo-reason-card">
+                    <h4><i class="fas fa-lightbulb"></i> 语义邻近</h4>
+                    <p>在标题、关键词或研究主题上具有接近语义模式，系统会强化 <strong id="demoReasonKey4">主题邻近</strong> 信号。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-quality-section">
+            <div class="demo-section-head">
+                <h3>聚类质量概览</h3>
+            </div>
+            <div class="demo-quality-grid row g-3">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="demo-quality-card">
+                        <h6>ACC</h6>
+                        <div class="demo-metric-value" id="metricAcc">92.4%</div>
+                        <small>聚类准确率</small>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="demo-quality-card">
+                        <h6>NMI</h6>
+                        <div class="demo-metric-value" id="metricNmi">88.7%</div>
+                        <small>标签一致性</small>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="demo-quality-card">
+                        <h6>ARI</h6>
+                        <div class="demo-metric-value" id="metricAri">85.9%</div>
+                        <small>聚类稳定性</small>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="demo-quality-card">
+                        <h6>F1</h6>
+                        <div class="demo-metric-value" id="metricF1">90.1%</div>
+                        <small>综合性能</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <h6>IntraHC</h6>
+                <p class="mb-0">Intra-hyperedge Contrastive Learning for End-to-End Attributed Hypergraph Clustering.</p>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>页面导航</h6>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="algorithm.html">算法方法</a></li>
+                    <li><a href="results.html">实验结果</a></li>
+                    <li><a href="workflow.html">技术流程</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>项目内容</h6>
+                <ul>
+                    <li><a href="team.html">团队成员</a></li>
+                    <li><a href="resources.html">项目资源</a></li>
+                    <li><a href="blog.html">研究日志</a></li>
+                    <li><a href="demo.html">立即试用</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>联系与社交</h6>
+                <div class="d-flex gap-2 mb-2">
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p class="small mb-0">欢迎补充邮箱、GitHub、论文链接。</p>
+            </div>
+        </div>
+        <div class="footer-bottom mt-4 pt-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
+            <small>Copyright &copy; IntraHC 2026</small>
+            <div>
+                <a class="me-3" href="#!">Privacy Policy</a>
+                <a href="#!">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>
