@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>IntraHC 方法全解 | 研究日志</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="../css/styles.css" rel="stylesheet" />
+    <link href="../css/custom-pages.css" rel="stylesheet" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html"><img src="../assets/img/navbar-logo.svg" alt="logo" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars ms-1"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item"><a class="nav-link" href="../index.html">首页</a></li>
+                <li class="nav-item"><a class="nav-link" href="../algorithm.html">算法方法</a></li>
+                <li class="nav-item"><a class="nav-link" href="../results.html">实验结果</a></li>
+                <li class="nav-item"><a class="nav-link" href="../workflow.html">技术流程</a></li>
+                <li class="nav-item"><a class="nav-link" href="../team.html">团队成员</a></li>
+                <li class="nav-item"><a class="nav-link" href="../resources.html">项目资源</a></li>
+                <li class="nav-item"><a class="nav-link active" href="../blog.html">研究日志</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="page-hero">
+    <div class="container">
+        <a class="back-link mb-3" href="../blog.html"><i class="fas fa-arrow-left"></i> 返回文章列表</a>
+        <h1>IntraHC 方法全解</h1>
+        <p>发布时间：2026-04-25 · 摘要：围绕超边内对比学习与端到端聚类优化，解释方法设计与工程实现。</p>
+    </div>
+</header>
+
+<section class="subpage-section">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <article class="article-card">
+                    <h3 id="background">1. 研究背景</h3>
+                    <p>传统图聚类对高阶关系表达有限，且常将表示学习与聚类目标拆开优化。IntraHC 试图把结构建模、对比学习和聚类目标放到同一训练闭环中。</p>
+                    <h3 id="method">2. 方法结构</h3>
+                    <p>方法由属性超图构建、超边内对比学习、端到端聚类优化三部分组成。核心目标是提升表示质量并减少阶段割裂引入的误差。</p>
+                    <h3 id="innovation">3. 核心创新</h3>
+                    <p>第一，设计 Intra-hyperedge 对比机制以增强局部一致性。第二，将聚类目标直接纳入训练。第三，提高在噪声和稀疏场景下的稳定性。</p>
+                    <h3 id="practice">4. 实践建议</h3>
+                    <p class="mb-0">建议团队在扩展该页面时同步补充：数据集说明、超参数表、实验脚本入口、可视化截图及异常案例分析。</p>
+                </article>
+            </div>
+            <div class="col-lg-4">
+                <aside class="blog-side article-card">
+                    <h5>目录</h5>
+                    <ul class="mb-0">
+                        <li><a href="#background">研究背景</a></li>
+                        <li><a href="#method">方法结构</a></li>
+                        <li><a href="#innovation">核心创新</a></li>
+                        <li><a href="#practice">实践建议</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <h6>IntraHC</h6>
+                <p class="mb-0">Intra-hyperedge Contrastive Learning for End-to-End Attributed Hypergraph Clustering.</p>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>页面导航</h6>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../algorithm.html">算法方法</a></li>
+                    <li><a href="../results.html">实验结果</a></li>
+                    <li><a href="../workflow.html">技术流程</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>项目内容</h6>
+                <ul>
+                    <li><a href="../team.html">团队成员</a></li>
+                    <li><a href="../resources.html">项目资源</a></li>
+                    <li><a href="../blog.html">研究日志</a></li>
+                    <li><a href="intrahc.html">文章示例</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>联系与社交</h6>
+                <div class="d-flex gap-2 mb-2">
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p class="small mb-0">欢迎补充邮箱、GitHub、论文链接。</p>
+            </div>
+        </div>
+        <div class="footer-bottom mt-4 pt-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
+            <small>Copyright &copy; IntraHC 2026</small>
+            <div>
+                <a class="me-3" href="#!">Privacy Policy</a>
+                <a href="#!">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/scripts.js"></script>
+</body>
+</html>
+
