@@ -36,7 +36,7 @@
     <div class="container demo-hero-inner">
         <span class="demo-kicker">Interactive Demo</span>
         <h1>在线试用演示</h1>
-        <p>选择数据集，查看从输入到结果展示的完整流程，快速体验 IntraHC 聚类分析展示页。</p>
+        <p>选择数据集，输入匿名节点编号，查看模型对该节点的聚类位置、相似关系与高阶结构分析结果。</p>
 
         <div class="dataset-selector">
             <button type="button" class="dataset-selector-btn" id="datasetSelectorBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="datasetDropdown">
@@ -48,8 +48,6 @@
                 <li><button type="button" class="dataset-option" data-dataset="Cora">Cora</button></li>
                 <li><button type="button" class="dataset-option" data-dataset="Citeseer">Citeseer</button></li>
                 <li><button type="button" class="dataset-option" data-dataset="Pubmed">Pubmed</button></li>
-                <li><button type="button" class="dataset-option" data-dataset="DBLP">DBLP</button></li>
-                <li><button type="button" class="dataset-option" data-dataset="ACM">ACM</button></li>
             </ul>
         </div>
         <p class="demo-scroll-hint">点击中间选择器或切换数据集后，页面会自动平滑滚动至下方展示区。</p>
@@ -68,21 +66,22 @@
 <section class="demo-section" id="demo-showcase">
     <div class="container">
         <div class="demo-showcase-header text-center">
-            <h2>输入一个对象，发现它的聚类位置与相关关系</h2>
-            <p>选择数据集后，你可以输入论文、作者或关键词，系统将展示其所属聚类、相关对象、推荐依据与降维可视化结果。</p>
+            <h2>输入一个节点，发现它的聚类位置与高阶关系</h2>
+            <p>选择数据集后，你可以输入节点编号，系统将展示该节点的预测聚类、相关节点、同超边邻居与降维可视化结果。</p>
         </div>
 
         <div class="demo-search-card">
             <div class="demo-search-row">
-                <input class="demo-search-input" id="demoSearchInput" type="text" placeholder="输入论文标题、关键词或研究主题" />
-                <button class="demo-search-button" id="demoSearchButton" type="button">查看关联结果</button>
+                <input class="demo-search-input" id="demoSearchInput" type="text" placeholder="输入节点编号，例如 0、128、512" />
+                <button class="demo-search-button" id="demoSearchButton" type="button">查看节点结果</button>
             </div>
             <div class="demo-example-chips-wrap">
                 <span class="demo-example-label">示例搜索：</span>
                 <div class="demo-example-chips" id="demoExampleChips">
-                    <button class="demo-chip" type="button">graph learning</button>
-                    <button class="demo-chip" type="button">semi-supervised learning</button>
-                    <button class="demo-chip" type="button">citation network</button>
+                    <button class="demo-chip" type="button">Node 0</button>
+                    <button class="demo-chip" type="button">Node 128</button>
+                    <button class="demo-chip" type="button">Node 512</button>
+                    <button class="demo-chip" type="button">Cluster 3</button>
                 </div>
             </div>
         </div>
@@ -91,9 +90,9 @@
             <div class="col-lg-4">
                 <div class="demo-insight-panel">
                     <div class="demo-insight-kicker">当前查询</div>
-                    <h3 id="demoCurrentQuery">graph learning</h3>
-                    <div class="demo-cluster-label" id="demoClusterName">Cluster 3：Graph Learning / Citation Network</div>
-                    <p id="demoExplanation">该对象被模型识别为图学习相关主题，并与同簇论文在结构关系和语义表征上更接近。</p>
+                    <h3 id="demoCurrentQuery">Cora Node #0000</h3>
+                    <div class="demo-cluster-label" id="demoClusterName">所属聚类：Cluster 3</div>
+                    <p id="demoExplanation">该节点被模型分配至 Cluster 3。系统基于训练后的节点嵌入、预测簇标签与超边结构，返回其相似节点和高阶关系邻居。</p>
                     <div class="demo-mini-grid">
                         <div class="demo-mini-card">
                             <span>所属数据集</span>
@@ -101,14 +100,14 @@
                         </div>
                         <div class="demo-mini-card">
                             <span>节点类型</span>
-                            <strong id="demoNodeType">论文</strong>
+                            <strong id="demoNodeType">匿名样本节点</strong>
                         </div>
                         <div class="demo-mini-card">
                             <span>推荐模式</span>
                             <strong id="demoRecommendMode">同簇 + 表征相似 + 高阶关系</strong>
                         </div>
                     </div>
-                    <button class="btn btn-primary text-uppercase mt-4" type="button">高亮相关节点</button>
+                    <button class="btn btn-primary text-uppercase mt-4" id="demoHighlightBtn" type="button">高亮相关节点</button>
                 </div>
             </div>
             <div class="col-lg-8">
@@ -117,30 +116,8 @@
                         <h3 id="demoVisualTitle">Cora 降维聚类可视化</h3>
                         <span class="demo-visual-tag">2D Projection</span>
                     </div>
-                    <div class="demo-scatter-stage" id="demoScatterStage">
-                        <span class="demo-scatter-dot c1" style="left: 10%; top: 63%;"></span>
-                        <span class="demo-scatter-dot c1" style="left: 18%; top: 58%;"></span>
-                        <span class="demo-scatter-dot c1" style="left: 24%; top: 68%;"></span>
-                        <span class="demo-scatter-dot c2" style="left: 30%; top: 28%;"></span>
-                        <span class="demo-scatter-dot c2" style="left: 36%; top: 37%;"></span>
-                        <span class="demo-scatter-dot c2" style="left: 42%; top: 24%;"></span>
-                        <span class="demo-scatter-dot c3" style="left: 55%; top: 46%;"></span>
-                        <span class="demo-scatter-dot c3" style="left: 62%; top: 54%;"></span>
-                        <span class="demo-scatter-dot c3" style="left: 66%; top: 39%;"></span>
-                        <span class="demo-scatter-dot c4" style="left: 76%; top: 26%;"></span>
-                        <span class="demo-scatter-dot c4" style="left: 84%; top: 35%;"></span>
-                        <span class="demo-scatter-dot c4" style="left: 88%; top: 22%;"></span>
-                        <span class="demo-scatter-dot c5" style="left: 72%; top: 72%;"></span>
-                        <span class="demo-scatter-dot c5" style="left: 81%; top: 64%;"></span>
-                        <span class="demo-scatter-dot c5" style="left: 89%; top: 74%;"></span>
-                        <span class="demo-scatter-dot active" id="demoActiveDot"></span>
-                    </div>
-                    <div class="demo-legend">
-                        <span><i class="lg c1"></i>Cluster A</span>
-                        <span><i class="lg c2"></i>Cluster B</span>
-                        <span><i class="lg c3"></i>Cluster C</span>
-                        <span><i class="lg c4"></i>Cluster D</span>
-                        <span><i class="lg active"></i>当前查询点</span>
+                    <div class="demo-scatter-stage" id="demoScatterStage"></div>
+                    <div class="demo-legend" id="demoLegend">
                     </div>
                 </div>
             </div>
@@ -148,32 +125,41 @@
 
         <div class="demo-related-section">
             <div class="demo-section-head">
-                <h3>相关对象推荐</h3>
-                <p>系统基于聚类结果、嵌入相似度与高阶结构关系返回 Top 相关对象。</p>
+                <h3>相关节点推荐</h3>
+                <p>系统基于训练后的嵌入相似度、预测聚类结果与共享超边关系返回 Top 相关节点。</p>
             </div>
-            <div class="demo-related-grid" id="demoRelatedGrid"></div>
+            <div class="demo-related-groups">
+                <div class="demo-related-block">
+                    <h4>A. 嵌入相似节点</h4>
+                    <div class="demo-related-grid" id="demoEmbeddingGrid"></div>
+                </div>
+                <div class="demo-related-block">
+                    <h4>B. 同超边高阶邻居</h4>
+                    <div class="demo-related-grid" id="demoHyperedgeGrid"></div>
+                </div>
+            </div>
         </div>
 
         <div class="demo-reason-section">
             <div class="demo-section-head">
-                <h3>为什么推荐这些对象？</h3>
+                <h3>推荐理由</h3>
             </div>
             <div class="demo-reason-grid">
                 <div class="demo-reason-card">
-                    <h4><i class="fas fa-layer-group"></i> 同簇关系</h4>
-                    <p>与查询对象被模型分配到相同潜在聚类。当前主题聚焦于 <strong id="demoReasonKey1">Graph Learning</strong>。</p>
+                    <h4><i class="fas fa-layer-group"></i> 预测簇一致</h4>
+                    <p>与查询节点被模型分配到相同潜在聚类。</p>
                 </div>
                 <div class="demo-reason-card">
-                    <h4><i class="fas fa-vector-square"></i> 表征相似</h4>
-                    <p>在嵌入空间中距离更近，属性与结构模式更接近。核心信号来自 <strong id="demoReasonKey2">语义嵌入</strong>。</p>
+                    <h4><i class="fas fa-vector-square"></i> 嵌入空间相似</h4>
+                    <p>在训练后的节点嵌入空间中距离更近。</p>
                 </div>
                 <div class="demo-reason-card">
-                    <h4><i class="fas fa-project-diagram"></i> 高阶结构</h4>
-                    <p>通过超边捕获多节点共同关系，而不只是成对边。此处重点体现 <strong id="demoReasonKey3">高阶超边</strong>。</p>
+                    <h4><i class="fas fa-project-diagram"></i> 共享超边关系</h4>
+                    <p>通过超边捕获多节点共同关系，而不只是成对边。</p>
                 </div>
                 <div class="demo-reason-card">
-                    <h4><i class="fas fa-lightbulb"></i> 语义邻近</h4>
-                    <p>在标题、关键词或研究主题上具有接近语义模式，系统会强化 <strong id="demoReasonKey4">主题邻近</strong> 信号。</p>
+                    <h4><i class="fas fa-lightbulb"></i> 属性模式邻近</h4>
+                    <p>节点属性向量经模型编码后呈现相近模式。</p>
                 </div>
             </div>
         </div>
@@ -212,6 +198,7 @@
                     </div>
                 </div>
             </div>
+            <p class="demo-quality-note">指标基于公开数据集标签离线计算，仅用于评估聚类质量，不参与模型训练与在线展示推理。</p>
         </div>
     </div>
 </section>
