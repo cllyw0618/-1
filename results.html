@@ -25,50 +25,152 @@
                 <li class="nav-item"><a class="nav-link" href="team.html">团队成员</a></li>
                 <li class="nav-item"><a class="nav-link" href="resources.html">项目资源</a></li>
                 <li class="nav-item"><a class="nav-link" href="blog.html">研究日志</a></li>
-                <li class="nav-item nav-cta-item"><a class="nav-link nav-trial-btn" href="demo.html">立即试用</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<header class="page-hero">
+<header class="results-hero">
     <div class="container">
-        <a class="back-link mb-3" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
-        <h1>实验结果与可视化</h1>
-        <p>保留首页成果展示内容，并扩展指标卡片、对比实验与可视化说明。</p>
+        <div class="results-hero-content">
+            <a class="back-link results-back-link" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
+
+            <h1>实验结果与可视化</h1>
+            <h3><span class="results-hero-label">Intra-hyperedge Contrastive Learning for Attributed Hypergraph Clustering</span></h3>
+        </div>
     </div>
 </header>
 
-<section class="subpage-section">
+<section class="result-summary-bridge">
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="section-heading text-uppercase">成果展示</h2>
-            <h3 class="section-subheading text-muted">沿用首页 Portfolio 内容</h3>
-        </div>
-        <div class="row g-4">
-            <div class="col-lg-4 col-sm-6">
-                <div class="result-card"><img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="result 1" /><h5>Threads</h5><p class="text-muted mb-0">Illustration</p></div>
+        <div class="summary-card">
+            <div class="summary-text">
+                <span class="summary-label">Experiment Overview</span>
+                <h2>实验结果总览</h2>
+                <p>IntraHC 在属性超图聚类任务中取得了稳定的实验表现。通过核心指标、对比实验、消融实验与嵌入空间可视化，可以直观展示模型在高阶关系建模场景下的有效性。</p>
             </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="result-card"><img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="result 2" /><h5>Explore</h5><p class="text-muted mb-0">Graphic Design</p></div>
+            <div class="summary-metrics" aria-label="实验结果核心指标">
+                <div class="summary-metric-item">
+                    <span>ACC</span>
+                    <strong>92.4%</strong>
+                </div>
+                <div class="summary-metric-item">
+                    <span>NMI</span>
+                    <strong>88.7%</strong>
+                </div>
+                <div class="summary-metric-item">
+                    <span>ARI</span>
+                    <strong>85.9%</strong>
+                </div>
+                <div class="summary-metric-item">
+                    <span>F1</span>
+                    <strong>90.1%</strong>
+                </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="result-card"><img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="result 3" /><h5>Finish</h5><p class="text-muted mb-0">Identity</p></div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="result-card"><img class="img-fluid" src="assets/img/portfolio/4.jpg" alt="result 4" /><h5>Lines</h5><p class="text-muted mb-0">Branding</p></div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="result-card"><img class="img-fluid" src="assets/img/portfolio/5.jpg" alt="result 5" /><h5>Southwest</h5><p class="text-muted mb-0">Website Design</p></div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="result-card"><img class="img-fluid" src="assets/img/portfolio/6.jpg" alt="result 6" /><h5>Window</h5><p class="text-muted mb-0">Photography</p></div>
+            <div class="summary-actions">
+                <a class="summary-btn primary" href="#metrics">查看实验指标</a>
+                <a class="summary-btn outline" href="#comparison">查看对比实验</a>
             </div>
         </div>
     </div>
 </section>
 
-<section class="subpage-section bg-light">
+<section class="subpage-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-heading text-uppercase">成果展示</h2>
+
+        </div>
+        <div class="row results-portfolio-grid">
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="result 1" />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Threads</div>
+                        <div class="portfolio-caption-subheading text-muted">Illustration</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="result 2" />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Explore</div>
+                        <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="result 3" />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Finish</div>
+                        <div class="portfolio-caption-subheading text-muted">Identity</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/4.jpg" alt="result 4" />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Lines</div>
+                        <div class="portfolio-caption-subheading text-muted">Branding</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/5.jpg" alt="result 5" />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Southwest</div>
+                        <div class="portfolio-caption-subheading text-muted">Website Design</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/6.jpg" alt="result 6" />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Window</div>
+                        <div class="portfolio-caption-subheading text-muted">Photography</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="subpage-section bg-light" id="metrics">
     <div class="container">
         <div class="row g-4">
             <div class="col-md-3">
@@ -84,7 +186,7 @@
                 <div class="result-card text-center"><h6 class="text-muted">F1</h6><h3 class="mb-0">90.1%</h3></div>
             </div>
         </div>
-        <div class="row g-4 mt-1">
+        <div class="row g-4 mt-1" id="comparison">
             <div class="col-lg-6">
                 <div class="result-card">
                     <h4>对比实验</h4>
@@ -153,9 +255,159 @@
     </div>
 </footer>
 
+<!-- Portfolio modals for results details -->
+<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <h2 class="text-uppercase">结果详情：Threads</h2>
+                            <p class="item-intro text-muted">Illustration 结果展示与实验说明。</p>
+                            <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="Threads result" />
+                            <p>该实验展示了 IntraHC 在超图结构下的可视化结果，突出图结构一致性与聚类性能提升。</p>
+                            <ul class="list-inline">
+                                <li><strong>指标:</strong> ACC / NMI / ARI</li>
+                                <li><strong>类别:</strong> Illustration</li>
+                            </ul>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                点此关闭该界面
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <h2 class="text-uppercase">结果详情：Explore</h2>
+                            <p class="item-intro text-muted">Graphic Design 实验图示。</p>
+                            <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/2.jpg" alt="Explore result" />
+                            <p>展示了模型在多维图数据下的聚类稳定性与表示学习效果，适合对比不同方法的可视化结果。</p>
+                            <ul class="list-inline">
+                                <li><strong>指标:</strong> NMI / F1 / 学习曲线</li>
+                                <li><strong>类别:</strong> Graphic Design</li>
+                            </ul>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                点此关闭该界面
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <h2 class="text-uppercase">结果详情：Finish</h2>
+                            <p class="item-intro text-muted">Identity 结果对比。</p>
+                            <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/3.jpg" alt="Finish result" />
+                            <p>该条目展示了模型在身份识别样例上的聚类一致性，强调超边内部关系和节点属性联合建模。</p>
+                            <ul class="list-inline">
+                                <li><strong>指标:</strong> ACC / ARI / 在线学习</li>
+                                <li><strong>类别:</strong> Identity</li>
+                            </ul>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                点此关闭该界面
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <h2 class="text-uppercase">结果详情：Lines</h2>
+                            <p class="item-intro text-muted">Branding 模块分析。</p>
+                            <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/4.jpg" alt="Lines result" />
+                            <p>通过该实验，可以看到模型在结构化数据下的线性边界可视化效果，以及超边内对比性如何增强判别力。</p>
+                            <ul class="list-inline">
+                                <li><strong>指标:</strong> F1 / 召回率 / 精确度</li>
+                                <li><strong>类别:</strong> Branding</li>
+                            </ul>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                点此关闭该界面
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <h2 class="text-uppercase">结果详情：Southwest</h2>
+                            <p class="item-intro text-muted">Website Design 结果说明。</p>
+                            <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/5.jpg" alt="Southwest result" />
+                            <p>该部分展示的是网站设计类实验场景下模型的聚类表现和视觉化结果，适合展示特征空间分布。</p>
+                            <ul class="list-inline">
+                                <li><strong>指标:</strong> 数据可视化 / 对比分析</li>
+                                <li><strong>类别:</strong> Website Design</li>
+                            </ul>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                点此关闭该界面
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <h2 class="text-uppercase">结果详情：Window</h2>
+                            <p class="item-intro text-muted">Photography 视觉化实验。</p>
+                            <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/6.jpg" alt="Window result" />
+                            <p>该条目用于展示视觉化数据集中的聚类效果，说明超图对图像特征的内部一致性支持作用。</p>
+                            <ul class="list-inline">
+                                <li><strong>指标:</strong> 聚类精度 / 可视化解释性</li>
+                                <li><strong>类别:</strong> Photography</li>
+                            </ul>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                点此关闭该界面
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/scripts.js"></script>
 </body>
 </html>
-
-
