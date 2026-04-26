@@ -25,7 +25,7 @@
 
   function HeroButton({ href, label, icon, primary }) {
     const className = primary
-      ? "group inline-flex min-h-[3.5rem] items-center justify-center gap-3 rounded-full bg-slate-950 px-8 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_22px_44px_rgba(15,23,42,0.20)] transition duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-200"
+      ? "hero-primary-button group inline-flex min-h-[3.5rem] items-center justify-center gap-3 rounded-full px-8 text-sm font-bold uppercase tracking-[0.14em] transition duration-300 hover:-translate-y-1 focus:outline-none"
       : "group inline-flex min-h-[3.5rem] items-center justify-center gap-3 rounded-full border border-teal-200 bg-white/78 px-8 text-sm font-bold uppercase tracking-[0.14em] text-slate-800 shadow-[0_18px_36px_rgba(20,184,166,0.12)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-teal-400 hover:text-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-100";
 
     return e(
@@ -135,6 +135,21 @@
       e("div", {
         className:
           "absolute left-[24%] top-[38%] h-[9.5rem] w-[23rem] rotate-[-2deg] rounded-[48%] border border-slate-300/80",
+      }),
+      e("span", {
+        className:
+          "hero-orbit hero-orbit-one absolute left-[17%] top-[34%] h-px w-[62%] origin-left rotate-[-7deg] rounded-full",
+        "aria-hidden": "true",
+      }),
+      e("span", {
+        className:
+          "hero-orbit hero-orbit-two absolute left-[28%] top-[47%] h-px w-[52%] origin-left rotate-[5deg] rounded-full",
+        "aria-hidden": "true",
+      }),
+      e("span", {
+        className:
+          "hero-orbit hero-orbit-three absolute left-[22%] top-[56%] h-px w-[58%] origin-left rotate-[-2deg] rounded-full",
+        "aria-hidden": "true",
       }),
       nodes.map((position, index) =>
         e(
