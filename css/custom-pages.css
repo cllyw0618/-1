@@ -197,6 +197,11 @@
 }
 
 .summary-card-grid {
+  display: grid;
+  width: min(100%, 1050px);
+  margin: 0 auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.6rem;
   transform-style: preserve-3d;
 }
 
@@ -204,6 +209,8 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  width: 100%;
+  margin: 0;
   min-height: 14.25rem;
   padding: 1.65rem 1.75rem;
   border: 1px solid rgba(226, 232, 240, 0.78);
@@ -220,6 +227,10 @@
     transform 0.35s ease,
     border-color 0.35s ease,
     box-shadow 0.35s ease;
+}
+
+.summary-card-slot {
+  min-width: 0;
 }
 
 .summary-card-grid > div:nth-child(2) .summary-card {
@@ -380,6 +391,12 @@
 
 .summary-link:hover i {
   transform: translateX(4px);
+}
+
+@media (max-width: 767.98px) {
+  .summary-card-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @keyframes summaryCardRise {

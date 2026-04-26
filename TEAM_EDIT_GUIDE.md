@@ -9,8 +9,6 @@
 - `results.html`：实验结果与可视化页
 - `workflow.html`：技术流程页
 - `resources.html`：资源页（论文/代码/数据/文档）
-- `blog.html`：文章列表页
-- `blog/intrahc.html`：文章正文示例页
 - `css/styles.css`：原主题样式（尽量少动）
 - `css/custom-pages.css`：分页新增样式（优先在这里改）
 - `assets/`：图片与静态资源
@@ -69,12 +67,6 @@
 
 可改区域：`.resource-card`。
 
-### F. 文档/宣传组（`blog.html` + `blog/*.html`）
-
-- 在 `blog.html` 维护文章列表卡片（标题、日期、摘要、链接）
-- 每篇正文单独建 `blog/xxx.html`
-- 注意子页路径要用 `../css/...`、`../js/...`
-
 ## 3. 导航栏怎么改（全员必看）
 
 所有页面都有统一导航。新增页面或重命名页面时：
@@ -103,7 +95,6 @@
 - 统一放在 `assets/` 下
 - 引用路径使用相对路径
 - 不要删已有图片
-- `blog/` 下页面引用根目录资源时记得加 `../`
 
 ## 6. 本地预览
 
@@ -119,7 +110,7 @@
 
 - [ ] 没有删除首页主板块
 - [ ] 导航链接和 active 正确
-- [ ] 子页资源路径正确（尤其 `blog/`）
+- [ ] 子页资源路径正确
 - [ ] 样式改动主要在 `custom-pages.css`
 
 ## 8. 建议分工（避免冲突）
@@ -127,7 +118,7 @@
 - 成员 A：`algorithm.html`
 - 成员 B：`results.html`
 - 成员 C：`workflow.html`
-- 成员 D：`resources.html` + `blog.html`
+- 成员 D：`resources.html`
 - 负责人：只在最后统一合并 `index.html` 导航与摘要按钮
 
 ---
