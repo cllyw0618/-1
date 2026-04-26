@@ -31,60 +31,67 @@
     </div>
 </nav>
 
-<header class="page-hero">
+<header class="page-hero workflow-hero">
     <div class="container">
         <a class="back-link mb-3" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
+        <span class="workflow-kicker">Technical Workflow</span>
         <h1>技术路线与实施流程</h1>
-        <p>保留首页 About 时间线信息，并改造成更易维护的步骤式布局。</p>
+        <p>从属性超图构建、超边内对比学习到聚类评估，形成一条清晰、可复现、可展示的端到端研究流程。</p>
     </div>
 </header>
 
-<section class="subpage-section">
+<section class="subpage-section workflow-section">
     <div class="container">
-        <div class="text-center mb-5">
+        <div class="text-center mb-5 workflow-heading">
+            <span class="workflow-kicker">Process Overview</span>
             <h2 class="section-heading text-uppercase">流程总览</h2>
-            <h3 class="section-subheading text-muted">基于现有时间线内容整理</h3>
+            <h3 class="section-subheading text-muted">围绕 IntraHC 的核心模块，将研究步骤拆解为四个连续阶段。</h3>
         </div>
-        <div class="row g-4">
+        <div class="row g-4 workflow-grid">
             <div class="col-md-6 col-lg-3">
                 <div class="step-card">
-                    <span class="step-index">1</span>
-                    <img class="img-fluid rounded-circle mb-3" src="assets/img/about/1.jpg" alt="step1" />
-                    <h5>2009-2011</h5>
-                    <p class="text-muted mb-0">Our Humble Beginnings</p>
+                    <span class="step-index">01</span>
+                    <div class="workflow-icon"><i class="fas fa-database"></i></div>
+                    <h5>数据整理</h5>
+                    <p class="text-muted mb-0">统一节点属性、标签信息和关系结构，为后续超图建模提供干净输入。</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="step-card">
-                    <span class="step-index">2</span>
-                    <img class="img-fluid rounded-circle mb-3" src="assets/img/about/2.jpg" alt="step2" />
-                    <h5>March 2011</h5>
-                    <p class="text-muted mb-0">An Agency is Born</p>
+                    <span class="step-index">02</span>
+                    <div class="workflow-icon"><i class="fas fa-project-diagram"></i></div>
+                    <h5>超图构建</h5>
+                    <p class="text-muted mb-0">根据相似性与高阶关联生成超边，使模型能够捕获普通图难以表达的群体关系。</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="step-card">
-                    <span class="step-index">3</span>
-                    <img class="img-fluid rounded-circle mb-3" src="assets/img/about/3.jpg" alt="step3" />
-                    <h5>December 2015</h5>
-                    <p class="text-muted mb-0">Transition to Full Service</p>
+                    <span class="step-index">03</span>
+                    <div class="workflow-icon"><i class="fas fa-layer-group"></i></div>
+                    <h5>表征学习</h5>
+                    <p class="text-muted mb-0">通过超边内对比学习融合节点属性与拓扑结构，学习更稳定的嵌入表示。</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="step-card">
-                    <span class="step-index">4</span>
-                    <img class="img-fluid rounded-circle mb-3" src="assets/img/about/4.jpg" alt="step4" />
-                    <h5>July 2020</h5>
-                    <p class="text-muted mb-0">Phase Two Expansion</p>
+                    <span class="step-index">04</span>
+                    <div class="workflow-icon"><i class="fas fa-chart-line"></i></div>
+                    <h5>聚类评估</h5>
+                    <p class="text-muted mb-0">结合 ACC、NMI、ARI、F1 与可视化结果，验证模型的聚类质量和鲁棒性。</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="subpage-section bg-light">
+<section class="subpage-section workflow-detail-section">
     <div class="container">
-        <div class="row g-4">
+        <div class="text-center mb-5 workflow-heading">
+            <span class="workflow-kicker">Implementation Path</span>
+            <h2 class="section-heading text-uppercase">实施路径</h2>
+            <h3 class="section-subheading text-muted">把实验流程拆成可协作、可检查、可迭代的三个任务层。</h3>
+        </div>
+        <div class="row g-4 workflow-detail-grid">
             <div class="col-lg-4">
                 <div class="step-card"><span class="step-index">A</span><h4>数据准备</h4><p class="text-muted mb-0">整理节点属性、关系结构与数据清洗策略，为超图构建提供稳定输入。</p></div>
             </div>
@@ -101,7 +108,7 @@
 <section class="cta-section">
     <div class="container text-center">
         <h3 class="mb-3">查看团队分工与成员职责</h3>
-        <a class="btn btn-primary text-uppercase" href="team.html">前往团队页</a>
+        <a class="btn btn-primary text-uppercase" href="team.html">前往团队页 <i class="fas fa-arrow-right ms-2"></i></a>
     </div>
 </section>
 
@@ -154,5 +161,4 @@
 <script src="js/scripts.js"></script>
 </body>
 </html>
-
 

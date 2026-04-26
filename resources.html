@@ -13,89 +13,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/custom-pages.css" rel="stylesheet" />
-   
-    <style>
-    /* 核心修改：浅绿色背景与布局 */
-    .page-hero {
-        /* 使用柔和的浅绿色背景 */
-        background-color: #f0f9f4 !important; 
-        /* 移除之前可能存在的暗色渐变和图片背景 */
-        background-image: none !important;
-        
-        /* 增加上下间距，使区域更长 */
-        padding: 160px 0 100px 0 !important;
-        color: #2c3e50 !important; /* 深灰色文字，与浅绿更搭 */
-    }
-
-    /* 左侧文字靠左 */
-    .text-start {
-        text-align: left !important;
-    }
-
-    /* 调整标题颜色，使其在绿底下更清晰 */
-    .page-hero h1 {
-        color: #1a1a1a;
-        letter-spacing: -1px;
-    }
-
-    .page-hero .lead {
-        color: #555;
-        font-size: 1.25rem;
-    }
-
-    .back-link {
-        color: #198754 !important; /* 返回链接使用深绿色 */
-        text-decoration: none;
-        font-weight: 600;
-    }
-
-    /* 右侧图片轻微浮动动画（可选） */
-    .page-hero img {
-        animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-15px); }
-        100% { transform: translateY(0px); }
-    }
-    /* 1. 卡片基础与过渡 */
-    .dataset-card {
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        cursor: pointer;
-        min-height: 120px;
-        display: flex;
-        align-items: center;
-    }
-
-    /* 2. 悬停效果：向上浮起并加深阴影 */
-    .dataset-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
-        background-color: #fcfdfc !important; /* 悬停时背景微变 */
-    }
-
-    /* 3. 图标背景圆圈（可选，增加设计感） */
-    .icon-box {
-        width: 60px;
-        height: 60px;
-        background-color: rgba(0,0,0,0.03);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* 4. 确保标题在悬停时颜色变亮（如黄色或蓝色） */
-    .dataset-card:hover h5 {
-        color: #ffc107; /* 与主题黄色统一 */
-    }
-
-    /* 5. 辅助样式 */
-    .rounded-4 {
-        border-radius: 1rem !important;
-    }
-</style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -117,31 +34,53 @@
     </div>
 </nav>
 
-<header class="page-hero">
+<header class="page-hero resources-hero">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-7 text-start py-5">
-                
+            <div class="col-lg-7 text-start py-5 resources-hero-copy">
+                <a class="back-link mb-4" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
+                <span class="resources-kicker">Research Resources</span>
                 <h1 class="display-4 fw-bold mb-3">项目资源与文档入口</h1>
                 <p class="lead mb-4">
                     对接首页资源/联系板块，提供论文、代码、数据、文档的统一入口结构。我们将持续更新研究成果，欢迎开发者与研究者获取相关资源。
+                </p>
+                <div class="resources-hero-actions">
+                    <a class="resource-hero-btn primary" href="#datasets">查看数据集</a>
+                    <a class="resource-hero-btn outline" href="#open-source">开源入口</a>
+                </div>
             </div>
-            
+
             <div class="col-lg-5 d-none d-lg-block text-center">
-                <img src="C:\Users\27906\Desktop\6840fcaa7c10182c94176bc2a8be879.jpg" alt="资源展示" class="img-fluid rounded-3 shadow-lg" style="max-height: 350px;">
+                <div class="resources-visual" aria-hidden="true">
+                    <div class="resource-orbit orbit-one"></div>
+                    <div class="resource-orbit orbit-two"></div>
+                    <div class="resource-node node-one"></div>
+                    <div class="resource-node node-two"></div>
+                    <div class="resource-node node-three"></div>
+                    <div class="resource-stack">
+                        <span><i class="fas fa-file-lines"></i> Paper</span>
+                        <span><i class="fab fa-github"></i> Code</span>
+                        <span><i class="fas fa-database"></i> Data</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </header>
 
-<section class="subpage-section">
+<section class="subpage-section resources-section" id="datasets">
     <div class="container">
-        <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="text-center mb-5 resources-heading">
+            <span class="resources-kicker">Dataset Library</span>
+            <h2 class="section-heading text-uppercase">数据集资源</h2>
+            <h3 class="section-subheading text-muted">将常用公开数据源整理成可直接访问的入口，便于实验复现和后续扩展。</h3>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 g-4 resources-grid">
     <div class="col">
-        <div class="dataset-card shadow-sm p-4 rounded-4 bg-white border-0 position-relative">
+        <div class="dataset-card position-relative">
             <div class="d-flex align-items-start">
                 <div class="icon-box me-4 flex-shrink-0">
-                    <i class="fas fa-database fa-2x text-primary"></i>
+                    <i class="fas fa-database"></i>
                 </div>
                 <div class="content-box">
                     <h5 class="fw-bold mb-1">AllSet 数据集</h5>
@@ -153,10 +92,10 @@
     </div>
 
     <div class="col">
-        <div class="dataset-card shadow-sm p-4 rounded-4 bg-white border-0 position-relative">
+        <div class="dataset-card position-relative">
             <div class="d-flex align-items-start">
                 <div class="icon-box me-4 flex-shrink-0">
-                    <i class="fas fa-cube fa-2x text-warning"></i>
+                    <i class="fas fa-cube"></i>
                 </div>
                 <div class="content-box">
                     <h5 class="fw-bold mb-1">NTU2012 数据集</h5>
@@ -168,10 +107,10 @@
     </div>
 
     <div class="col">
-        <div class="dataset-card shadow-sm p-4 rounded-4 bg-white border-0 position-relative">
+        <div class="dataset-card position-relative">
             <div class="d-flex align-items-start">
                 <div class="icon-box me-4 flex-shrink-0">
-                    <i class="fas fa-microscope fa-2x text-success"></i>
+                    <i class="fas fa-microscope"></i>
                 </div>
                 <div class="content-box">
                     <h5 class="fw-bold mb-1">Mushroom 数据集</h5>
@@ -183,10 +122,10 @@
     </div>
 
     <div class="col">
-        <div class="dataset-card shadow-sm p-4 rounded-4 bg-white border-0 position-relative">
+        <div class="dataset-card position-relative">
             <div class="d-flex align-items-start">
                 <div class="icon-box me-4 flex-shrink-0">
-                    <i class="fas fa-paw fa-2x text-info"></i>
+                    <i class="fas fa-shapes"></i>
                 </div>
                 <div class="content-box">
                     <h5 class="fw-bold mb-1">Zoo 数据集</h5>
@@ -198,10 +137,10 @@
     </div>
 
     <div class="col">
-        <div class="dataset-card shadow-sm p-4 rounded-4 bg-white border-0 position-relative">
+        <div class="dataset-card position-relative">
             <div class="d-flex align-items-start">
                 <div class="icon-box me-4 flex-shrink-0">
-                    <i class="fas fa-newspaper fa-2x text-danger"></i>
+                    <i class="fas fa-newspaper"></i>
                 </div>
                 <div class="content-box">
                     <h5 class="fw-bold mb-1">20 Newsgroups</h5>
@@ -213,10 +152,10 @@
     </div>
 
     <div class="col">
-        <div class="dataset-card shadow-sm p-4 rounded-4 bg-white border-0 position-relative">
+        <div class="dataset-card position-relative">
             <div class="d-flex align-items-start">
                 <div class="icon-box me-4 flex-shrink-0">
-                    <i class="fas fa-user-graduate fa-2x text-secondary"></i>
+                    <i class="fas fa-user-graduate"></i>
                 </div>
                 <div class="content-box">
                     <h5 class="fw-bold mb-1">学生心理健康数据集</h5>
@@ -231,21 +170,22 @@
 </section>
 
 
-<footer class="footer-section">
-    <div class="container"> <h3 class="footer-title" style="text-align: center; margin-top: 30px; font-weight: bold;">开源资源入口</h3>
-        
-        <div class="link-group" style="display: flex; justify-content: center; gap: 15px; margin-top: 20px; margin-bottom: 30px;">
-            <a href="https://github.com/cllyw0618/-1" target="_blank" class="btn btn-dark">
+<footer class="footer-section resources-footer" id="open-source">
+    <div class="container">
+        <h3 class="footer-title">开源资源入口</h3>
+
+        <div class="link-group">
+            <a href="https://github.com/cllyw0618/-1" target="_blank" class="resource-footer-btn">
                 <i class="fab fa-github"></i> GitHub 源码
             </a>
-            <a href="resources.html" class="btn btn-dark">
+            <a href="#datasets" class="resource-footer-btn outline">
                 <i class="fas fa-database"></i> 数据集获取
             </a>
         </div>
 
-        <hr class="footer-divider" style="border-top: 1px dashed #ddd; width: 60%; margin: 0 auto 20px auto;">
+        <hr class="footer-divider">
 
-        <div class="acknowledgments" style="text-align: center; color: #666; font-size: 0.9rem; padding-bottom: 40px;">
+        <div class="acknowledgments">
             <p><strong>致谢：</strong> 特别感谢指导老师的悉心指导，以及中国计算机设计大赛组委会对本项目的大力支持。</p>
         </div>
     </div>
