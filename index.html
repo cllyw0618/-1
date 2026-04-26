@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
@@ -16,6 +16,44 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/custom-pages.css" rel="stylesheet" />
+        <style>
+            @media (min-width: 992px) {
+                .nav-item.dropdown:hover .dropdown-menu {
+                    display: block !important;
+                    margin-top: 0;
+                }
+            }
+
+            .dropdown-menu {
+                border-radius: 8px;
+                padding: 0.5rem 0;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+                animation: fadeIn 0.3s ease;
+            }
+
+            .dropdown-item {
+                padding: 0.6rem 1.5rem;
+                font-weight: 500;
+                transition: all 0.2s;
+            }
+
+            .dropdown-item:hover {
+                background-color: #f8f9fa;
+                color: #ffc107 !important;
+                padding-left: 1.8rem;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
         <script>
             window.tailwind = {
                 config: {
@@ -37,16 +75,23 @@
                     <i class="fas fa-bars ms-1"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                   <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-    <li class="nav-item"><a class="nav-link active" href="#page-top">首页</a></li>
-    <li class="nav-item"><a class="nav-link" href="#home-summary">模块总览</a></li>
-    <li class="nav-item"><a class="nav-link" href="#services">核心优势</a></li>
-    <li class="nav-item"><a class="nav-link" href="#portfolio">实验结果</a></li>
-    <li class="nav-item"><a class="nav-link" href="#about">技术流程</a></li>
-    <li class="nav-item"><a class="nav-link" href="#team">团队成员</a></li>
-    <li class="nav-item"><a class="nav-link" href="#contact">项目资源</a></li>
-                <li class="nav-item nav-cta-item"><a class="nav-link nav-trial-btn" href="demo.html">立即试用</a></li>
-</ul>
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link active" href="#page-top">首页</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#home-summary">模块总览</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">核心优势</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#portfolio">实验结果</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">技术流程</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team">团队成员</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">项目资源</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="resDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">资源与其他</a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="resDropdown">
+                                <li><a class="dropdown-item" href="#!"><i class="fas fa-comment-dots me-2 text-warning"></i>反馈</a></li>
+                                <li><a class="dropdown-item" href="resources.html"><i class="fas fa-database me-2 text-primary"></i>开源数据集</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-cta-item"><a class="nav-link nav-trial-btn" href="demo.html">立即试用</a></li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -495,6 +540,21 @@
                     </div>
                 </div>
             </div>
+            <footer class="footer-section">
+                <div class="footer-container">
+                    <h3 class="footer-title">开源资源入口</h3>
+                    <div class="link-group">
+                        <a href="https://github.com/cllyw0618/-1" target="_blank" class="res-btn"><i class="fab fa-github"></i> GitHub 源码</a>
+                        <a href="resources.html" class="res-btn"><i class="fas fa-database"></i> 数据集获取</a>
+                    </div>
+
+                    <hr class="footer-divider" />
+
+                    <div class="acknowledgments">
+                        <p><strong>致谢：</strong> 特别感谢指导老师的悉心指导，以及中国计算机设计大赛组委会对本项目的大力支持。</p>
+                    </div>
+                </div>
+            </footer>
 </section>
         <!-- Footer-->
         <footer class="site-footer py-5">
