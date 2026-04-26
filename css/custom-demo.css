@@ -658,9 +658,6 @@
   border-radius: 50%;
   z-index: 2;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.65);
-  transform: translate(-50%, -50%);
-  opacity: 0.95;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
 .demo-scatter-dot.c1 { background: #4e79ff; }
@@ -669,19 +666,14 @@
 .demo-scatter-dot.c4 { background: #ff9b40; }
 .demo-scatter-dot.c5 { background: #ed5f9f; }
 
-.demo-scatter-dot.dynamic.faded {
-  opacity: 0.24;
-}
-
-.demo-scatter-dot.dynamic.related {
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.86), 0 0 0 6px rgba(31, 111, 255, 0.22);
-}
-
-.demo-scatter-dot.dynamic.active {
-  width: 17px;
-  height: 17px;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 0 0 10px rgba(13, 110, 253, 0.22), 0 0 20px rgba(13, 110, 253, 0.36);
-  z-index: 3;
+.demo-scatter-dot.active {
+  left: var(--active-x);
+  top: var(--active-y);
+  width: 18px;
+  height: 18px;
+  background: #0d6efd;
+  box-shadow: 0 0 0 8px rgba(13, 110, 253, 0.2), 0 0 0 16px rgba(13, 110, 253, 0.09);
+  transform: translate(-50%, -50%);
 }
 
 .demo-legend {
@@ -715,11 +707,6 @@
   box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.16);
 }
 
-.demo-legend .lg.related {
-  background: #fff;
-  border: 2px solid #1f6fff;
-}
-
 .demo-related-section,
 .demo-reason-section,
 .demo-quality-section {
@@ -740,17 +727,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 1rem;
-}
-
-.demo-related-groups {
-  display: grid;
-  gap: 1.2rem;
-}
-
-.demo-related-block h4 {
-  margin: 0 0 0.75rem;
-  color: #19407e;
-  font-size: 1rem;
 }
 
 .demo-related-card {
@@ -784,19 +760,6 @@
 
 .demo-related-meta strong {
   color: #1a4f9d;
-}
-
-.demo-related-reason {
-  margin: 0.72rem 0 0;
-  color: #4e6587;
-  font-size: 0.87rem;
-  line-height: 1.55;
-}
-
-.demo-related-empty {
-  margin: 0;
-  color: #5f7393;
-  font-size: 0.9rem;
 }
 
 .demo-related-tags {
@@ -873,12 +836,6 @@
 
 .demo-quality-card small {
   color: #6a7f9e;
-}
-
-.demo-quality-note {
-  margin: 0.95rem 0 0;
-  color: #5f7494;
-  font-size: 0.88rem;
 }
 
 @media (max-width: 1199.98px) {
