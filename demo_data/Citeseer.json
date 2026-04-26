@@ -1,0 +1,45 @@
+﻿{
+  "node_type": "匿名样本节点",
+  "recommend_mode": "同簇 + 表征相似 + 高阶关系",
+  "default_node_id": 128,
+  "top_k": 4,
+  "example_queries": ["Node 0", "Node 128", "Node 512", "Cluster 3"],
+  "metrics": {
+    "acc": "89.6%",
+    "nmi": "84.2%",
+    "ari": "81.5%",
+    "f1": "87.3%"
+  },
+  "cluster_representatives": {
+    "0": 14,
+    "1": 72,
+    "2": 356,
+    "3": 128
+  },
+  "nodes": [
+    {"id": 0, "cluster": 3, "x": 0.58, "y": 0.48, "embedding_similar": [{"id": 128, "score": 0.919}, {"id": 512, "score": 0.907}, {"id": 644, "score": 0.892}, {"id": 711, "score": 0.875}], "hyperedge_neighbors": [{"id": 128, "shared_hyperedges": 5}, {"id": 512, "shared_hyperedges": 4}, {"id": 711, "shared_hyperedges": 3}, {"id": 644, "shared_hyperedges": 3}]},
+    {"id": 128, "cluster": 3, "x": 0.63, "y": 0.44, "embedding_similar": [{"id": 0, "score": 0.919, "reason": "与查询簇核心节点距离最小"}, {"id": 512, "score": 0.913, "reason": "编码后属性模式相近"}, {"id": 644, "score": 0.899, "reason": "同簇高密度邻域"}, {"id": 711, "score": 0.881, "reason": "嵌入方向一致"}], "hyperedge_neighbors": [{"id": 0, "shared_hyperedges": 5, "reason": "共享高阶语义超边"}, {"id": 512, "shared_hyperedges": 4, "reason": "在多条超边中共同出现"}, {"id": 711, "shared_hyperedges": 4, "reason": "共享关系邻居较多"}, {"id": 644, "shared_hyperedges": 3, "reason": "具有稳定高阶连接"}]},
+    {"id": 512, "cluster": 3, "x": 0.67, "y": 0.50, "embedding_similar": [{"id": 128, "score": 0.913}, {"id": 0, "score": 0.907}, {"id": 644, "score": 0.886}, {"id": 711, "score": 0.878}], "hyperedge_neighbors": [{"id": 128, "shared_hyperedges": 4}, {"id": 0, "shared_hyperedges": 4}, {"id": 711, "shared_hyperedges": 3}, {"id": 644, "shared_hyperedges": 3}]},
+    {"id": 644, "cluster": 3, "x": 0.71, "y": 0.41, "embedding_similar": [{"id": 128, "score": 0.899}, {"id": 0, "score": 0.892}, {"id": 512, "score": 0.886}, {"id": 711, "score": 0.873}], "hyperedge_neighbors": [{"id": 128, "shared_hyperedges": 3}, {"id": 0, "shared_hyperedges": 3}, {"id": 512, "shared_hyperedges": 3}, {"id": 711, "shared_hyperedges": 2}]},
+    {"id": 711, "cluster": 3, "x": 0.74, "y": 0.47, "embedding_similar": [{"id": 128, "score": 0.881}, {"id": 512, "score": 0.878}, {"id": 0, "score": 0.875}, {"id": 644, "score": 0.873}], "hyperedge_neighbors": [{"id": 128, "shared_hyperedges": 4}, {"id": 0, "shared_hyperedges": 3}, {"id": 512, "shared_hyperedges": 3}, {"id": 644, "shared_hyperedges": 2}]},
+
+    {"id": 14, "cluster": 0, "x": 0.17, "y": 0.62, "embedding_similar": [{"id": 36, "score": 0.882}, {"id": 59, "score": 0.868}, {"id": 83, "score": 0.851}, {"id": 104, "score": 0.846}], "hyperedge_neighbors": [{"id": 36, "shared_hyperedges": 4}, {"id": 59, "shared_hyperedges": 4}, {"id": 83, "shared_hyperedges": 3}, {"id": 104, "shared_hyperedges": 3}]},
+    {"id": 36, "cluster": 0, "x": 0.23, "y": 0.66, "embedding_similar": [{"id": 14, "score": 0.882}, {"id": 59, "score": 0.874}, {"id": 83, "score": 0.856}, {"id": 104, "score": 0.842}], "hyperedge_neighbors": [{"id": 14, "shared_hyperedges": 4}, {"id": 59, "shared_hyperedges": 4}, {"id": 83, "shared_hyperedges": 3}, {"id": 104, "shared_hyperedges": 2}]},
+    {"id": 59, "cluster": 0, "x": 0.28, "y": 0.59, "embedding_similar": [{"id": 14, "score": 0.868}, {"id": 36, "score": 0.874}, {"id": 83, "score": 0.853}, {"id": 104, "score": 0.844}], "hyperedge_neighbors": [{"id": 14, "shared_hyperedges": 4}, {"id": 36, "shared_hyperedges": 4}, {"id": 83, "shared_hyperedges": 2}, {"id": 104, "shared_hyperedges": 2}]},
+    {"id": 83, "cluster": 0, "x": 0.24, "y": 0.54, "embedding_similar": [{"id": 14, "score": 0.851}, {"id": 36, "score": 0.856}, {"id": 59, "score": 0.853}, {"id": 104, "score": 0.839}], "hyperedge_neighbors": [{"id": 14, "shared_hyperedges": 3}, {"id": 36, "shared_hyperedges": 3}, {"id": 59, "shared_hyperedges": 2}, {"id": 104, "shared_hyperedges": 2}]},
+    {"id": 104, "cluster": 0, "x": 0.31, "y": 0.64, "embedding_similar": [{"id": 14, "score": 0.846}, {"id": 59, "score": 0.844}, {"id": 36, "score": 0.842}, {"id": 83, "score": 0.839}], "hyperedge_neighbors": [{"id": 14, "shared_hyperedges": 3}, {"id": 36, "shared_hyperedges": 2}, {"id": 59, "shared_hyperedges": 2}, {"id": 83, "shared_hyperedges": 2}]},
+
+    {"id": 72, "cluster": 1, "x": 0.33, "y": 0.26, "embedding_similar": [{"id": 90, "score": 0.874}, {"id": 113, "score": 0.869}, {"id": 137, "score": 0.857}, {"id": 160, "score": 0.844}], "hyperedge_neighbors": [{"id": 90, "shared_hyperedges": 5}, {"id": 113, "shared_hyperedges": 4}, {"id": 137, "shared_hyperedges": 3}, {"id": 160, "shared_hyperedges": 3}]},
+    {"id": 90, "cluster": 1, "x": 0.39, "y": 0.22, "embedding_similar": [{"id": 72, "score": 0.874}, {"id": 113, "score": 0.865}, {"id": 137, "score": 0.853}, {"id": 160, "score": 0.842}], "hyperedge_neighbors": [{"id": 72, "shared_hyperedges": 5}, {"id": 113, "shared_hyperedges": 4}, {"id": 137, "shared_hyperedges": 3}, {"id": 160, "shared_hyperedges": 3}]},
+    {"id": 113, "cluster": 1, "x": 0.42, "y": 0.31, "embedding_similar": [{"id": 72, "score": 0.869}, {"id": 90, "score": 0.865}, {"id": 137, "score": 0.858}, {"id": 160, "score": 0.847}], "hyperedge_neighbors": [{"id": 72, "shared_hyperedges": 4}, {"id": 90, "shared_hyperedges": 4}, {"id": 137, "shared_hyperedges": 3}, {"id": 160, "shared_hyperedges": 2}]},
+    {"id": 137, "cluster": 1, "x": 0.36, "y": 0.34, "embedding_similar": [{"id": 113, "score": 0.858}, {"id": 72, "score": 0.857}, {"id": 90, "score": 0.853}, {"id": 160, "score": 0.841}], "hyperedge_neighbors": [{"id": 72, "shared_hyperedges": 3}, {"id": 90, "shared_hyperedges": 3}, {"id": 113, "shared_hyperedges": 3}, {"id": 160, "shared_hyperedges": 2}]},
+    {"id": 160, "cluster": 1, "x": 0.45, "y": 0.28, "embedding_similar": [{"id": 72, "score": 0.844}, {"id": 90, "score": 0.842}, {"id": 113, "score": 0.847}, {"id": 137, "score": 0.841}], "hyperedge_neighbors": [{"id": 72, "shared_hyperedges": 3}, {"id": 90, "shared_hyperedges": 3}, {"id": 113, "shared_hyperedges": 2}, {"id": 137, "shared_hyperedges": 2}]},
+
+    {"id": 356, "cluster": 2, "x": 0.80, "y": 0.29, "embedding_similar": [{"id": 389, "score": 0.885}, {"id": 420, "score": 0.871}, {"id": 448, "score": 0.858}, {"id": 476, "score": 0.846}], "hyperedge_neighbors": [{"id": 389, "shared_hyperedges": 4}, {"id": 420, "shared_hyperedges": 4}, {"id": 448, "shared_hyperedges": 3}, {"id": 476, "shared_hyperedges": 3}]},
+    {"id": 389, "cluster": 2, "x": 0.86, "y": 0.35, "embedding_similar": [{"id": 356, "score": 0.885}, {"id": 420, "score": 0.876}, {"id": 448, "score": 0.854}, {"id": 476, "score": 0.848}], "hyperedge_neighbors": [{"id": 356, "shared_hyperedges": 4}, {"id": 420, "shared_hyperedges": 4}, {"id": 448, "shared_hyperedges": 3}, {"id": 476, "shared_hyperedges": 2}]},
+    {"id": 420, "cluster": 2, "x": 0.76, "y": 0.36, "embedding_similar": [{"id": 356, "score": 0.871}, {"id": 389, "score": 0.876}, {"id": 448, "score": 0.856}, {"id": 476, "score": 0.845}], "hyperedge_neighbors": [{"id": 356, "shared_hyperedges": 4}, {"id": 389, "shared_hyperedges": 4}, {"id": 448, "shared_hyperedges": 3}, {"id": 476, "shared_hyperedges": 2}]},
+    {"id": 448, "cluster": 2, "x": 0.88, "y": 0.24, "embedding_similar": [{"id": 356, "score": 0.858}, {"id": 420, "score": 0.856}, {"id": 389, "score": 0.854}, {"id": 476, "score": 0.843}], "hyperedge_neighbors": [{"id": 356, "shared_hyperedges": 3}, {"id": 389, "shared_hyperedges": 3}, {"id": 420, "shared_hyperedges": 3}, {"id": 476, "shared_hyperedges": 2}]},
+    {"id": 476, "cluster": 2, "x": 0.83, "y": 0.20, "embedding_similar": [{"id": 356, "score": 0.846}, {"id": 389, "score": 0.848}, {"id": 420, "score": 0.845}, {"id": 448, "score": 0.843}], "hyperedge_neighbors": [{"id": 356, "shared_hyperedges": 3}, {"id": 389, "shared_hyperedges": 2}, {"id": 420, "shared_hyperedges": 2}, {"id": 448, "shared_hyperedges": 2}]}
+  ]
+}
+

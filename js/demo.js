@@ -1,231 +1,20 @@
 ﻿(function () {
-  const demoData = {
-    Cora: {
-      nodeType: '论文',
-      searchPlaceholder: '输入论文标题、关键词或研究主题',
-      examples: ['graph learning', 'semi-supervised learning', 'citation network'],
-      query: 'graph learning',
-      cluster: 'Cluster 3：Graph Learning / Citation Network',
-      explanation: '该对象被模型识别为图学习相关主题，并与同簇论文在结构关系和语义表征上更接近。',
-      recommendMode: '同簇 + 表征相似 + 高阶关系',
-      visualTitle: 'Cora 降维聚类可视化',
-      activePoint: { x: '58%', y: '47%' },
-      reasonKeywords: ['Graph Learning', '语义嵌入', '引用超边', '主题邻近'],
-      recommendations: [
-        {
-          title: 'Graph-Based Semi-Supervised Learning',
-          cluster: 'Graph Learning',
-          score: '0.92',
-          tags: ['同簇', '引用邻近', '表征相似']
-        },
-        {
-          title: 'Label Propagation in Citation Networks',
-          cluster: 'Graph Learning',
-          score: '0.88',
-          tags: ['结构邻近', '共享超边']
-        },
-        {
-          title: 'Robust GNN for Sparse Graphs',
-          cluster: 'Representation Learning',
-          score: '0.86',
-          tags: ['语义相近', '边权一致']
-        },
-        {
-          title: 'Attributed Hypergraph Contrastive Clustering',
-          cluster: 'Hypergraph Methods',
-          score: '0.84',
-          tags: ['高阶关系', '同主题']
-        },
-        {
-          title: 'Self-Training for Node Classification',
-          cluster: 'Semi-supervised',
-          score: '0.81',
-          tags: ['训练策略近似', '同簇边界']
-        }
-      ],
-      metrics: { nmi: '88.7%', acc: '92.4%', ari: '85.9%', f1: '90.1%' }
-    },
-    Citeseer: {
-      nodeType: '论文',
-      searchPlaceholder: '输入论文标题、关键词或研究主题',
-      examples: ['representation learning', 'graph attention', 'citation analysis'],
-      query: 'representation learning',
-      cluster: 'Cluster 2：Representation Learning / Citation Analysis',
-      explanation: '该查询对象位于表示学习主题簇中心区域，和多篇高被引论文共享语义与结构上下文。',
-      recommendMode: '同簇 + 局部密度 + 表征相似',
-      visualTitle: 'Citeseer 降维聚类可视化',
-      activePoint: { x: '44%', y: '39%' },
-      reasonKeywords: ['Representation Learning', '局部邻域', '高阶连接', '关键词共现'],
-      recommendations: [
-        {
-          title: 'Attention-Based Citation Embedding',
-          cluster: 'Representation Learning',
-          score: '0.90',
-          tags: ['同簇', '语义相近']
-        },
-        {
-          title: 'Contextual Node Representation',
-          cluster: 'Graph Embedding',
-          score: '0.87',
-          tags: ['嵌入相似', '结构邻近']
-        },
-        {
-          title: 'Multi-View Citation Modeling',
-          cluster: 'Citation Analysis',
-          score: '0.85',
-          tags: ['多视角一致', '共享超边']
-        },
-        {
-          title: 'Semi-Supervised Graph Regularization',
-          cluster: 'Graph Learning',
-          score: '0.82',
-          tags: ['训练机制相近', '边界接近']
-        },
-        {
-          title: 'Contrastive Topic Clustering',
-          cluster: 'Topic Mining',
-          score: '0.80',
-          tags: ['主题邻近', '高阶关系']
-        }
-      ],
-      metrics: { nmi: '84.2%', acc: '89.6%', ari: '81.5%', f1: '87.3%' }
-    },
-    Pubmed: {
-      nodeType: '论文',
-      searchPlaceholder: '输入论文标题、关键词或研究主题',
-      examples: ['gene expression', 'clinical trial', 'biomedical graph'],
-      query: 'gene expression',
-      cluster: 'Cluster 1：Biomedical Graph / Clinical Topics',
-      explanation: '该对象与生物医学主题簇具有高一致性，并在高阶结构中与临床相关论文形成稳定连接。',
-      recommendMode: '同簇 + 高阶关系 + 语义邻近',
-      visualTitle: 'Pubmed 降维聚类可视化',
-      activePoint: { x: '51%', y: '56%' },
-      reasonKeywords: ['Biomedical Topic', '表征距离', '临床超边', '语义共现'],
-      recommendations: [
-        {
-          title: 'Gene Interaction Representation in Graphs',
-          cluster: 'Biomedical Graph',
-          score: '0.91',
-          tags: ['同簇', '主题重合']
-        },
-        {
-          title: 'Clinical Document Graph Clustering',
-          cluster: 'Clinical Topic',
-          score: '0.88',
-          tags: ['结构邻近', '表征相似']
-        },
-        {
-          title: 'Disease Topic Mining with Hypergraphs',
-          cluster: 'Biomedical Graph',
-          score: '0.86',
-          tags: ['高阶结构', '语义接近']
-        },
-        {
-          title: 'Patient Trial Knowledge Network',
-          cluster: 'Clinical Analysis',
-          score: '0.83',
-          tags: ['共享实体', '同簇边界']
-        },
-        {
-          title: 'Contrastive Biomedical Embedding',
-          cluster: 'Representation Learning',
-          score: '0.81',
-          tags: ['嵌入相似', '语义邻近']
-        }
-      ],
-      metrics: { nmi: '79.8%', acc: '86.1%', ari: '76.9%', f1: '84.4%' }
-    },
-    DBLP: {
-      nodeType: '作者 / 论文',
-      searchPlaceholder: '输入作者姓名、论文标题或研究方向',
-      examples: ['Jiawei Han', 'data mining', 'graph representation'],
-      query: 'Jiawei Han',
-      cluster: 'Research Community：Data Mining / Knowledge Discovery',
-      explanation: '系统判断当前查询位于数据挖掘研究社区核心区域，和多个高相关作者在合作与研究主题上呈现聚合。',
-      recommendMode: '研究社区 + 合作关系 + 主题相似',
-      visualTitle: 'DBLP 降维聚类可视化',
-      activePoint: { x: '63%', y: '41%' },
-      reasonKeywords: ['Data Mining', '合作网络', '高阶协作', '研究主题'],
-      recommendations: [
-        {
-          title: 'Philip S. Yu',
-          cluster: 'Data Mining Community',
-          score: '0.93',
-          tags: ['合作邻近', '主题重叠']
-        },
-        {
-          title: 'Mining Frequent Patterns in Graph Data',
-          cluster: 'Knowledge Discovery',
-          score: '0.90',
-          tags: ['同社区', '语义相似']
-        },
-        {
-          title: 'Charu C. Aggarwal',
-          cluster: 'Graph Mining',
-          score: '0.87',
-          tags: ['合作路径', '共享关键词']
-        },
-        {
-          title: 'Scalable Representation for Heterogeneous Graphs',
-          cluster: 'Graph Representation',
-          score: '0.84',
-          tags: ['结构邻近', '高阶关系']
-        },
-        {
-          title: 'Discovering Research Communities',
-          cluster: 'Community Mining',
-          score: '0.82',
-          tags: ['社区相近', '协作关系']
-        }
-      ],
-      metrics: { nmi: '82.9%', acc: '88.3%', ari: '79.4%', f1: '86.0%' }
-    },
-    ACM: {
-      nodeType: '作者 / 论文',
-      searchPlaceholder: '输入作者姓名、论文标题或研究方向',
-      examples: ['Jiawei Han', 'data mining', 'graph representation'],
-      query: 'data mining',
-      cluster: 'Research Community：Information Retrieval / Data Mining',
-      explanation: '该对象被分配到信息检索与数据挖掘交叉簇，系统综合主题相似与引用关系给出推荐。',
-      recommendMode: '同社区 + 主题相似 + 高阶关系',
-      visualTitle: 'ACM 降维聚类可视化',
-      activePoint: { x: '47%', y: '52%' },
-      reasonKeywords: ['Information Retrieval', '语义聚类', '引用超边', '研究方向'],
-      recommendations: [
-        {
-          title: 'Topic-Aware Graph Retrieval',
-          cluster: 'Information Retrieval',
-          score: '0.91',
-          tags: ['同簇', '语义接近']
-        },
-        {
-          title: 'Efficient Data Mining Pipelines',
-          cluster: 'Data Mining',
-          score: '0.88',
-          tags: ['主题相近', '结构邻近']
-        },
-        {
-          title: 'Mining Semantic Graph Patterns',
-          cluster: 'Graph Mining',
-          score: '0.85',
-          tags: ['高阶关系', '关键词共现']
-        },
-        {
-          title: 'Collaborative Author Ranking',
-          cluster: 'Research Community',
-          score: '0.83',
-          tags: ['合作关系', '同社区']
-        },
-        {
-          title: 'Cross-Domain Representation Learning',
-          cluster: 'Representation',
-          score: '0.80',
-          tags: ['嵌入相似', '主题邻近']
-        }
-      ],
-      metrics: { nmi: '86.4%', acc: '90.2%', ari: '83.6%', f1: '88.8%' }
-    }
+  const DATASET_FILES = {
+    Cora: 'demo_data/Cora.json',
+    Citeseer: 'demo_data/Citeseer.json',
+    Pubmed: 'demo_data/Pubmed.json'
   };
+
+  const CLUSTER_COLORS = [
+    '#4e79ff',
+    '#12b89a',
+    '#8a67ff',
+    '#ff9b40',
+    '#ed5f9f',
+    '#1dced8',
+    '#607b9a',
+    '#5ec25b'
+  ];
 
   const selectorBtn = document.getElementById('datasetSelectorBtn');
   const selectorName = document.getElementById('selectorName');
@@ -244,19 +33,23 @@
   const recommendModeEl = document.getElementById('demoRecommendMode');
   const visualTitleEl = document.getElementById('demoVisualTitle');
   const scatterStageEl = document.getElementById('demoScatterStage');
-  const relatedGridEl = document.getElementById('demoRelatedGrid');
-  const reasonKeyEls = [
-    document.getElementById('demoReasonKey1'),
-    document.getElementById('demoReasonKey2'),
-    document.getElementById('demoReasonKey3'),
-    document.getElementById('demoReasonKey4')
-  ];
+  const legendEl = document.getElementById('demoLegend');
+  const highlightBtnEl = document.getElementById('demoHighlightBtn');
+  const embeddingGridEl = document.getElementById('demoEmbeddingGrid');
+  const hyperedgeGridEl = document.getElementById('demoHyperedgeGrid');
+
   const metricNmiEl = document.getElementById('metricNmi');
   const metricAccEl = document.getElementById('metricAcc');
   const metricAriEl = document.getElementById('metricAri');
   const metricF1El = document.getElementById('metricF1');
 
-  let currentKey = 'Cora';
+  const state = {
+    datasetKey: 'Cora',
+    data: null,
+    focusNodeId: null,
+    relatedNodeIds: new Set(),
+    highlightRelated: true
+  };
 
   function smoothToShowcase() {
     if (!targetSection) return;
@@ -270,80 +63,339 @@
     selectorBtn.setAttribute('aria-expanded', String(willOpen));
   }
 
-  function renderRecommendations(items) {
-    if (!relatedGridEl) return;
-    relatedGridEl.innerHTML = '';
-    items.forEach((item) => {
-      const card = document.createElement('article');
-      card.className = 'demo-related-card';
-      card.innerHTML = `
-        <h4>${item.title}</h4>
-        <div class="demo-related-meta">
-          <span>所属簇：<strong>${item.cluster}</strong></span>
-          <span>相似度：<strong>${item.score}</strong></span>
-        </div>
-        <div class="demo-related-tags">
-          ${item.tags.map((tag) => `<span>${tag}</span>`).join('')}
-        </div>
-      `;
-      relatedGridEl.appendChild(card);
+  function normalizePercent(value) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return 0.5;
+    if (n > 1) return Math.max(0, Math.min(1, n / 100));
+    return Math.max(0, Math.min(1, n));
+  }
+
+  function formatNodeLabel(datasetKey, nodeId) {
+    return datasetKey + ' Node #' + String(nodeId).padStart(4, '0');
+  }
+
+  function getClusterColor(clusterId) {
+    const idx = Math.abs(Number(clusterId) || 0) % CLUSTER_COLORS.length;
+    return CLUSTER_COLORS[idx];
+  }
+
+  function toNodeMap(nodes) {
+    const map = new Map();
+    nodes.forEach((node) => {
+      map.set(node.id, node);
+    });
+    return map;
+  }
+
+  function normalizeNode(rawNode) {
+    const id = Number(rawNode.id);
+    const cluster = Number(rawNode.cluster);
+    return {
+      id,
+      cluster,
+      x: normalizePercent(rawNode.x),
+      y: normalizePercent(rawNode.y),
+      embedding_similar: Array.isArray(rawNode.embedding_similar) ? rawNode.embedding_similar : [],
+      hyperedge_neighbors: Array.isArray(rawNode.hyperedge_neighbors) ? rawNode.hyperedge_neighbors : []
+    };
+  }
+
+  function normalizeDataset(datasetKey, raw) {
+    const nodes = Array.isArray(raw.nodes) ? raw.nodes.map(normalizeNode) : [];
+    const uniqueClusters = Array.from(new Set(nodes.map((node) => node.cluster))).sort((a, b) => a - b);
+    const clusterRepresentatives = raw.cluster_representatives || {};
+    const defaultNodeId = Number(raw.default_node_id);
+
+    return {
+      dataset_key: datasetKey,
+      node_type: raw.node_type || '匿名样本节点',
+      recommend_mode: raw.recommend_mode || '同簇 + 表征相似 + 高阶关系',
+      example_queries: Array.isArray(raw.example_queries) && raw.example_queries.length > 0
+        ? raw.example_queries
+        : ['Node 0', 'Node 128', 'Node 512', 'Cluster 3'],
+      metrics: raw.metrics || {},
+      nodes,
+      clusters: uniqueClusters,
+      cluster_representatives: clusterRepresentatives,
+      default_node_id: Number.isFinite(defaultNodeId) ? defaultNodeId : (nodes[0] ? nodes[0].id : 0),
+      top_k: Number(raw.top_k) > 0 ? Number(raw.top_k) : 4
+    };
+  }
+
+  async function loadDataset(datasetKey) {
+    const file = DATASET_FILES[datasetKey];
+    if (!file) return;
+
+    const response = await fetch(file, { cache: 'no-store' });
+    if (!response.ok) {
+      throw new Error('Failed to load ' + file + ': ' + response.status);
+    }
+
+    const raw = await response.json();
+    const normalized = normalizeDataset(datasetKey, raw);
+    state.datasetKey = datasetKey;
+    state.data = normalized;
+
+    if (selectorName) selectorName.textContent = datasetKey;
+    if (datasetNameEl) datasetNameEl.textContent = datasetKey;
+    if (nodeTypeEl) nodeTypeEl.textContent = normalized.node_type;
+    if (recommendModeEl) recommendModeEl.textContent = normalized.recommend_mode;
+    if (visualTitleEl) visualTitleEl.textContent = datasetKey + ' 降维聚类可视化';
+
+    if (searchInputEl) {
+      searchInputEl.placeholder = '输入节点编号，例如 0、128、512';
+      searchInputEl.value = 'Node ' + normalized.default_node_id;
+    }
+
+    if (highlightBtnEl) {
+      state.highlightRelated = true;
+      highlightBtnEl.textContent = '隐藏相关高亮';
+    }
+
+    renderMetrics(normalized.metrics);
+    renderExampleChips(normalized.example_queries);
+    runNodeQuery(normalized.default_node_id);
+
+    options.forEach((option) => {
+      option.classList.toggle('active', option.dataset.dataset === datasetKey);
     });
   }
 
-  function renderExampleChips(payload) {
-    if (!exampleChipsEl || !searchInputEl || !currentQueryEl) return;
+  function renderMetrics(metrics) {
+    if (metricNmiEl) metricNmiEl.textContent = metrics.nmi || '--';
+    if (metricAccEl) metricAccEl.textContent = metrics.acc || '--';
+    if (metricAriEl) metricAriEl.textContent = metrics.ari || '--';
+    if (metricF1El) metricF1El.textContent = metrics.f1 || '--';
+  }
+
+  function renderExampleChips(chips) {
+    if (!exampleChipsEl) return;
     exampleChipsEl.innerHTML = '';
-    payload.examples.forEach((keyword) => {
+
+    chips.forEach((chipText) => {
       const chip = document.createElement('button');
       chip.type = 'button';
       chip.className = 'demo-chip';
-      chip.textContent = keyword;
+      chip.textContent = chipText;
       chip.addEventListener('click', () => {
-        searchInputEl.value = keyword;
-        currentQueryEl.textContent = keyword;
+        if (searchInputEl) searchInputEl.value = chipText;
+        executeSearch(chipText);
       });
       exampleChipsEl.appendChild(chip);
     });
   }
 
-  function renderDataset(key) {
-    const payload = demoData[key];
-    if (!payload) return;
+  function parseSearchInput(raw) {
+    const value = String(raw || '').trim();
+    if (!value) return null;
 
-    currentKey = key;
-    if (selectorName) selectorName.textContent = key;
-    if (searchInputEl) {
-      searchInputEl.placeholder = payload.searchPlaceholder;
-      searchInputEl.value = payload.query;
-    }
-    if (currentQueryEl) currentQueryEl.textContent = payload.query;
-    if (clusterNameEl) clusterNameEl.textContent = payload.cluster;
-    if (explanationEl) explanationEl.textContent = payload.explanation;
-    if (datasetNameEl) datasetNameEl.textContent = key;
-    if (nodeTypeEl) nodeTypeEl.textContent = payload.nodeType;
-    if (recommendModeEl) recommendModeEl.textContent = payload.recommendMode;
-    if (visualTitleEl) visualTitleEl.textContent = payload.visualTitle;
-
-    if (scatterStageEl) {
-      scatterStageEl.style.setProperty('--active-x', payload.activePoint.x);
-      scatterStageEl.style.setProperty('--active-y', payload.activePoint.y);
+    let match = value.match(/^cluster\s*#?\s*(\d+)$/i);
+    if (match) {
+      return { type: 'cluster', id: Number(match[1]) };
     }
 
-    reasonKeyEls.forEach((el, idx) => {
-      if (el) el.textContent = payload.reasonKeywords[idx] || '';
+    match = value.match(/^node\s*#?\s*(\d+)$/i);
+    if (match) {
+      return { type: 'node', id: Number(match[1]) };
+    }
+
+    if (/^\d+$/.test(value)) {
+      return { type: 'node', id: Number(value) };
+    }
+
+    return null;
+  }
+
+  function executeSearch(rawInput) {
+    if (!state.data) return;
+    const parsed = parseSearchInput(rawInput);
+    if (!parsed) {
+      runNodeQuery(state.data.default_node_id);
+      return;
+    }
+
+    if (parsed.type === 'cluster') {
+      runClusterQuery(parsed.id);
+      return;
+    }
+
+    runNodeQuery(parsed.id);
+  }
+
+  function buildRelatedSets(node, nodeMap) {
+    const topK = state.data ? state.data.top_k : 4;
+
+    const embedding = node.embedding_similar
+      .map((item) => ({
+        id: Number(item.id),
+        score: Number(item.score),
+        reason: item.reason || '在训练后的节点嵌入空间中距离更近'
+      }))
+      .filter((item) => nodeMap.has(item.id))
+      .slice(0, topK);
+
+    const hyperedge = node.hyperedge_neighbors
+      .map((item) => ({
+        id: Number(item.id),
+        shared_hyperedges: Number(item.shared_hyperedges),
+        reason: item.reason || '与查询节点共享更多超边结构上下文'
+      }))
+      .filter((item) => nodeMap.has(item.id))
+      .slice(0, topK);
+
+    return { embedding, hyperedge };
+  }
+
+  function renderRelatedCards(items, type, containerEl) {
+    if (!containerEl) return;
+    containerEl.innerHTML = '';
+
+    if (!state.data) return;
+    const nodeMap = toNodeMap(state.data.nodes);
+
+    if (!items.length) {
+      const empty = document.createElement('article');
+      empty.className = 'demo-related-card';
+      empty.innerHTML = '<h4>暂无可展示节点</h4><p class="demo-related-empty">该类别下当前没有可用结果。</p>';
+      containerEl.appendChild(empty);
+      return;
+    }
+
+    items.forEach((item) => {
+      const node = nodeMap.get(item.id);
+      if (!node) return;
+
+      const card = document.createElement('article');
+      card.className = 'demo-related-card';
+
+      const valueLine = type === 'embedding'
+        ? '相似度：<strong>' + (Number.isFinite(item.score) ? item.score.toFixed(3) : '--') + '</strong>'
+        : '共享超边数：<strong>' + (Number.isFinite(item.shared_hyperedges) ? item.shared_hyperedges : '--') + '</strong>';
+
+      card.innerHTML =
+        '<h4>' + formatNodeLabel(state.data.dataset_key, node.id) + '</h4>' +
+        '<div class="demo-related-meta">' +
+          '<span>所属簇：<strong>Cluster ' + node.cluster + '</strong></span>' +
+          '<span>' + valueLine + '</span>' +
+        '</div>' +
+        '<p class="demo-related-reason">推荐原因：' + item.reason + '</p>';
+
+      containerEl.appendChild(card);
+    });
+  }
+
+  function renderScatter(highlightClusterId) {
+    if (!scatterStageEl || !legendEl || !state.data) return;
+
+    scatterStageEl.innerHTML = '';
+
+    const shouldFadeByCluster = Number.isFinite(highlightClusterId);
+
+    state.data.nodes.forEach((node) => {
+      const dot = document.createElement('span');
+      dot.className = 'demo-scatter-dot dynamic';
+      dot.style.left = (node.x * 100).toFixed(2) + '%';
+      dot.style.top = (node.y * 100).toFixed(2) + '%';
+      dot.style.backgroundColor = getClusterColor(node.cluster);
+
+      if (shouldFadeByCluster && node.cluster !== highlightClusterId) {
+        dot.classList.add('faded');
+      }
+
+      if (state.highlightRelated && state.relatedNodeIds.has(node.id)) {
+        dot.classList.add('related');
+      }
+
+      if (state.focusNodeId === node.id) {
+        dot.classList.add('active');
+      }
+
+      dot.title = formatNodeLabel(state.data.dataset_key, node.id) + ' | Cluster ' + node.cluster;
+      scatterStageEl.appendChild(dot);
     });
 
-    if (metricNmiEl) metricNmiEl.textContent = payload.metrics.nmi;
-    if (metricAccEl) metricAccEl.textContent = payload.metrics.acc;
-    if (metricAriEl) metricAriEl.textContent = payload.metrics.ari;
-    if (metricF1El) metricF1El.textContent = payload.metrics.f1;
-
-    renderExampleChips(payload);
-    renderRecommendations(payload.recommendations);
-
-    options.forEach((option) => {
-      option.classList.toggle('active', option.dataset.dataset === key);
+    legendEl.innerHTML = '';
+    state.data.clusters.forEach((clusterId) => {
+      const item = document.createElement('span');
+      item.innerHTML = '<i class="lg" style="background:' + getClusterColor(clusterId) + '"></i>Cluster ' + clusterId;
+      legendEl.appendChild(item);
     });
+
+    const currentItem = document.createElement('span');
+    currentItem.innerHTML = '<i class="lg active"></i>当前查询节点';
+    legendEl.appendChild(currentItem);
+
+    const relatedItem = document.createElement('span');
+    relatedItem.innerHTML = '<i class="lg related"></i>相关节点';
+    legendEl.appendChild(relatedItem);
+  }
+
+  function runNodeQuery(nodeId) {
+    if (!state.data) return;
+    const nodeMap = toNodeMap(state.data.nodes);
+
+    let node = nodeMap.get(Number(nodeId));
+    if (!node) {
+      node = nodeMap.get(state.data.default_node_id) || state.data.nodes[0];
+    }
+    if (!node) return;
+
+    state.focusNodeId = node.id;
+
+    if (currentQueryEl) currentQueryEl.textContent = formatNodeLabel(state.data.dataset_key, node.id);
+    if (clusterNameEl) clusterNameEl.textContent = '所属聚类：Cluster ' + node.cluster;
+    if (explanationEl) {
+      explanationEl.textContent =
+        '该节点被模型分配至 Cluster ' + node.cluster +
+        '。系统基于训练后的节点嵌入、预测簇标签与超边结构，返回其相似节点和高阶关系邻居。';
+    }
+
+    const related = buildRelatedSets(node, nodeMap);
+    state.relatedNodeIds = new Set([
+      ...related.embedding.map((item) => item.id),
+      ...related.hyperedge.map((item) => item.id)
+    ]);
+
+    renderRelatedCards(related.embedding, 'embedding', embeddingGridEl);
+    renderRelatedCards(related.hyperedge, 'hyperedge', hyperedgeGridEl);
+    renderScatter();
+  }
+
+  function runClusterQuery(clusterId) {
+    if (!state.data) return;
+
+    const numericCluster = Number(clusterId);
+    const clusterNodes = state.data.nodes.filter((node) => node.cluster === numericCluster);
+    if (!clusterNodes.length) {
+      runNodeQuery(state.data.default_node_id);
+      return;
+    }
+
+    const explicitRepresentative = Number(state.data.cluster_representatives[String(numericCluster)]);
+    const representative = clusterNodes.find((node) => node.id === explicitRepresentative) || clusterNodes[0];
+
+    state.focusNodeId = representative.id;
+
+    if (currentQueryEl) currentQueryEl.textContent = state.data.dataset_key + ' Cluster ' + numericCluster;
+    if (clusterNameEl) clusterNameEl.textContent = '所属聚类：Cluster ' + numericCluster;
+    if (explanationEl) {
+      explanationEl.textContent =
+        '当前查询为 Cluster ' + numericCluster +
+        '。系统展示该簇代表节点 ' + formatNodeLabel(state.data.dataset_key, representative.id) +
+        '，并返回簇内高相关节点与共享超边邻居。';
+    }
+
+    const nodeMap = toNodeMap(state.data.nodes);
+    const related = buildRelatedSets(representative, nodeMap);
+    state.relatedNodeIds = new Set([
+      ...clusterNodes.map((node) => node.id),
+      ...related.embedding.map((item) => item.id),
+      ...related.hyperedge.map((item) => item.id)
+    ]);
+
+    renderRelatedCards(related.embedding, 'embedding', embeddingGridEl);
+    renderRelatedCards(related.hyperedge, 'hyperedge', hyperedgeGridEl);
+    renderScatter(numericCluster);
   }
 
   if (selectorBtn) {
@@ -355,31 +407,41 @@
   }
 
   options.forEach((option) => {
-    option.addEventListener('click', (event) => {
+    option.addEventListener('click', async (event) => {
       event.stopPropagation();
       const chosen = option.dataset.dataset;
       if (!chosen) return;
-      renderDataset(chosen);
+
+      try {
+        await loadDataset(chosen);
+      } catch (error) {
+        console.error(error);
+      }
+
       setDropdown(false);
       smoothToShowcase();
     });
   });
 
-  if (searchButtonEl && searchInputEl && currentQueryEl) {
+  if (searchButtonEl && searchInputEl) {
     searchButtonEl.addEventListener('click', () => {
-      const value = searchInputEl.value.trim();
-      if (!value) return;
-      currentQueryEl.textContent = value;
+      executeSearch(searchInputEl.value);
     });
   }
 
-  if (searchInputEl && currentQueryEl) {
+  if (searchInputEl) {
     searchInputEl.addEventListener('keydown', (event) => {
       if (event.key !== 'Enter') return;
       event.preventDefault();
-      const value = searchInputEl.value.trim();
-      if (!value) return;
-      currentQueryEl.textContent = value;
+      executeSearch(searchInputEl.value);
+    });
+  }
+
+  if (highlightBtnEl) {
+    highlightBtnEl.addEventListener('click', () => {
+      state.highlightRelated = !state.highlightRelated;
+      highlightBtnEl.textContent = state.highlightRelated ? '隐藏相关高亮' : '高亮相关节点';
+      renderScatter();
     });
   }
 
@@ -396,5 +458,7 @@
     }
   });
 
-  renderDataset(currentKey);
+  loadDataset(state.datasetKey).catch((error) => {
+    console.error(error);
+  });
 })();
