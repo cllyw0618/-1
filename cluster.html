@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Attributed hypergraph clustering visualization" />
-        <title>超图聚类可视化 - IntraHC</title>
+        <meta name="description" content="IntraHC application-oriented hypergraph clustering analysis platform" />
+        <title>立即试用 | IntraHC 高阶关系数据聚类分析</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
@@ -16,7 +16,7 @@
     <body class="cluster-page">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><img src="assets/img/navbar-logo.svg" alt="IntraHC" /></a>
+                <a class="navbar-brand intrahc-brand" href="index.html"><span class="brand-mark"></span><span>IntraHC</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -36,150 +36,240 @@
         </nav>
 
         <main class="cluster-shell">
-            <section class="cluster-hero">
-                <div class="cluster-copy">
-                    <p class="cluster-eyebrow">IntraHC Hypergraph Result View</p>
-                    <h1>超图聚类结果可视化</h1>
-                    <p>围绕节点、预测簇、真实标签和超边连接关系，交互式分析超边内部一致性、跨簇超边以及模型聚类困难区域。</p>
+            <section class="hero-section" aria-label="产品首页">
+                <div class="hero-background" aria-hidden="true"></div>
+                <div class="hero-left">
+                    <p class="hero-eyebrow">IntraHC 应用化试用平台</p>
+                    <h1>高阶关系数据的智能聚类分析平台</h1>
+                    <p class="hero-subtitle">面向论文知识网络、科研合作网络、新闻话题网络等复杂关系场景，IntraHC 能够从属性信息与高阶超图结构中自动发现潜在群体、关联对象与边界样本。</p>
+                    <p class="hero-desc">本页面读取离线训练后的聚类结果，不展示在线训练过程。系统以匿名节点编号进行交互展示，在保护数据合规性的同时，呈现模型对复杂高阶关系的组织、划分与解释能力。</p>
+                    <div class="hero-actions">
+                        <button type="button" class="btn btn-primary" id="startAnalysisBtn">开始体验</button>
+                        <button type="button" class="btn btn-outline-primary" id="viewScenarioBtn">查看应用场景</button>
+                    </div>
                 </div>
-                <div class="cluster-stats" aria-label="超图聚类状态">
-                    <div>
-                        <span id="clusterCount">--</span>
-                        <small>预测簇</small>
-                    </div>
-                    <div>
-                        <span id="nodeCount">--</span>
-                        <small>节点</small>
-                    </div>
-                    <div>
-                        <span id="hyperedgeCount">--</span>
-                        <small>超边</small>
-                    </div>
-                    <div>
-                        <span id="stageLabel">--</span>
-                        <small>数据集</small>
-                    </div>
+                <div class="hero-right">
+                    <section class="capability-card">
+                        <h3>应用能力概览</h3>
+                        <div class="capability-grid">
+                            <article>
+                                <strong>群体发现</strong>
+                                <p>自动识别潜在社区、主题群体或协作群体。</p>
+                            </article>
+                            <article>
+                                <strong>关系推荐</strong>
+                                <p>基于同簇关系、共享超边和嵌入相似性推荐相关对象。</p>
+                            </article>
+                            <article>
+                                <strong>边界识别</strong>
+                                <p>发现跨簇节点、低纯度超边和结构模糊区域。</p>
+                            </article>
+                            <article>
+                                <strong>结构解释</strong>
+                                <p>展示节点所在簇、共享超边邻居和局部高阶关系。</p>
+                            </article>
+                        </div>
+                    </section>
+                    <section class="hero-stats-card">
+                        <h3>运行概览</h3>
+                        <div class="stats-list">
+                            <div><span>当前应用</span><strong id="stageLabel">--</strong></div>
+                            <div><span>示例数据</span><strong id="sampleDatasetLabel">--</strong></div>
+                            <div><span>节点数</span><strong id="nodeCount">--</strong></div>
+                            <div><span>预测簇数</span><strong id="clusterCount">--</strong></div>
+                            <div><span>超边数</span><strong id="hyperedgeCount">--</strong></div>
+                            <div><span>ACC</span><strong id="heroAcc">--</strong></div>
+                            <div><span>NMI</span><strong id="heroNmi">--</strong></div>
+                        </div>
+                        <p id="datasetSummaryCard">等待选择应用领域...</p>
+                    </section>
                 </div>
             </section>
 
-            <section class="cluster-board" aria-label="超图聚类画布">
-                <div class="cluster-visual-stage">
-                    <div class="cluster-canvas-head">
-                        <div>
-                            <span>Hypergraph View</span>
-                            <strong>点击查看详情，拖拽节点可手动调整布局</strong>
+            <section class="scenario-section" id="scenarioSection" aria-label="应用领域选择区">
+                <header class="section-header">
+                    <h2>选择一个应用领域开始分析</h2>
+                    <p>不同领域对应不同类型的高阶关系数据。系统将自动加载相应的训练后聚类结果，并以匿名节点编号进行交互展示。</p>
+                </header>
+                <div class="scenario-grid" id="applicationScenarioGrid"></div>
+            </section>
+
+            <section class="workspace-section" id="analysisMain" aria-label="交互式聚类结果分析">
+                <header class="section-header">
+                    <h2>交互式聚类结果分析</h2>
+                    <p>选择应用领域后，可以搜索匿名节点编号，查看该节点的预测簇、相关节点、共享超边邻居与边界风险。</p>
+                </header>
+
+                <div class="cluster-board">
+                    <div class="cluster-visual-stage">
+                        <div class="cluster-canvas-head">
+                            <h3>可视化工作台</h3>
+                            <p>采用局部关系视图，优先呈现当前节点及其关键结构邻域，确保交互稳定性与可解释性。</p>
                         </div>
-                        <div class="cluster-quality-legend">
-                            <span><i class="legend-high"></i>高纯度</span>
-                            <span><i class="legend-mid"></i>中等</span>
-                            <span><i class="legend-low"></i>低纯度/跨簇</span>
+
+                        <div class="view-tabs" id="analysisViewTabs" aria-label="视图切换">
+                            <button type="button" data-view="global" class="active">全局分析</button>
+                            <button type="button" data-view="hypergraph">超图关系</button>
+                            <button type="button" data-view="boundary">边界风险</button>
+                        </div>
+
+                        <div class="canvas-layer-wrap" id="canvasContainer">
+                            <canvas id="clusterCanvas"></canvas>
+                            <div class="cluster-empty hidden" id="canvasEmpty">请选择应用领域并输入节点编号，查看该节点的局部超图关系。</div>
+                            <div class="cluster-loading hidden" id="canvasLoading">数据加载中...</div>
+                            <div class="cluster-tooltip" id="clusterTooltip" role="status" aria-live="polite"></div>
+                        </div>
+
+                        <div class="analysis-narrative" id="analysisNarrative">请选择应用领域并搜索节点后开始分析。</div>
+
+                        <div class="cluster-toolbar">
+                            <button class="btn btn-primary btn-sm text-uppercase" id="relayoutView" type="button">重排布局</button>
+                            <button class="btn btn-outline-dark btn-sm text-uppercase" id="resetFocus" type="button">重置视图</button>
+                            <button class="btn btn-outline-dark btn-sm text-uppercase" id="exportView" type="button">导出图片</button>
                         </div>
                     </div>
-                    <canvas id="clusterCanvas"></canvas>
-                    <div class="cluster-tooltip" id="clusterTooltip" role="status" aria-live="polite"></div>
-                    <div class="cluster-toolbar">
-                        <button class="btn btn-primary btn-sm text-uppercase" id="relayoutView" type="button">重排布局</button>
-                        <button class="btn btn-outline-dark btn-sm text-uppercase" id="resetFocus" type="button">重置聚焦</button>
-                        <button class="btn btn-outline-dark btn-sm text-uppercase" id="exportView" type="button">导出图片</button>
-                    </div>
+
+                    <aside class="cluster-data-panel" aria-label="控制与节点解释">
+                        <div class="panel-title">
+                            <span>Analysis Workflow</span>
+                            <strong>当前节点解释工作流</strong>
+                        </div>
+
+                        <section class="panel-section">
+                            <h3>Step 1：选择应用领域</h3>
+                            <label>
+                                应用领域
+                                <select id="scenarioSelect"></select>
+                            </label>
+                            <label>
+                                示例数据
+                                <select id="datasetSelect"></select>
+                            </label>
+                            <p class="panel-help" id="datasetSummary">每个应用领域对应一个公开高阶关系数据样例，用于展示模型在该类场景中的聚类分析能力。</p>
+                        </section>
+
+                        <section class="panel-section">
+                            <h3>Step 2：选择分析视图</h3>
+                            <div class="step-view-buttons" id="stepViewButtons">
+                                <button type="button" class="mini-action active" data-view="global">全局分析</button>
+                                <button type="button" class="mini-action" data-view="hypergraph">超图关系</button>
+                                <button type="button" class="mini-action" data-view="boundary">边界风险</button>
+                            </div>
+                            <label>
+                                着色模式
+                                <select id="colorMode">
+                                    <option value="cluster">预测簇着色</option>
+                                    <option value="label">真实标签对照（评测模式）</option>
+                                    <option value="purity">风险强度着色</option>
+                                </select>
+                            </label>
+                            <label>
+                                超边筛选
+                                <select id="edgeFilter">
+                                    <option value="all">全部超边</option>
+                                    <option value="high">高纯度超边</option>
+                                    <option value="medium">中等纯度超边</option>
+                                    <option value="low">低纯度超边</option>
+                                    <option value="mixed">跨簇超边</option>
+                                </select>
+                            </label>
+                            <label class="cluster-check">
+                                <input id="showHyperedges" type="checkbox" checked />
+                                显示超边连接
+                            </label>
+                        </section>
+
+                        <section class="panel-section">
+                            <h3>Step 3：搜索或点击节点</h3>
+                            <p class="panel-help">输入节点编号，定位其在当前应用场景中的位置。</p>
+                            <div class="search-row">
+                                <input id="nodeSearch" type="number" min="0" placeholder="输入节点 ID" />
+                                <button class="mini-action" id="searchNode" type="button">定位</button>
+                            </div>
+                            <section class="selection-card" id="selectionPanel">
+                                <h3>节点详情</h3>
+                                <p>搜索或点击任意节点后，这里将展示该节点的预测簇、局部邻居、共享超边和推荐解释。</p>
+                            </section>
+                        </section>
+
+                        <section class="panel-section">
+                            <h3>Step 4：当前节点快捷分析</h3>
+                            <div class="analysis-chips">
+                                <button type="button" data-action="node-similar">查看同簇相似节点</button>
+                                <button type="button" data-action="node-hyperedge-neighbors">查看共享超边邻居</button>
+                                <button type="button" data-action="node-incident-edges">查看节点所在超边</button>
+                                <button type="button" data-action="node-boundary-risk">查看边界风险</button>
+                                <button type="button" data-action="focus-selected-node">聚焦当前节点</button>
+                            </div>
+                        </section>
+
+                        <p id="dataStatus">数据加载中...</p>
+                    </aside>
                 </div>
+            </section>
 
-                <aside class="cluster-data-panel" aria-label="可视化控制面板">
-                    <div class="panel-title">
-                        <span>Analysis Panel</span>
-                        <strong>交互分析</strong>
-                    </div>
-
-                    <section class="panel-section panel-section-compact">
-                        <h3>数据与视图</h3>
-                        <label>
-                            数据集
-                            <select id="datasetSelect"></select>
-                        </label>
-                        <button class="mini-action" id="surveyView" type="button">问卷数据视图</button>
-                        <label>
-                            视图模式
-                            <select id="colorMode">
-                                <option value="cluster">预测簇着色</option>
-                                <option value="label">真实标签着色</option>
-                                <option value="purity">超边纯度视图</option>
-                            </select>
-                        </label>
-                        <label>
-                            超边筛选
-                            <select id="edgeFilter">
-                                <option value="all">全部超边</option>
-                                <option value="high">高纯度超边</option>
-                                <option value="medium">中等纯度超边</option>
-                                <option value="low">低纯度超边</option>
-                                <option value="mixed">跨簇超边</option>
-                            </select>
-                        </label>
-                        <label class="cluster-check">
-                            <input id="showHyperedges" type="checkbox" checked />
-                            显示超边
-                        </label>
-                        <div class="search-row">
-                            <input id="nodeSearch" type="number" min="0" placeholder="输入节点 ID" />
-                            <button class="mini-action" id="searchNode" type="button">定位</button>
-                        </div>
-                        <div class="analysis-chips" aria-label="快速分析入口">
-                            <button type="button" data-action="mixed">跨簇超边</button>
-                            <button type="button" data-action="low">低纯度超边</button>
-                            <button type="button" data-action="largest">最大规模超边</button>
-                        </div>
-                    </section>
-
-                    <section class="selection-card" id="selectionPanel">
-                        <h3>当前选择</h3>
-                        <p>点击画布中的节点、超边中心或簇标签，查看结构详情。</p>
-                    </section>
-
-                    <p id="dataStatus">正在加载超图聚类结果...</p>
-                </aside>
-
-                <section class="cluster-analysis-strip" aria-label="超图分析结果">
-                    <section class="metric-card">
-                        <h3>指标概览</h3>
-                        <div class="cluster-metrics" id="metricPanel"></div>
-                        <div class="cluster-metrics cluster-hyperedge-metrics" id="hyperedgePanel"></div>
-                    </section>
-
-                    <section class="recommend-card">
-                        <h3>相关节点推荐</h3>
-                        <div id="recommendationPanel" class="recommendation-panel">
-                            <p>选择一个节点后，系统会基于同簇关系、共享超边和标签一致性推荐相关节点。</p>
-                        </div>
-                    </section>
-
-                    <section class="reason-card">
-                        <h3>推荐依据</h3>
-                        <div class="reason-grid">
-                            <div>
-                                <strong>同簇关系</strong>
-                                <span>优先选择与当前节点处在同一预测簇的节点。</span>
-                            </div>
-                            <div>
-                                <strong>共享超边</strong>
-                                <span>统计两个节点共同参与的超边数量。</span>
-                            </div>
-                            <div>
-                                <strong>标签一致</strong>
-                                <span>若真实标签一致，说明聚类结果更容易解释。</span>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="matrix-card">
-                        <h3>簇-标签构成</h3>
-                        <div id="clusterMatrix" class="cluster-matrix"></div>
-                    </section>
-
-                    <section class="edge-list-card">
-                        <h3>低纯度超边 Top 10</h3>
-                        <div id="topEdgeList" class="top-edge-list"></div>
-                    </section>
+            <section class="cluster-analysis-strip" id="analysisCards" aria-label="全局结构分析">
+                <section class="analysis-intro-card">
+                    <h3>全局结构分析</h3>
+                    <p>以下结果用于理解当前应用领域样例中的整体聚类结构，包括指标表现、跨簇超边、低纯度超边、边界节点和典型高阶关系。它们是全局统计结果，不一定与当前选中节点直接相关。</p>
                 </section>
+
+                <section class="metric-card">
+                    <h3>指标概览</h3>
+                    <div class="cluster-metrics" id="metricPanel"></div>
+                    <div class="cluster-metrics cluster-hyperedge-metrics" id="hyperedgePanel"></div>
+                </section>
+
+                <section class="matrix-card">
+                    <h3>聚类结果解释矩阵</h3>
+                    <p class="card-caption">该矩阵仅用于公开数据集评测对照，不参与模型推理。</p>
+                    <div id="clusterMatrix" class="cluster-matrix"></div>
+                </section>
+
+                <section class="edge-list-card">
+                    <h3>低纯度与跨簇超边 Top 10</h3>
+                    <div id="topEdgeList" class="top-edge-list"></div>
+                </section>
+
+                <section class="edge-list-card">
+                    <h3>跨簇超边列表</h3>
+                    <div id="crossEdgeList" class="top-edge-list"></div>
+                </section>
+
+                <section class="edge-list-card">
+                    <h3>边界节点列表</h3>
+                    <div id="boundaryNodeList" class="top-edge-list"></div>
+                </section>
+
+                <section class="edge-list-card">
+                    <h3>最大规模超边列表</h3>
+                    <p class="card-caption">这些超边连接节点较多，代表高阶关系较密集区域。</p>
+                    <div id="maxHyperedgeList" class="top-edge-list"></div>
+                </section>
+
+                <section class="edge-list-card">
+                    <h3>高置信簇概览</h3>
+                    <div id="highConfidenceClusterList" class="top-edge-list"></div>
+                </section>
+
+                <section class="recommend-card">
+                    <h3>当前节点相关推荐</h3>
+                    <div id="recommendationPanel" class="recommendation-panel">
+                        <p>请选择一个节点后查看相关推荐。</p>
+                    </div>
+                </section>
+
+                <section class="reason-card">
+                    <h3>推荐依据</h3>
+                    <div class="reason-grid" id="recommendReasonPanel">
+                        <p class="panel-help">请选择一个节点后查看推荐依据。</p>
+                    </div>
+                </section>
+            </section>
+
+            <section class="bottom-cta">
+                <h3>准备将 IntraHC 用到你的关系数据场景中？</h3>
+                <p>先在当前样例中体验节点检索、关系推荐与边界分析，再根据你的业务关系图谱接入真实训练结果。</p>
             </section>
         </main>
 
