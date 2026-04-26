@@ -50,8 +50,8 @@
                         <span>Clusterability-aware Regularization</span>
                     </div>
                     <div class="hero-actions">
-                        <a class="btn btn-primary text-uppercase" href="results.html">查看实验结果</a>
-                        <a class="btn btn-outline-primary text-uppercase" href="cluster.html">在线试用 Demo</a>
+                        <a class="algo-btn algo-btn-primary" href="results.html">查看实验结果</a>
+                        <a class="algo-btn algo-btn-secondary" href="cluster.html">在线试用平台</a>
                     </div>
                 </div>
                 <div class="hero-figure reveal-item" aria-label="算法流程示意图">
@@ -155,7 +155,14 @@
                         </ul>
                     </div>
                     <div class="mech-figure fig-encode" aria-hidden="true">
-                        <span></span><span></span><span></span><span></span><span></span>
+                        <div class="mini-flow">
+                            <span class="mini-tag">X</span>
+                            <span class="mini-plus">+</span>
+                            <span class="mini-tag">H</span>
+                            <span class="mini-arrow">→</span>
+                            <span class="mini-tag highlight">Z</span>
+                        </div>
+                        <p class="mini-caption">属性与高阶结构联合编码</p>
                     </div>
                 </article>
 
@@ -171,7 +178,13 @@
                         </ul>
                     </div>
                     <div class="mech-figure fig-contrast" aria-hidden="true">
-                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                        <div class="hyperedge-shell">
+                            <span class="dot near"></span>
+                            <span class="dot near"></span>
+                            <span class="dot far"></span>
+                            <span class="dot far"></span>
+                        </div>
+                        <p class="mini-caption">同一超边内保同存异</p>
                     </div>
                 </article>
 
@@ -187,7 +200,12 @@
                         </ul>
                     </div>
                     <div class="mech-figure fig-cluster" aria-hidden="true">
-                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                        <div class="cluster-board-mini">
+                            <span class="c-dot c1"></span><span class="c-dot c1"></span><span class="c-dot c1"></span>
+                            <span class="c-dot c2"></span><span class="c-dot c2"></span><span class="c-dot c2"></span>
+                            <span class="cut-line"></span>
+                        </div>
+                        <p class="mini-caption">cut-like 约束塑造可切分簇结构</p>
                     </div>
                 </article>
             </div>
@@ -202,7 +220,22 @@
             <div class="objective-grid reveal-stagger">
                 <div class="formula-card reveal-item">
                     <p class="formula-label">简化联合优化目标</p>
-                    <code>L_total = L_struct + L_InfoNCE + L_cluster + L_intra + L_cut + L_ortho</code>
+                    <div class="formula-shell">
+                        <div class="formula-mainline">
+                            <span class="lhs">L_total</span>
+                            <span class="eq">=</span>
+                            <span class="rhs">L_struct + L_InfoNCE + L_cluster + L_intra + L_cut + L_ortho</span>
+                        </div>
+                        <div class="formula-subline">
+                            <span>结构保持</span>
+                            <span>表示一致</span>
+                            <span>聚类指导</span>
+                            <span>超边内保异</span>
+                            <span>cut-like 约束</span>
+                            <span>正交均衡</span>
+                        </div>
+                        <p class="formula-note">各项损失联合优化，目标是同时提升局部判别性与全局可聚类结构。</p>
+                    </div>
                 </div>
                 <div class="objective-list reveal-stagger">
                     <article class="reveal-item">
@@ -266,8 +299,8 @@
                 <h2>继续查看模型表现与交互式展示</h2>
                 <p>算法页解释模型机制；实验页展示多数据集性能；试用页展示训练后结果的交互式可视化。</p>
                 <div class="cta-actions">
-                    <a class="btn btn-primary text-uppercase" href="results.html">查看实验结果</a>
-                    <a class="btn btn-outline-primary text-uppercase" href="cluster.html">在线试用 Demo</a>
+                    <a class="algo-btn algo-btn-primary" href="results.html">查看实验结果</a>
+                    <a class="algo-btn algo-btn-secondary" href="cluster.html">在线试用平台</a>
                 </div>
             </div>
         </div>
