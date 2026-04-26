@@ -8,7 +8,6 @@
 - `algorithm.html`：算法/方法详情页
 - `results.html`：实验结果与可视化页
 - `workflow.html`：技术流程页
-- `team.html`：团队成员详情页
 - `resources.html`：资源页（论文/代码/数据/文档）
 - `blog.html`：文章列表页
 - `blog/intrahc.html`：文章正文示例页
@@ -26,7 +25,6 @@
 - `id="services"`：算法摘要
 - `id="portfolio"`：成果摘要
 - `id="about"`：流程摘要
-- `id="team"`：团队摘要
 - `id="contact"`：资源/联系入口
 
 如果只想改文案：直接在对应 section 的 `<h2> <h3> <p>` 里改。
@@ -61,18 +59,7 @@
 
 可改区域：`.step-card` 和 `.step-index`。
 
-### E. 团队组（`team.html`）
-
-重点：成员信息优先在这里更新，并同步首页团队摘要。
-
-可改内容：
-- 姓名、角色、分工、贡献
-- 头像（`assets/img/team/`）
-- 社交链接
-
-注意：不要随意删除其他成员卡片。
-
-### F. 资源组（`resources.html`）
+### E. 资源组（`resources.html`）
 
 建议维护内容：
 - 论文链接
@@ -82,7 +69,7 @@
 
 可改区域：`.resource-card`。
 
-### G. 文档/宣传组（`blog.html` + `blog/*.html`）
+### F. 文档/宣传组（`blog.html` + `blog/*.html`）
 
 - 在 `blog.html` 维护文章列表卡片（标题、日期、摘要、链接）
 - 每篇正文单独建 `blog/xxx.html`
@@ -104,7 +91,6 @@
 - `.page-hero`
 - `.subpage-section`
 - `.feature-card`
-- `.member-card`
 - `.result-card`
 - `.step-card`
 - `.resource-card`
@@ -132,7 +118,6 @@
 ## 7. 提交前自检清单
 
 - [ ] 没有删除首页主板块
-- [ ] 没有误删他人成员信息
 - [ ] 导航链接和 active 正确
 - [ ] 子页资源路径正确（尤其 `blog/`）
 - [ ] 样式改动主要在 `custom-pages.css`
@@ -142,8 +127,7 @@
 - 成员 A：`algorithm.html`
 - 成员 B：`results.html`
 - 成员 C：`workflow.html`
-- 成员 D：`team.html`
-- 成员 E：`resources.html` + `blog.html`
+- 成员 D：`resources.html` + `blog.html`
 - 负责人：只在最后统一合并 `index.html` 导航与摘要按钮
 
 ---
