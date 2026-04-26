@@ -1,0 +1,114 @@
+﻿# 数据集名称（如 cora / citeseer / pubmed）
+dataset_name: cora
+
+# 设备编号：0 表示 cuda:0；无 GPU 时自动回退到 CPU
+device: 0
+
+# 随机种子（保证可复现）
+seed: 42
+
+# 编码器隐藏维度
+emb_dim: 256
+
+# 编码层数（推荐 1，避免过平滑）
+num_layers: 1
+
+# 预训练轮数（阶段1）
+pretrain_epochs: 260
+
+# 微调轮数（阶段2）
+finetune_epochs: 100
+
+# 是否使用 K-Means 初始化聚类原型
+use_kmeans_init: true
+
+# 学习率
+lr: 0.0005
+
+# L2 正则
+weight_decay: 5.0e-05
+
+# 结构判别损失权重
+alpha: 1.0
+
+# InfoNCE 对比损失权重
+beta: 3.0
+
+# 聚类自监督损失权重
+gamma: 0.0
+
+# 超边内对比（intra）损失权重
+delta: 0.1
+
+# 对比学习温度系数
+tau: 0.8
+
+# LNAHC 总权重（0 表示关闭）
+lnahc_weight: 0.3
+
+# LNAHC 平衡项权重
+ortho_weight: 0.85
+
+# 动态亲和图是否 detach（推荐 true）
+detach_affinity: true
+
+# 平衡损失类型：ortho 或 empty
+balance_loss_type: ortho
+
+# empty 平衡项阈值（仅 balance_loss_type=empty 时生效）
+empty_cluster_rho: 0.02
+
+# 是否启用属性引导（intra 中使用原始特征相似度）
+use_attr_guidance: true
+
+# 特征 mask 比例（数据增强）
+feat_mask_rate: 0.4
+
+# 超边 drop 比例（数据增强）
+edge_drop_rate: 0.2
+
+# 是否显示 tqdm 进度条
+show_progress: true
+
+# 日志打印间隔（每 N 个 epoch 打印一次）
+log_interval: 10
+
+# 是否在启动时打印核心参数摘要
+print_config: true
+
+# 训练结束后是否自动导出前端 Demo JSON
+export_demo_json: true
+
+# Demo JSON 输出路径（留空则自动为 demo_data/<Dataset>.json）
+demo_json_output:
+
+# Demo 节点邻居 Top-K
+demo_topk: 6
+
+# Demo 降维方法：pca / tsne / umap
+demo_proj_method: pca
+
+# Demo 导出随机种子（用于降维可复现）
+demo_seed: 42
+
+# Demo 展示数据集名称（留空则根据 dataset_name 自动推断，例如 Cora）
+demo_dataset_name:
+
+# 是否额外落盘 final_emb/preds/probs/metrics 供离线复用
+save_demo_artifacts: false
+demo_artifacts_dir: demo_data/artifacts
+# --- bayesian 结果参数备选（截图中的另外两组）---
+# 方案2：
+# lr: 0.000292
+# beta: 5.1767
+# delta: 0.0741
+# tau: 0.4779
+# lnahc_weight: 0.5288
+#
+# 方案3：
+# lr: 0.000343
+# beta: 3.7163
+# delta: 0.1165
+# tau: 0.6107
+# lnahc_weight: 0.8288
+
