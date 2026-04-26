@@ -1,5 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-CN">
+
+
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -10,6 +13,89 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/custom-pages.css" rel="stylesheet" />
+   
+    <style>
+    /* 核心修改：浅绿色背景与布局 */
+    .page-hero {
+        /* 使用柔和的浅绿色背景 */
+        background-color: #f0f9f4 !important; 
+        /* 移除之前可能存在的暗色渐变和图片背景 */
+        background-image: none !important;
+        
+        /* 增加上下间距，使区域更长 */
+        padding: 160px 0 100px 0 !important;
+        color: #2c3e50 !important; /* 深灰色文字，与浅绿更搭 */
+    }
+
+    /* 左侧文字靠左 */
+    .text-start {
+        text-align: left !important;
+    }
+
+    /* 调整标题颜色，使其在绿底下更清晰 */
+    .page-hero h1 {
+        color: #1a1a1a;
+        letter-spacing: -1px;
+    }
+
+    .page-hero .lead {
+        color: #555;
+        font-size: 1.25rem;
+    }
+
+    .back-link {
+        color: #198754 !important; /* 返回链接使用深绿色 */
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    /* 右侧图片轻微浮动动画（可选） */
+    .page-hero img {
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0px); }
+    }
+    /* 1. 卡片基础与过渡 */
+    .dataset-card {
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer;
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* 2. 悬停效果：向上浮起并加深阴影 */
+    .dataset-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+        background-color: #fcfdfc !important; /* 悬停时背景微变 */
+    }
+
+    /* 3. 图标背景圆圈（可选，增加设计感） */
+    .icon-box {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(0,0,0,0.03);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 4. 确保标题在悬停时颜色变亮（如黄色或蓝色） */
+    .dataset-card:hover h5 {
+        color: #ffc107; /* 与主题黄色统一 */
+    }
+
+    /* 5. 辅助样式 */
+    .rounded-4 {
+        border-radius: 1rem !important;
+    }
+</style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -33,86 +119,134 @@
 
 <header class="page-hero">
     <div class="container">
-        <a class="back-link mb-3" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
-        <h1>项目资源与文档入口</h1>
-        <p>对接首页资源/联系板块，提供论文、代码、数据、文档的统一入口结构。</p>
+        <div class="row align-items-center">
+            <div class="col-lg-7 text-start py-5">
+                
+                <h1 class="display-4 fw-bold mb-3">项目资源与文档入口</h1>
+                <p class="lead mb-4">
+                    对接首页资源/联系板块，提供论文、代码、数据、文档的统一入口结构。我们将持续更新研究成果，欢迎开发者与研究者获取相关资源。
+            </div>
+            
+            <div class="col-lg-5 d-none d-lg-block text-center">
+                <img src="C:\Users\27906\Desktop\6840fcaa7c10182c94176bc2a8be879.jpg" alt="资源展示" class="img-fluid rounded-3 shadow-lg" style="max-height: 350px;">
+            </div>
+        </div>
     </div>
 </header>
 
 <section class="subpage-section">
     <div class="container">
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3"><div class="resource-card"><h5><i class="fas fa-file-alt me-2 text-primary"></i>论文与报告</h5><p class="text-muted">收录论文初稿、答辩材料、技术报告。</p><a href="#!">查看目录</a></div></div>
-            <div class="col-md-6 col-lg-3"><div class="resource-card"><h5><i class="fas fa-code me-2 text-primary"></i>代码仓库</h5><p class="text-muted">核心实现、训练脚本、可视化工具与页面源码。</p><a href="#!">查看仓库</a></div></div>
-            <div class="col-md-6 col-lg-3"><div class="resource-card"><h5><i class="fas fa-database me-2 text-primary"></i>数据集</h5><p class="text-muted">数据说明、样本划分、预处理与下载入口。</p><a href="#!">查看数据</a></div></div>
-            <div class="col-md-6 col-lg-3"><div class="resource-card"><h5><i class="fas fa-book me-2 text-primary"></i>开发文档</h5><p class="text-muted">部署手册、接口说明、版本更新记录。</p><a href="#!">查看文档</a></div></div>
-        </div>
-    </div>
-</section>
-
-<section class="subpage-section bg-light">
-    <div class="container">
-        <div class="text-center mb-4">
-            <h2 class="section-heading text-uppercase">合作单位</h2>
-            <p class="section-subheading text-muted">沿用首页 logo 资源</p>
-        </div>
-        <div class="row align-items-center">
-            <div class="col-md-3 col-sm-6 my-3"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/microsoft.svg" alt="Microsoft" /></div>
-            <div class="col-md-3 col-sm-6 my-3"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/google.svg" alt="Google" /></div>
-            <div class="col-md-3 col-sm-6 my-3"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/facebook.svg" alt="Facebook" /></div>
-            <div class="col-md-3 col-sm-6 my-3"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/ibm.svg" alt="IBM" /></div>
-        </div>
-    </div>
-</section>
-
-<section class="cta-section">
-    <div class="container text-center">
-        <h3 class="mb-3">查看项目文章与研究日志</h3>
-        <a class="btn btn-primary text-uppercase" href="blog.html">前往博客</a>
-    </div>
-</section>
-
-<footer class="site-footer py-5">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <h6>IntraHC</h6>
-                <p class="mb-0">Intra-hyperedge Contrastive Learning for End-to-End Attributed Hypergraph Clustering.</p>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <h6>页面导航</h6>
-                <ul>
-                    <li><a href="index.html">首页</a></li>
-                    <li><a href="algorithm.html">算法方法</a></li>
-                    <li><a href="results.html">实验结果</a></li>
-                    <li><a href="workflow.html">技术流程</a></li>
-                </ul>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <h6>项目内容</h6>
-                <ul>
-                    <li><a href="team.html">团队成员</a></li>
-                    <li><a href="resources.html">项目资源</a></li>
-                    <li><a href="blog.html">研究日志</a></li>
-                    <li><a href="blog/intrahc.html">文章示例</a></li>
-                </ul>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <h6>联系与社交</h6>
-                <div class="d-flex gap-2 mb-2">
-                    <a class="btn btn-dark btn-social" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-dark btn-social" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-dark btn-social" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+        <div class="dataset-card shadow-sm p-4 rounded-4 bg-white border-0 position-relative">
+            <div class="d-flex align-items-start">
+                <div class="icon-box me-4 flex-shrink-0">
+                    <i class="fas fa-database fa-2x text-primary"></i>
                 </div>
-                <p class="small mb-0">欢迎补充邮箱、GitHub、论文链接。</p>
+                <div class="content-box">
+                    <h5 class="fw-bold mb-1">AllSet 数据集</h5>
+                    <p class="text-muted small mb-0">包含多种超图结构的原始数据集合，适用于复杂关系建模研究。</p>
+                    <a href="https://github.com/jianhao2016/AllSet/tree/main/data/raw_data" target="_blank" class="stretched-link"></a>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom mt-4 pt-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
-            <small>Copyright &copy; IntraHC 2026</small>
-            <div>
-                <a class="me-3" href="#!">Privacy Policy</a>
-                <a href="#!">Terms of Use</a>
+    </div>
+
+    <div class="col">
+        <div class="dataset-card shadow-sm p-4 rounded-4 bg-white border-0 position-relative">
+            <div class="d-flex align-items-start">
+                <div class="icon-box me-4 flex-shrink-0">
+                    <i class="fas fa-cube fa-2x text-warning"></i>
+                </div>
+                <div class="content-box">
+                    <h5 class="fw-bold mb-1">NTU2012 数据集</h5>
+                    <p class="text-muted small mb-0">HGNN 论文使用的多模态 3D 模型数据集，支持多特征融合分析。</p>
+                    <a href="https://drive.google.com/file/d/1Vx4K15bW3__JPRV0KUoDWtQX8sB-vbO5/view" target="_blank" class="stretched-link"></a>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="dataset-card shadow-sm p-4 rounded-4 bg-white border-0 position-relative">
+            <div class="d-flex align-items-start">
+                <div class="icon-box me-4 flex-shrink-0">
+                    <i class="fas fa-microscope fa-2x text-success"></i>
+                </div>
+                <div class="content-box">
+                    <h5 class="fw-bold mb-1">Mushroom 数据集</h5>
+                    <p class="text-muted small mb-0">来自 UCI 的经典蘑菇分类特征数据，常用于模式识别基础训练。</p>
+                    <a href="https://archive.ics.uci.edu/dataset/73/mushroom" target="_blank" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="dataset-card shadow-sm p-4 rounded-4 bg-white border-0 position-relative">
+            <div class="d-flex align-items-start">
+                <div class="icon-box me-4 flex-shrink-0">
+                    <i class="fas fa-paw fa-2x text-info"></i>
+                </div>
+                <div class="content-box">
+                    <h5 class="fw-bold mb-1">Zoo 数据集</h5>
+                    <p class="text-muted small mb-0">包含 7 种类型的动物属性分类数据，适合小样本超图实验。</p>
+                    <a href="https://archive.ics.uci.edu/dataset/111/zoo" target="_blank" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="dataset-card shadow-sm p-4 rounded-4 bg-white border-0 position-relative">
+            <div class="d-flex align-items-start">
+                <div class="icon-box me-4 flex-shrink-0">
+                    <i class="fas fa-newspaper fa-2x text-danger"></i>
+                </div>
+                <div class="content-box">
+                    <h5 class="fw-bold mb-1">20 Newsgroups</h5>
+                    <p class="text-muted small mb-0">经典的文本分类数据集，包含 20 个不同主题的新闻组讨论内容。</p>
+                    <a href="http://qwone.com/~jason/20Newsgroups/" target="_blank" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="dataset-card shadow-sm p-4 rounded-4 bg-white border-0 position-relative">
+            <div class="d-flex align-items-start">
+                <div class="icon-box me-4 flex-shrink-0">
+                    <i class="fas fa-user-graduate fa-2x text-secondary"></i>
+                </div>
+                <div class="content-box">
+                    <h5 class="fw-bold mb-1">学生心理健康数据集</h5>
+                    <p class="text-muted small mb-0">来自 Kaggle 的学生心理状态评估数据，支持社会计算与 AI 分析。</p>
+                    <a href="https://www.kaggle.com/datasets/sonia22222/students-mental-health-assessments" target="_blank" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</section>
+
+
+<footer class="footer-section">
+    <div class="container"> <h3 class="footer-title" style="text-align: center; margin-top: 30px; font-weight: bold;">开源资源入口</h3>
+        
+        <div class="link-group" style="display: flex; justify-content: center; gap: 15px; margin-top: 20px; margin-bottom: 30px;">
+            <a href="https://github.com/cllyw0618/-1" target="_blank" class="btn btn-dark">
+                <i class="fab fa-github"></i> GitHub 源码
+            </a>
+            <a href="resources.html" class="btn btn-dark">
+                <i class="fas fa-database"></i> 数据集获取
+            </a>
+        </div>
+
+        <hr class="footer-divider" style="border-top: 1px dashed #ddd; width: 60%; margin: 0 auto 20px auto;">
+
+        <div class="acknowledgments" style="text-align: center; color: #666; font-size: 0.9rem; padding-bottom: 40px;">
+            <p><strong>致谢：</strong> 特别感谢指导老师的悉心指导，以及中国计算机设计大赛组委会对本项目的大力支持。</p>
         </div>
     </div>
 </footer>
