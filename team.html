@@ -31,21 +31,46 @@
     </div>
 </nav>
 
-<header class="page-hero">
+<header class="page-hero team-hero">
     <div class="container">
-        <a class="back-link mb-3" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
-        <h1>团队成员与分工</h1>
-        <p>以下成员信息、姓名、图片和角色保持与首页一致，并在此基础上补充贡献描述。</p>
+        <div class="row align-items-center">
+            <div class="col-lg-7 team-hero-copy">
+                <a class="back-link mb-4" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
+                <span class="team-kicker">Collaboration Network</span>
+                <h1>团队成员与分工</h1>
+                <p>围绕模型设计、数据分析、技术路线和页面呈现形成协作网络，将每位成员的职责映射到清晰的研究路径中。</p>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="team-visual" aria-hidden="true">
+                    <div class="team-energy energy-one"></div>
+                    <div class="team-energy energy-two"></div>
+                    <div class="team-energy energy-three"></div>
+                    <div class="team-plane plane-top"></div>
+                    <div class="team-plane plane-mid"></div>
+                    <div class="team-plane plane-low"></div>
+                    <div class="scholar scholar-one"><span></span></div>
+                    <div class="scholar scholar-two"><span></span></div>
+                    <div class="scholar scholar-three"><span></span></div>
+                    <div class="team-role-card">
+                        <strong>协作结构展示</strong>
+                        <span>模型设计 Model Design</span>
+                        <span>数据分析 Data Analysis</span>
+                        <span>技术路线 Tech Workflow</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 
-<section class="subpage-section">
+<section class="subpage-section team-section">
     <div class="container">
-        <div class="text-center mb-5">
+        <div class="text-center mb-5 team-heading">
+            <span class="team-kicker">Team Members</span>
             <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-            <h3 class="section-subheading text-muted">保留首页成员内容</h3>
+            <h3 class="section-subheading text-muted">成员信息保留首页内容，并补充各自的项目职责和协作定位。</h3>
         </div>
-        <div class="row g-4">
+        <div class="row g-4 team-grid">
             <div class="col-lg-4">
                 <div class="member-card text-center">
                     <img src="assets/img/team/1.jpg" alt="Parveen Anand" />
@@ -83,9 +108,14 @@
     </div>
 </section>
 
-<section class="subpage-section bg-light">
+<section class="subpage-section team-collab-section">
     <div class="container">
-        <div class="row g-4">
+        <div class="text-center mb-5 team-heading">
+            <span class="team-kicker">Collaboration Rules</span>
+            <h2 class="section-heading text-uppercase">协作机制</h2>
+            <h3 class="section-subheading text-muted">通过模块化分工和统一页面规范，降低冲突并提高迭代效率。</h3>
+        </div>
+        <div class="row g-4 team-collab-grid">
             <div class="col-md-4"><div class="feature-card"><h5>协作方式</h5><p class="text-muted mb-0">采用模块化分工，周会同步实验状态与页面更新进度。</p></div></div>
             <div class="col-md-4"><div class="feature-card"><h5>代码维护</h5><p class="text-muted mb-0">首页保留总览，各子页由对应负责人独立维护，降低冲突。</p></div></div>
             <div class="col-md-4"><div class="feature-card"><h5>产出责任</h5><p class="text-muted mb-0">算法、实验、文档和展示素材均有主责成员，便于追踪迭代。</p></div></div>
@@ -142,5 +172,4 @@
 <script src="js/scripts.js"></script>
 </body>
 </html>
-
 

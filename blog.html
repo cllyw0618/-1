@@ -31,17 +31,59 @@
     </div>
 </nav>
 
-<header class="page-hero">
+<header class="page-hero blog-hero">
     <div class="container">
-        <a class="back-link mb-3" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
-        <h1>项目文章与研究日志</h1>
-        <p>用于发布项目介绍、算法解析和阶段性进展，不替代首页内容。</p>
+        <div class="row align-items-center">
+            <div class="col-lg-7 blog-hero-copy">
+                <a class="back-link mb-4" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
+                <span class="blog-kicker">Research Journal</span>
+                <h1>项目文章与研究日志</h1>
+                <p>用于发布项目介绍、算法解析和阶段性进展，将每一次模型优化、实验记录和协作成果沉淀为可追踪的研究日志。</p>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="blog-visual" aria-hidden="true">
+                    <div class="blog-timeline"></div>
+                    <div class="timeline-node node-a"></div>
+                    <div class="timeline-node node-b"></div>
+                    <div class="timeline-node node-c"></div>
+
+                    <div class="glass-doc doc-back">
+                        <i class="skeleton-line line-a"></i>
+                        <i class="skeleton-line line-b"></i>
+                        <i class="mini-chart chart-a"></i>
+                        <i class="mini-chart chart-b"></i>
+                    </div>
+                    <div class="glass-doc doc-mid">
+                        <i class="skeleton-line line-a"></i>
+                        <i class="skeleton-line line-b"></i>
+                        <i class="skeleton-line line-c"></i>
+                    </div>
+                    <div class="glass-doc doc-front">
+                        <span class="code-mark">{ }</span>
+                        <i class="skeleton-line line-a"></i>
+                        <i class="skeleton-line line-b"></i>
+                        <i class="skeleton-line line-c"></i>
+                    </div>
+
+                    <div class="blog-update-card">
+                        <strong>v1.0</strong>
+                        <span>Algorithm Log</span>
+                        <span>Latest Update: Model Optimizing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 
-<section class="subpage-section">
+<section class="subpage-section blog-section">
     <div class="container">
-        <div class="row g-4">
+        <div class="text-center mb-5 blog-heading">
+            <span class="blog-kicker">Latest Notes</span>
+            <h2 class="section-heading text-uppercase">日志条目</h2>
+            <h3 class="section-subheading text-muted">持续记录算法解析、复现实验与阶段性成果。</h3>
+        </div>
+        <div class="row g-4 blog-grid">
             <div class="col-lg-4">
                 <article class="article-card">
                     <h4>IntraHC 方法全解</h4>
@@ -119,5 +161,4 @@
 <script src="js/scripts.js"></script>
 </body>
 </html>
-
 

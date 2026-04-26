@@ -33,10 +33,58 @@
 
 <header class="page-hero workflow-hero">
     <div class="container">
-        <a class="back-link mb-3" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
-        <span class="workflow-kicker">Technical Workflow</span>
-        <h1>技术路线与实施流程</h1>
-        <p>从属性超图构建、超边内对比学习到聚类评估，形成一条清晰、可复现、可展示的端到端研究流程。</p>
+        <div class="row align-items-center">
+            <div class="col-lg-7 workflow-hero-copy">
+                <a class="back-link mb-3" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
+                <span class="workflow-kicker">Technical Workflow</span>
+                <h1>技术路线与实施流程</h1>
+                <p>从属性超图构建、超边内对比学习到聚类评估，形成一条清晰、可复现、可展示的端到端研究流程。</p>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="workflow-visual" aria-hidden="true">
+                    <div class="pipeline-flow flow-one"></div>
+                    <div class="pipeline-flow flow-two"></div>
+
+                    <div class="pipeline-stage stage-input">
+                        <span class="pipeline-label">Data Input &amp; Hypergraph Construction</span>
+                        <div class="stage-glass">
+                            <i class="pipeline-node n1"></i>
+                            <i class="pipeline-node n2"></i>
+                            <i class="pipeline-node n3"></i>
+                            <i class="pipeline-node n4"></i>
+                            <i class="pipeline-edge e1"></i>
+                            <i class="pipeline-edge e2"></i>
+                            <i class="pipeline-edge e3"></i>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-stage stage-core">
+                        <span class="pipeline-label">Intra-edge Contrastive Learning</span>
+                        <div class="stage-glass">
+                            <i class="contrast-plane plane-a"></i>
+                            <i class="contrast-plane plane-b"></i>
+                            <i class="contrast-node c1"></i>
+                            <i class="contrast-node c2"></i>
+                            <i class="contrast-node c3"></i>
+                            <i class="contrast-node c4"></i>
+                            <i class="contrast-link cl1"></i>
+                            <i class="contrast-link cl2"></i>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-stage stage-output">
+                        <span class="pipeline-label">Clustering Evaluation</span>
+                        <div class="stage-glass">
+                            <i class="cluster-dot d1"></i>
+                            <i class="cluster-dot d2"></i>
+                            <i class="cluster-dot d3"></i>
+                            <i class="cluster-dot d4"></i>
+                            <i class="cluster-dot d5"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 
@@ -161,4 +209,3 @@
 <script src="js/scripts.js"></script>
 </body>
 </html>
-
