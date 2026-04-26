@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="IntraHC 算法方法介绍页" />
     <title>算法方法 | IntraHC</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -10,9 +11,10 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/custom-pages.css" rel="stylesheet" />
+    <link href="css/algorithm.css" rel="stylesheet" />
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+<body class="algorithm-page">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
     <div class="container">
         <a class="navbar-brand intrahc-brand" href="index.html"><span class="brand-mark"></span><span>IntraHC</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,92 +35,244 @@
     </div>
 </nav>
 
-<header class="page-hero">
-    <div class="container">
-        <a class="back-link mb-3" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
-        <h1>算法与方法总览</h1>
-        <p>基于首页已有算法板块，保留原有核心点并补充研究背景、模型结构与创新优势。</p>
-    </div>
-</header>
-
-<section class="subpage-section">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="section-heading text-uppercase">绠楁硶鏍稿績浼樺娍</h2>
-            <h3 class="section-subheading text-muted">IntraHC 瑙ｅ喅灞炴€ц秴鍥捐仛绫荤殑涓夊ぇ鍒涙柊鐐?</h3>
-        </div>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="feature-card text-center">
-                    <span class="fa-stack fa-3x mb-3">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-project-diagram fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4>灞炴€ц秴鍥惧缓妯?</h4>
-                    <p class="text-muted mb-0">涓嶄粎鍒╃敤缃戠粶鎷撴墤缁撴瀯锛屽悓鏃舵繁搴﹁瀺鍚堣妭鐐圭壒寰佸睘鎬э紝鏋勫缓楂橀樁澶嶆潅鍏崇郴锛圚yperedges锛夛紝鎹曡幏鏇翠赴瀵岀殑灞€閮ㄤ笌鍏ㄥ眬淇℃伅銆?</p>
+<main class="algorithm-main">
+    <section class="algo-section algo-hero reveal-item" id="algo-hero">
+        <div class="container algo-container">
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <p class="hero-kicker">Algorithm Method</p>
+                    <h1>IntraHC：面向属性超图聚类的端到端对比学习框架</h1>
+                    <p class="hero-subtitle">IntraHC 通过超边内对比学习缓解高阶消息传递中的过度同化问题，并将聚类结构质量转化为可微训练信号，使表示空间不仅具备节点判别性，也具备更清晰的全局可聚类结构。</p>
+                    <div class="hero-tags reveal-stagger" aria-label="算法关键词">
+                        <span>Attributed Hypergraph Clustering</span>
+                        <span>Intra-hyperedge Contrastive Learning</span>
+                        <span>End-to-End Clustering</span>
+                        <span>Clusterability-aware Regularization</span>
+                    </div>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary text-uppercase" href="results.html">查看实验结果</a>
+                        <a class="btn btn-outline-primary text-uppercase" href="cluster.html">在线试用 Demo</a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-card text-center">
-                    <span class="fa-stack fa-3x mb-3">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-layer-group fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4>瓒呰竟鍐呭姣斿涔?</h4>
-                    <p class="text-muted mb-0">閲囩敤瓒呰竟鍐咃紙Intra-hyperedge锛夊姣斿涔犳満鍒讹紝鍦ㄨ秴杈圭骇鍒渶澶у寲姝ｆ牱鏈竴鑷存€э紝鏈夋晥搴斿鍣０涓庣粨鏋勭█鐤忛棶棰樸€?</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-card text-center">
-                    <span class="fa-stack fa-3x mb-3">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-cogs fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4>绔埌绔仛绫讳紭鍖?</h4>
-                    <p class="text-muted mb-0">鎵撶牬浼犵粺涓ら樁娈靛垎绂绘柟娉曠殑鎬ц兘鐡堕锛圫ub-optimal锛夛紝瀹炵幇鐗瑰緛琛ㄥ緛瀛︿範涓庤仛绫荤洰鏍囧嚱鏁扮殑鑱斿悎绔埌绔紙End-to-End锛変紭鍖栥€?</p>
+                <div class="hero-figure reveal-item" aria-label="算法流程示意图">
+                    <div class="figure-bg"></div>
+                    <div class="flow-node flow-node-animated">Input X, H</div>
+                    <div class="flow-arrow" aria-hidden="true"></div>
+                    <div class="flow-node flow-node-animated">Hypergraph Encoder</div>
+                    <div class="flow-arrow" aria-hidden="true"></div>
+                    <div class="flow-node flow-node-animated">Intra-hyperedge Contrastive Learning</div>
+                    <div class="flow-arrow" aria-hidden="true"></div>
+                    <div class="flow-node flow-node-animated">Clusterability-aware Regularization</div>
+                    <div class="flow-arrow" aria-hidden="true"></div>
+                    <div class="flow-node flow-node-animated">Cluster Assignment S</div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="subpage-section bg-light">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-6">
-                <div class="feature-card">
-                    <h4>研究背景</h4>
-                    <p class="text-muted mb-0">针对属性超图聚类中常见的高阶关系表达不足、噪声敏感与两阶段优化割裂等问题，本项目从结构与属性协同建模出发，提升聚类鲁棒性与表达能力。</p>
-                </div>
+    <section class="algo-section algo-challenge reveal-item" id="challenge">
+        <div class="container algo-container">
+            <div class="section-head narrow">
+                <h2>为什么属性超图聚类不能只依赖普通表示学习？</h2>
+                <p>属性超图聚类同时面对节点属性、高阶结构和无监督聚类目标三类信息。传统方法往往先学习节点表示，再使用 K-Means 等外部聚类器得到结果。这种两阶段流程容易造成表示学习目标与聚类目标脱节：模型可能学到了局部可区分的节点表示，却未必形成全局清晰、稳定、非退化的簇结构。</p>
             </div>
-            <div class="col-lg-6">
-                <div class="feature-card">
-                    <h4>方法思路</h4>
-                    <p class="text-muted mb-0">通过超边内对比学习建立更稳定的正样本一致性目标，并将表示学习与聚类目标联合训练，减少中间步骤误差累积。</p>
-                </div>
+            <div class="challenge-grid reveal-stagger">
+                <article class="info-card reveal-item">
+                    <div class="card-icon"><i class="fas fa-draw-polygon"></i></div>
+                    <h3>高阶关系复杂</h3>
+                    <p>超边连接的不是一对节点，而是一组节点。一个超边中可能同时包含多个潜在语义簇的节点，简单聚合容易模糊簇边界。</p>
+                </article>
+                <article class="info-card reveal-item">
+                    <div class="card-icon"><i class="fas fa-wave-square"></i></div>
+                    <h3>消息传递易同化</h3>
+                    <p>HGNN 在超边内传播信息时会增强局部一致性，但也可能把同一超边内本应区分的节点过度平均，导致表示边界变钝。</p>
+                </article>
+                <article class="info-card reveal-item">
+                    <div class="card-icon"><i class="fas fa-unlink"></i></div>
+                    <h3>聚类目标后置</h3>
+                    <p>很多方法把聚类质量作为训练后的结果，而不是训练过程中的约束，导致表示空间不一定真正适合聚类。</p>
+                </article>
             </div>
-            <div class="col-lg-6">
-                <div class="feature-card">
-                    <h4>模型结构</h4>
-                    <p class="text-muted mb-0">整体包含属性超图构建模块、超边级对比目标模块、端到端聚类优化模块。训练时同时约束结构保持与聚类可分性。</p>
-                </div>
+        </div>
+    </section>
+
+    <section class="algo-section algo-framework reveal-item" id="framework">
+        <div class="container algo-container">
+            <div class="section-head narrow">
+                <h2>从属性超图到聚类分配的端到端路径</h2>
+                <p>IntraHC 以节点属性矩阵和超图结构作为输入，通过超图神经网络编码节点表示；随后结合结构判别、视图间对比、超边内对比和聚类指导目标共同训练，使表示学习过程直接面向聚类任务。最终模型输出节点嵌入和软聚类分配，既可用于聚类评价，也可用于结果可视化与相关节点分析。</p>
             </div>
-            <div class="col-lg-6">
-                <div class="feature-card">
-                    <h4>核心创新点与技术优势</h4>
-                    <p class="text-muted mb-0">创新点集中在超边内对比机制和端到端联合优化；技术优势体现在高阶关系感知能力强、噪声鲁棒性更高、迁移到多场景更灵活。</p>
+            <div class="framework-strip reveal-stagger" aria-label="五步算法流程">
+                <div class="step-card reveal-item">
+                    <span class="step-index">01</span>
+                    <h3>Data</h3>
+                    <p>节点属性矩阵 X 与超图结构 H</p>
+                </div>
+                <div class="step-arrow" aria-hidden="true"></div>
+                <div class="step-card reveal-item">
+                    <span class="step-index">02</span>
+                    <h3>Encoder</h3>
+                    <p>HGNN 编码高阶邻域信息</p>
+                </div>
+                <div class="step-arrow" aria-hidden="true"></div>
+                <div class="step-card reveal-item">
+                    <span class="step-index">03</span>
+                    <h3>Contrast</h3>
+                    <p>视图间一致性 + 超边内差异保留</p>
+                </div>
+                <div class="step-arrow" aria-hidden="true"></div>
+                <div class="step-card reveal-item">
+                    <span class="step-index">04</span>
+                    <h3>Clusterability</h3>
+                    <p>隐空间亲和图 + cut-like 约束</p>
+                </div>
+                <div class="step-arrow" aria-hidden="true"></div>
+                <div class="step-card reveal-item">
+                    <span class="step-index">05</span>
+                    <h3>Output</h3>
+                    <p>节点嵌入 Z 与聚类分配 S</p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="cta-section">
-    <div class="container text-center">
-        <h3 class="mb-3">继续查看实验验证</h3>
-        <a class="btn btn-primary text-uppercase" href="results.html">前往结果页</a>
-    </div>
-</section>
+    <section class="algo-section algo-mechanism reveal-item" id="mechanism">
+        <div class="container algo-container">
+            <div class="section-head">
+                <h2>IntraHC 的三项核心机制</h2>
+                <p>模型并不是简单地把 HGNN 与 K-Means 拼接起来，而是在高阶结构中同时完成结构感知、边界保异和聚类可切性塑形。</p>
+            </div>
+            <div class="mechanism-stack reveal-stagger">
+                <article class="mechanism-card reveal-item">
+                    <div class="mech-text">
+                        <h3>属性与高阶结构协同编码</h3>
+                        <p>普通图只能表达节点之间的成对关系，而超图可以通过一条超边连接多个节点，更适合描述论文引用、社交群体、共现关系等复杂高阶结构。IntraHC 在节点属性和超图拓扑之间建立联合建模路径，使节点表示同时吸收属性特征与高阶邻域信息。</p>
+                        <ul>
+                            <li>输入节点属性矩阵 X</li>
+                            <li>保留超图结构 H</li>
+                            <li>通过 HGNN 编码得到节点表示 Z</li>
+                            <li>兼顾属性相似性与高阶结构依赖</li>
+                        </ul>
+                    </div>
+                    <div class="mech-figure fig-encode" aria-hidden="true">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </article>
+
+                <article class="mechanism-card reveal-item">
+                    <div class="mech-text">
+                        <h3>超边内对比学习，防止高阶聚合过度同化</h3>
+                        <p>超边通常代表一组节点之间存在某种高阶关联，但这并不意味着同一超边内所有节点都应被编码成几乎相同的表示。尤其在真实数据中，超边可能跨越多个潜在簇，直接聚合容易导致边界节点被错误同化。IntraHC 引入超边内对比学习，将同超边邻居作为局部对比对象，在保持高阶关系感知的同时保留节点间差异。</p>
+                        <ul>
+                            <li>不把同一超边内节点简单拉近</li>
+                            <li>抑制 HGNN 消息传递中的过度平均</li>
+                            <li>保留边界节点的差异性</li>
+                            <li>提升隐空间的局部判别能力</li>
+                        </ul>
+                    </div>
+                    <div class="mech-figure fig-contrast" aria-hidden="true">
+                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </article>
+
+                <article class="mechanism-card reveal-item">
+                    <div class="mech-text">
+                        <h3>从节点判别性到全局可聚类性</h3>
+                        <p>仅仅让节点表示更可区分，并不等价于让整个表示空间更适合聚类。IntraHC 进一步引入可聚类性感知正则，将聚类结构质量从训练后的评价指标前移为训练过程中的可微优化信号。模型根据当前节点嵌入动态构造隐空间亲和图，并在软聚类分配矩阵上施加 cut-like objective，使隐空间逐渐形成低割边、高内聚的整体划分结构。</p>
+                        <ul>
+                            <li>根据当前嵌入动态构造隐空间亲和图</li>
+                            <li>在软聚类分配上施加划分级约束</li>
+                            <li>鼓励簇内紧凑、簇间分离</li>
+                            <li>抑制所有节点落入少数簇的退化分配</li>
+                        </ul>
+                    </div>
+                    <div class="mech-figure fig-cluster" aria-hidden="true">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="algo-section algo-objective reveal-item" id="objective">
+        <div class="container algo-container">
+            <div class="section-head">
+                <h2>联合目标：结构保持、表示一致、边界保异与聚类可切性</h2>
+            </div>
+            <div class="objective-grid reveal-stagger">
+                <div class="formula-card reveal-item">
+                    <p class="formula-label">简化联合优化目标</p>
+                    <code>L_total = L_struct + L_InfoNCE + L_cluster + L_intra + L_cut + L_ortho</code>
+                </div>
+                <div class="objective-list reveal-stagger">
+                    <article class="reveal-item">
+                        <h3>结构判别</h3>
+                        <p>区分真实超边与扰动生成的负超边，保证高阶结构被正确建模。</p>
+                    </article>
+                    <article class="reveal-item">
+                        <h3>视图一致</h3>
+                        <p>保持同一节点在不同增强视图下的表示稳定。</p>
+                    </article>
+                    <article class="reveal-item">
+                        <h3>聚类指导</h3>
+                        <p>让表示学习直接服务于聚类任务，避免训练后再聚类造成目标割裂。</p>
+                    </article>
+                    <article class="reveal-item">
+                        <h3>超边内保异</h3>
+                        <p>在超边内部保留节点差异，缓解高阶消息传递中的过度同化。</p>
+                    </article>
+                    <article class="reveal-item">
+                        <h3>划分级约束</h3>
+                        <p>提升隐空间的全局可聚类性，并抑制退化分配。</p>
+                    </article>
+                    <article class="reveal-item">
+                        <h3>正交与均衡</h3>
+                        <p>约束软分配矩阵，鼓励不同簇保持区分度与合理规模。</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="algo-section algo-advantages reveal-item" id="advantages">
+        <div class="container algo-container">
+            <div class="section-head narrow">
+                <h2>IntraHC 相比传统流程的优势</h2>
+            </div>
+            <div class="adv-grid reveal-stagger">
+                <article class="adv-card reveal-item">
+                    <h3>从两阶段到端到端</h3>
+                    <p>传统方法常先学表示再聚类，IntraHC 将聚类目标直接融入训练，使嵌入空间从一开始就服务于聚类任务。</p>
+                </article>
+                <article class="adv-card reveal-item">
+                    <h3>从成对关系到高阶关系</h3>
+                    <p>普通图方法侧重边关系，IntraHC 通过超边建模多节点共同关系，更适合复杂关联数据。</p>
+                </article>
+                <article class="adv-card reveal-item">
+                    <h3>从局部判别到整体可聚类</h3>
+                    <p>对比学习提升节点局部判别性，cut-like 目标进一步约束整体划分质量，使空间更容易形成稳定簇结构。</p>
+                </article>
+                <article class="adv-card reveal-item">
+                    <h3>从过度平滑到边界保异</h3>
+                    <p>超边内对比机制缓解高阶消息传递带来的同化问题，帮助边界节点保留差异。</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="algo-section algo-cta reveal-item" id="cta">
+        <div class="container algo-container">
+            <div class="cta-card">
+                <h2>继续查看模型表现与交互式展示</h2>
+                <p>算法页解释模型机制；实验页展示多数据集性能；试用页展示训练后结果的交互式可视化。</p>
+                <div class="cta-actions">
+                    <a class="btn btn-primary text-uppercase" href="results.html">查看实验结果</a>
+                    <a class="btn btn-outline-primary text-uppercase" href="cluster.html">在线试用 Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
 <footer class="site-footer py-5">
     <div class="container">
@@ -142,24 +296,24 @@
                     <li><a href="team.html">团队成员</a></li>
                     <li><a href="resources.html">项目资源</a></li>
                     <li><a href="blog.html">研究日志</a></li>
-                    <li><a href="blog/intrahc.html">文章示例</a></li>
+                    <li><a href="cluster.html">立即试用</a></li>
                 </ul>
             </div>
             <div class="col-md-6 col-lg-3">
                 <h6>联系与社交</h6>
                 <div class="d-flex gap-2 mb-2">
-                    <a class="btn btn-dark btn-social" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-dark btn-social" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-dark btn-social" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-dark btn-social" href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social" href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <p class="small mb-0">欢迎补充邮箱、GitHub、论文链接。</p>
+                <p class="small mb-0">欢迎补充邮箱、GitHub 与论文链接。</p>
             </div>
         </div>
         <div class="footer-bottom mt-4 pt-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
             <small>Copyright &copy; IntraHC 2026</small>
             <div>
-                <a class="me-3" href="#!">Privacy Policy</a>
-                <a href="#!">Terms of Use</a>
+                <a class="me-3" href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
             </div>
         </div>
     </div>
@@ -167,7 +321,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/scripts.js"></script>
+<script src="js/algorithm.js"></script>
 </body>
 </html>
-
-
