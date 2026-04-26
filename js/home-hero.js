@@ -262,7 +262,16 @@
               className:
                 "mt-8 max-w-2xl text-lg leading-9 text-slate-600 sm:text-xl",
             },
-            "IntraHC 通过超边内部对比学习，将节点属性、拓扑结构与聚类目标统一到端到端框架中，提升复杂属性超图场景下的表征质量。",
+            "IntraHC 通过超边内部对比学习，将节点属性、拓扑结构与聚类目标统一到端到端框架中，提升复杂属性超图场景下的表征质量，并在多个基准数据集上",
+            e(
+              "strong",
+              {
+                className:
+                  "mx-1 inline-block text-2xl font-black text-teal-700 sm:text-3xl",
+              },
+              "实现 SOTA 性能",
+            ),
+            "。",
           ),
           e(
             "div",
