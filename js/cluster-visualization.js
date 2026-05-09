@@ -67,6 +67,8 @@
     const clusterCanvas = document.getElementById("clusterCanvas");
     if (!clusterCanvas) return;
     const ctx = clusterCanvas.getContext("2d");
+    const CANVAS_CAPTION_HEIGHT = 44;
+    const CANVAS_CAPTION_TEXT = "整体聚类视图：点击节点查看局部解释；超边用于表示多节点共同关系。";
 
     const scenarioGrid = document.getElementById("applicationScenarioGrid");
     const scenarioSelect = document.getElementById("scenarioSelect");
@@ -95,6 +97,7 @@
     const heroNmi = document.getElementById("heroNmi");
     const datasetSummaryCard = document.getElementById("datasetSummaryCard");
     const datasetSummary = document.getElementById("datasetSummary");
+    const hyperedgeExplain = document.getElementById("hyperedgeExplain");
     const dataStatus = document.getElementById("dataStatus");
     const analysisNarrative = document.getElementById("analysisNarrative");
 
@@ -114,7 +117,6 @@
     const canvasLoading = document.getElementById("canvasLoading");
 
     const clusterPalette = ["#246bfe", "#00a884", "#f59e0b", "#ef4444", "#7c3aed", "#0891b2", "#65a30d", "#db2777", "#475569", "#ea580c"];
-    const labelPalette = ["#0f766e", "#b45309", "#6d28d9", "#be123c", "#0369a1", "#4d7c0f", "#a21caf", "#334155"];
 
     const state = {
         manifest: null,
@@ -125,7 +127,7 @@
         currentView: "global",
         colorMode: "cluster",
         edgeFilter: "all",
-        showHyperedges: true,
+        showHyperedges: false,
         selectedNodeId: null,
         hoveredNodeId: null,
         quickMode: null,
@@ -153,6 +155,7 @@
             last: null,
         },
         activeLayoutRef: null,
+        loadToken: 0,
     };
 
     function canon(value) {
@@ -174,6 +177,20 @@
 
     function setNarrative(msg) {
         if (analysisNarrative) analysisNarrative.textContent = msg;
+    }
+
+    function nextPaint() {
+        return new Promise((resolve) => {
+            if (typeof window.requestAnimationFrame === "function") {
+                window.requestAnimationFrame(() => resolve());
+            } else {
+                setTimeout(resolve, 0);
+            }
+        });
+    }
+
+    function syncHyperedgeExplain() {
+        if (hyperedgeExplain) hyperedgeExplain.hidden = !state.showHyperedges;
     }
 
     function setLoading(flag, msg = "") {
@@ -229,7 +246,6 @@
     }
 
     function colorForNode(node) {
-        if (state.colorMode === "label" && Number.isFinite(node.label)) return labelPalette[Math.abs(node.label) % labelPalette.length];
         if (state.colorMode === "purity") {
             if (node.boundaryScore >= 0.6) return "#ef4444";
             if (node.boundaryScore >= 0.35) return "#f59e0b";
@@ -421,7 +437,7 @@
                     node.confidence = clamp(avgPurity * 0.5 + ownClusterRatio * 0.5, 0.22, 0.98);
                 }
             }
-            node.top_similar = parseRecommendArray(node.raw.top_similar, "同簇且嵌入距离较近。", nodeMap);
+            node.top_similar = parseRecommendArray(node.raw.top_similar, "同簇且嵌入距离较近，说明模型认为二者属性和局部结构相似。", nodeMap);
             if (!node.top_similar.length) {
                 node.top_similar = nodes
                     .filter((n) => n.id !== node.id && n.cluster === node.cluster)
@@ -430,12 +446,12 @@
                         cluster: n.cluster,
                         score: Number(cosine(node.embed, n.embed).toFixed(3)),
                         shared_hyperedges: 0,
-                        reason: "同簇且嵌入距离较近。",
+                        reason: "同簇且嵌入距离较近，说明模型认为二者属性和局部结构相似。",
                     }))
                     .sort((a, b) => b.score - a.score)
                     .slice(0, 10);
             }
-            node.hyperedge_neighbors = parseRecommendArray(node.raw.hyperedge_neighbors, "与当前节点共享高阶超边关系。", nodeMap);
+            node.hyperedge_neighbors = parseRecommendArray(node.raw.hyperedge_neighbors, "与当前节点共享高阶超边，说明二者共同出现在同一组关系中，可作为结构相关性的依据。", nodeMap);
             if (!node.hyperedge_neighbors.length) {
                 node.hyperedge_neighbors = [...sharedMap.get(node.id).entries()]
                     .sort((a, b) => b[1] - a[1])
@@ -447,7 +463,10 @@
                             cluster: n?.cluster ?? 0,
                             score: 0.5,
                             shared_hyperedges: count,
-                            reason: count >= 2 ? "与当前节点共享多条高阶超边关系。" : "与当前节点共享高阶超边关系。",
+                            reason:
+                                count >= 2
+                                    ? "与当前节点共享多条高阶超边，说明二者反复出现在同类群体关系中，结构相关性更强。"
+                                    : "与当前节点共享高阶超边，说明二者共同出现在同一组关系中，可作为结构相关性的依据。",
                         };
                     });
             }
@@ -535,20 +554,24 @@
     function renderScenarioCards() {
         if (!scenarioGrid) return;
         const html = APPLICATION_SCENARIOS.map((scenario) => {
+            const activeScenario = state.currentScenarioId === scenario.id;
+            const activeDatasetLabel = activeScenario && state.currentDatasetFile ? getDisplayDatasetLabel(state.currentDatasetFile) : scenario.defaultDataset;
+            const enterDisabled = getDatasetEntryByLabel(activeDatasetLabel) ? "" : "disabled";
             const datasetButtons = scenario.datasets
                 .map((label) => {
                     const entry = getDatasetEntryByLabel(label);
                     const disabled = entry ? "" : "disabled";
-                    const active = state.currentScenarioId === scenario.id && entry && state.currentDatasetFile === entry.file ? "active" : "";
-                    return `<button type="button" data-scenario-id="${scenario.id}" data-dataset-label="${label}" class="${active}" ${disabled}>${label}</button>`;
+                    const active = activeScenario && entry && state.currentDatasetFile === entry.file ? "active" : "";
+                    const pressed = active ? "true" : "false";
+                    return `<button type="button" data-scenario-id="${scenario.id}" data-dataset-label="${label}" class="${active}" aria-pressed="${pressed}" ${disabled}>${label}</button>`;
                 })
                 .join("");
-            return `<article class="scenario-card ${state.currentScenarioId === scenario.id ? "active" : ""}">
+            return `<article class="scenario-card ${activeScenario ? "active" : ""}">
                 <h3>${scenario.title}</h3>
-                <p>${scenario.subtitle}</p>
-                <p>示例数据：${scenario.datasets.join(" / ")}</p>
+                <p>${scenario.description}</p>
+                <p>可选数据：${scenario.datasets.join(" / ")}</p>
                 <div class="scenario-datasets">${datasetButtons}</div>
-                <button type="button" class="enter-btn" data-enter-scenario="${scenario.id}">进入分析</button>
+                <button type="button" class="enter-btn" data-enter-scenario="${scenario.id}" data-enter-dataset-label="${activeDatasetLabel}" ${enterDisabled}>加载该场景</button>
             </article>`;
         }).join("");
         scenarioGrid.innerHTML = html;
@@ -586,27 +609,26 @@
         heroAcc.textContent = Number.isFinite(state.metrics.acc) ? state.metrics.acc.toFixed(3) : "--";
         heroNmi.textContent = Number.isFinite(state.metrics.nmi) ? state.metrics.nmi.toFixed(3) : "--";
         datasetSummaryCard.textContent = formatScenarioSummary(state.currentDatasetFile || "");
-        datasetSummary.textContent = `每个应用领域对应一个公开高阶关系数据样例，用于展示模型在该类场景中的聚类分析能力。当前示例：${state.currentDatasetName || "--"}。`;
+        if (datasetSummary) {
+            datasetSummary.textContent = `当前示例：${state.currentDatasetName || "--"}。本步用于确定节点、属性和超边的业务含义，后续推荐、边界风险和局部关系解释都基于这个样例生成。`;
+        }
     }
 
     function updateSelectionPanel() {
         const node = state.nodesById.get(state.selectedNodeId);
         if (!node) {
-            selectionPanel.innerHTML = "<h3>节点详情</h3><p>搜索或点击任意节点后，这里将展示该节点的预测簇、局部邻居、共享超边和推荐解释。</p>";
+            selectionPanel.hidden = true;
+            selectionPanel.innerHTML = "<h3>节点聚类解释</h3><p>搜索或点击任意节点后，这里将展示该节点的预测簇、同簇相似节点、共享超边邻居和边界风险。共享超边表示多个节点共同参与同一组高阶关系，是解释聚类归属和相关节点推荐的重要结构证据。</p>";
             return;
         }
 
+        selectionPanel.hidden = false;
         const similarCount = node.top_similar.length;
         const neighborCount = node.hyperedge_neighbors.length;
         const incidentCount = node.edgeIds.length;
         const crossRatio = (node.crossClusterNeighborRatio * 100).toFixed(1);
-        const labelLine =
-            state.colorMode === "label" && Number.isFinite(node.label)
-                ? `<p class="node-explain">评测标签：L${node.label}（仅对照，不参与推理）</p>`
-                : "";
-
         selectionPanel.innerHTML = `
-            <h3>节点详情</h3>
+            <h3>节点聚类解释</h3>
             <div class="node-detail-card">
                 <div class="node-title">${state.currentDatasetName || "示例"} Node #${String(node.id).padStart(4, "0")}</div>
                 <div class="node-meta">
@@ -614,17 +636,26 @@
                     <span>节点类型：匿名样本节点</span>
                     <span>分配强度：${(node.confidence || 0).toFixed(2)}</span>
                 </div>
-                <p class="node-explain">该节点被模型分配至 Cluster ${node.cluster}。系统基于训练后嵌入表示、同簇关系和共享超边关系分析其局部关联。</p>
-                <p class="node-explain">同簇相似节点：${similarCount} 个；共享超边邻居：${neighborCount} 个；参与超边：${incidentCount} 条；跨簇邻居比例：${crossRatio}%</p>
-                ${labelLine}
-                ${node.boundaryScore >= 0.45 ? `<div class="node-risk-warning">该节点连接了多个簇，可能处于边界区域，建议结合共享超边进一步分析。</div>` : ""}
+                <p class="node-explain">该节点被模型分配至 Cluster ${node.cluster}。解释依据包括两类：一是嵌入空间中与其接近的同簇节点，二是与其共享超边的结构邻居。</p>
+                <p class="node-explain">同簇相似节点：${similarCount} 个；共享超边邻居：${neighborCount} 个；参与超边：${incidentCount} 条；跨簇邻居比例：${crossRatio}%。跨簇比例越高，说明该节点同时连接多个预测簇的可能性越强。</p>
+                ${node.boundaryScore >= 0.45 ? `<div class="node-risk-warning">该节点存在较明显的跨簇连接，可能处于簇边界区域。建议结合共享超边进一步判断这些跨簇连接来自哪些高阶关系。</div>` : ""}
             </div>
         `;
     }
 
     function recommendItemHTML(item, type) {
         const scoreText = type === "similar" ? `相似度 ${Number(item.score || 0).toFixed(2)}` : `共享超边 ${item.shared_hyperedges || 0}`;
-        const reason = item.reason || (type === "similar" ? "同簇且嵌入距离较近。" : "与当前节点共享高阶超边关系。");
+        let reason =
+            item.reason ||
+            (type === "similar"
+                ? "同簇且嵌入距离较近，说明模型认为二者属性和局部结构相似。"
+                : "与当前节点共享高阶超边，说明二者共同出现在同一组关系中，可作为结构相关性的依据。");
+        if (type === "neighbor" && reason.includes("共享") && reason.includes("超边") && !reason.includes("说明")) {
+            reason = `${reason} 这表示二者处在同一组高阶关系中，可帮助解释结构关联。`;
+        }
+        if (type === "similar" && reason.includes("同簇") && !reason.includes("说明")) {
+            reason = `${reason} 这表示模型在嵌入空间中认为二者更接近。`;
+        }
         return `<button type="button" class="recommend-item" data-node-id="${item.id}">
             <div class="recommend-main"><strong>Node ${item.id}</strong><span class="score">${scoreText}</span></div>
             <div class="recommend-tags"><span>Cluster ${item.cluster}</span><span>${type === "similar" ? "同簇相似" : "结构邻居"}</span></div>
@@ -635,8 +666,8 @@
     function updateRecommendationPanels() {
         const node = state.nodesById.get(state.selectedNodeId);
         if (!node) {
-            recommendationPanel.innerHTML = "<p>请选择一个节点后查看相关推荐。</p>";
-            recommendReasonPanel.innerHTML = "<p class='panel-help'>请选择一个节点后查看推荐依据。</p>";
+            recommendationPanel.innerHTML = "<p>请选择一个节点后查看相关节点证据。</p>";
+            recommendReasonPanel.innerHTML = "<p class='panel-help'>请选择一个节点后查看解释依据。页面将分别说明预测簇一致性、共享超边和嵌入相似性提供的证据。</p>";
             return;
         }
 
@@ -653,20 +684,29 @@
 
         const formula = `score = 0.45 × 同簇匹配 + 0.35 × 共享超边得分 + 0.20 × 嵌入相似度`;
         recommendReasonPanel.innerHTML = `
-            <h3>推荐依据</h3>
-            <p>当前推荐围绕 Node ${node.id} 生成，优先使用同簇关系、共享超边关系和相似度信号进行解释。</p>
-            <p class="weight-note">${formula}</p>
-            <p class="panel-help">评测模式中的真实标签仅用于结果对照，不参与推荐与推理过程。</p>
+            <div>
+                <strong>同簇关系</strong>
+                <span>如果两个节点落在同一预测簇，说明模型在无监督条件下认为它们更可能属于同一潜在主题、群体或类别。</span>
+            </div>
+            <div>
+                <strong>共享超边</strong>
+                <span>如果两个节点共享超边，说明它们共同参与同一组多节点关系。该信号可解释相关性来源，也可用于识别跨簇或混合关系。</span>
+            </div>
+            <div>
+                <strong>嵌入相似度</strong>
+                <span>嵌入距离越近，表示节点属性和局部结构综合后的表示越相似。当前权重：${formula}。</span>
+            </div>
+            <p class="panel-help">依据大赛规则，页面不使用真实标签；推荐与解释只依据预测簇、共享超边和嵌入相似度。</p>
         `;
     }
 
     function updateMetricPanels() {
         const m = state.metrics || {};
         const core = [
-            ["ACC", m.acc, "聚类映射后的分类准确率"],
-            ["NMI", m.nmi, "预测簇与评测标签一致性"],
-            ["ARI", m.ari, "考虑随机一致性的聚类相似度"],
-            ["F1", m.f1, "精确率与召回率综合指标"],
+            ["ACC", m.acc, "公开结果中的准确率参考"],
+            ["NMI", m.nmi, "公开结果中的归一化互信息参考"],
+            ["ARI", m.ari, "公开结果中的随机一致性参考"],
+            ["F1", m.f1, "公开结果中的综合参考指标"],
         ];
         metricPanel.innerHTML = core
             .filter((item) => Number.isFinite(item[1]))
@@ -675,40 +715,32 @@
         const lowRatio = state.hyperedges.length ? state.hyperedges.filter((e) => e.purity < 0.55).length / state.hyperedges.length : 0;
         const boundaryCount = state.nodes.filter((n) => n.boundaryScore >= 0.45).length;
         const extra = [
-            ["节点数", state.stats.shownNodeCount || state.nodes.length, "当前展示节点规模"],
-            ["预测簇数", state.stats.clusterCount || state.clusterStats.length, "模型输出的簇数量"],
-            ["超边数", state.stats.hyperedgeCount || state.hyperedges.length, "高阶关系数量"],
-            ["低纯度超边比例", `${(lowRatio * 100).toFixed(1)}%`, "比例越高边界越复杂"],
-            ["边界节点数量", boundaryCount, "位于边界区域的节点数"],
+            ["节点数", state.stats.shownNodeCount || state.nodes.length, "当前参与可视化的匿名对象规模"],
+            ["预测簇数", state.stats.clusterCount || state.clusterStats.length, "模型自动划分出的潜在群体数量"],
+            ["超边数", state.stats.hyperedgeCount || state.hyperedges.length, "多节点共同关系数量，用于解释群体连接"],
+            ["低纯度超边比例", `${(lowRatio * 100).toFixed(1)}%`, "比例越高，说明跨簇混合关系越多"],
+            ["边界节点数量", boundaryCount, "可能连接多个簇、需要重点解释的节点数"],
         ];
         hyperedgePanel.innerHTML = extra.map((item) => `<div class="metric-item"><strong>${item[1]}</strong><span>${item[0]}：${item[2]}</span></div>`).join("");
     }
 
     function updateClusterMatrix() {
-        const labels = [...new Set(state.nodes.map((n) => n.label).filter((v) => Number.isFinite(v)))].sort((a, b) => a - b);
-        if (!labels.length) {
-            clusterMatrix.innerHTML = "<p class='panel-help'>当前样例未提供评测标签矩阵。</p>";
+        if (!state.clusterStats.length) {
+            clusterMatrix.innerHTML = "<p class='panel-help'>当前样例暂无预测簇结构概览。</p>";
             return;
         }
-        const groups = new Map();
-        state.nodes.forEach((node) => {
-            if (!groups.has(node.cluster)) groups.set(node.cluster, []);
-            groups.get(node.cluster).push(node);
-        });
-        clusterMatrix.innerHTML = [...groups.entries()]
-            .sort((a, b) => b[1].length - a[1].length)
-            .map(([clusterId, members]) => {
-                const countMap = new Map();
-                members.forEach((n) => countMap.set(n.label, (countMap.get(n.label) || 0) + 1));
-                const cells = labels
-                    .map((label) => {
-                        const count = countMap.get(label) || 0;
-                        const ratio = members.length ? count / members.length : 0;
-                        const alpha = 0.08 + ratio * 0.68;
-                        return `<div class="matrix-cell" style="background:rgba(36,107,254,${alpha.toFixed(3)});" title="Cluster ${clusterId} / Label ${label}：${count}">${label}:${count}</div>`;
-                    })
+        clusterMatrix.innerHTML = state.clusterStats
+            .map((cluster) => {
+                const boundaryCount = state.nodes.filter((node) => node.cluster === cluster.clusterId && node.boundaryScore >= 0.45).length;
+                const cells = [
+                    `节点:${cluster.size}`,
+                    `平均强度:${cluster.avgConfidence.toFixed(2)}`,
+                    `一致性:${cluster.consistency.toFixed(2)}`,
+                    `边界节点:${boundaryCount}`,
+                ]
+                    .map((text) => `<div class="matrix-cell">${text}</div>`)
                     .join("");
-                return `<div class="matrix-row"><div class="matrix-header"><strong>预测簇 C${clusterId}</strong><em>${members.length} 节点</em></div><div class="matrix-cells">${cells}</div></div>`;
+                return `<div class="matrix-row"><div class="matrix-header"><strong>预测簇 C${cluster.clusterId}</strong><em>不使用真实标签</em></div><div class="matrix-cells">${cells}</div></div>`;
             })
             .join("");
     }
@@ -717,10 +749,10 @@
         const metaColor = type === "good" ? "good" : "risk";
         const text =
             type === "cross"
-                ? "该超边连接多个簇，属于跨簇结构。"
+                ? "该超边连接多个预测簇，说明这组高阶关系横跨不同群体，是边界分析的重要线索。"
                 : type === "max"
-                    ? "该超边规模较大，代表关系较密集区域。"
-                    : "该超边纯度较低，属于模型难判别结构。";
+                    ? "该超边规模较大，代表许多节点共同参与同一组关系，可用于观察高阶关系密集区域。"
+                    : "该超边纯度较低，说明同一组关系内混入了多个预测簇，属于模型较难判别的结构。";
         return `<button type="button" class="list-item ${metaColor}" data-edge-id="${edge.id}">
             <div class="list-title">Hyperedge ${edge.id}</div>
             <div class="list-meta">
@@ -752,7 +784,7 @@
                         <span>边界分 ${n.boundaryScore.toFixed(2)}</span>
                         <span>跨簇比 ${(n.crossClusterNeighborRatio * 100).toFixed(1)}%</span>
                     </div>
-                    <p>该节点可能位于跨簇关系边界区域。</p>
+                    <p>该节点的共享超边邻居分散在多个簇中，可能位于跨簇关系边界区域。</p>
                 </button>`)
                   .join("")
             : "<p class='panel-help'>暂无边界节点。</p>";
@@ -769,7 +801,7 @@
                     <span>平均强度 ${c.avgConfidence.toFixed(2)}</span>
                     <span>一致性 ${c.consistency.toFixed(2)}</span>
                 </div>
-                <p>该簇结构较稳定，簇内一致性较高。</p>
+                <p>该簇结构较稳定，簇内节点在属性表示和高阶关系上更一致。</p>
             </div>`)
             .join("");
     }
@@ -786,10 +818,11 @@
     function screenFromWorld(world) {
         const w = clusterCanvas.clientWidth;
         const h = clusterCanvas.clientHeight;
+        const drawableH = Math.max(1, h - CANVAS_CAPTION_HEIGHT);
         const pad = 52;
         const base = {
             x: pad + world.x * Math.max(1, w - pad * 2),
-            y: pad + (1 - world.y) * Math.max(1, h - pad * 2),
+            y: pad + (1 - world.y) * Math.max(1, drawableH - pad * 2),
         };
         return {
             x: base.x * state.viewTransform.scale + state.viewTransform.panX,
@@ -800,14 +833,35 @@
     function worldFromScreen(screen) {
         const w = clusterCanvas.clientWidth;
         const h = clusterCanvas.clientHeight;
+        const drawableH = Math.max(1, h - CANVAS_CAPTION_HEIGHT);
         const pad = 52;
         const scale = state.viewTransform.scale || 1;
         const baseX = (screen.x - state.viewTransform.panX) / scale;
         const baseY = (screen.y - state.viewTransform.panY) / scale;
         return {
             x: clamp((baseX - pad) / Math.max(1, w - pad * 2), 0.02, 0.98),
-            y: clamp(1 - (baseY - pad) / Math.max(1, h - pad * 2), 0.02, 0.98),
+            y: clamp(1 - (baseY - pad) / Math.max(1, drawableH - pad * 2), 0.02, 0.98),
         };
+    }
+
+    function drawCanvasCaption(text = CANVAS_CAPTION_TEXT) {
+        const w = clusterCanvas.clientWidth;
+        const h = clusterCanvas.clientHeight;
+        const top = Math.max(0, h - CANVAS_CAPTION_HEIGHT);
+
+        ctx.save();
+        ctx.fillStyle = "rgba(248, 250, 252, 0.92)";
+        ctx.fillRect(0, top, w, CANVAS_CAPTION_HEIGHT);
+        ctx.strokeStyle = "rgba(148, 163, 184, 0.2)";
+        ctx.beginPath();
+        ctx.moveTo(0, top + 0.5);
+        ctx.lineTo(w, top + 0.5);
+        ctx.stroke();
+        ctx.fillStyle = "#475569";
+        ctx.font = "700 12px Montserrat, Arial, sans-serif";
+        ctx.textBaseline = "middle";
+        ctx.fillText(text, 14, top + CANVAS_CAPTION_HEIGHT / 2);
+        ctx.restore();
     }
 
     function resetViewTransform() {
@@ -980,9 +1034,7 @@
             state.hitPoints.push({ type: "node", id, x: point.x, y: point.y, r: 7 });
         });
 
-        ctx.fillStyle = "#475569";
-        ctx.font = "700 12px Montserrat, Arial, sans-serif";
-        ctx.fillText("全局分析视图：支持拖动画布、拖动节点、拖动超边中心。点击节点进入局部分析。", 14, clusterCanvas.clientHeight - 14);
+        drawCanvasCaption();
     }
 
     function drawHypergraphView() {
@@ -1173,9 +1225,13 @@
         const node = state.nodesById.get(Number(nodeId));
         if (!node) return false;
         state.selectedNodeId = node.id;
+        state.currentView = "hypergraph";
+        [analysisTabs, stepTabs].forEach((container) => {
+            container?.querySelectorAll("[data-view]").forEach((btn) => btn.classList.toggle("active", btn.dataset.view === "hypergraph"));
+        });
         updateSelectionPanel();
         updateRecommendationPanels();
-        setNarrative(`已选中节点 ${node.id}，可查看同簇相似节点、共享超边邻居和边界风险。`);
+        setNarrative(`已选中节点 ${node.id}。右侧将从预测簇归属、同簇相似节点、共享超边邻居和边界风险四个方面解释该节点。`);
         render();
         return true;
     }
@@ -1183,26 +1239,26 @@
     function applyQuickAction(action) {
         const node = state.nodesById.get(state.selectedNodeId);
         if (!node) {
-            setStatus("请先搜索或点击一个节点。");
+            setStatus("请先搜索或点击一个节点，再查看局部解释。");
             return;
         }
 
         state.quickMode = action;
         if (action === "node-incident-edges") {
             switchView("hypergraph");
-            setNarrative(`已聚焦节点 ${node.id} 的关联超边结构。`);
+            setNarrative(`正在查看节点 ${node.id} 的局部高阶关系。线条表示多个节点共同出现、共同参与或共同关联的超边。`);
         } else if (action === "node-boundary-risk") {
             switchView("boundary");
-            setNarrative(`已切换边界风险视图，突出节点 ${node.id} 的边界相关结构。`);
+            setNarrative(`正在查看节点 ${node.id} 的边界风险。边界风险越高，说明该节点越可能同时连接多个预测簇。`);
         } else if (action === "focus-selected-node") {
             switchView("hypergraph");
-            setNarrative(`当前节点 ${node.id} 已处于局部关系视图中心。`);
+            setNarrative(`已聚焦节点 ${node.id}。中心节点周围展示同簇相似节点和共享超边邻居，用于解释其聚类归属。`);
         } else if (action === "node-similar") {
             switchView("hypergraph");
-            setNarrative(`已高亮节点 ${node.id} 的同簇相似节点。`);
+            setNarrative(`正在查看节点 ${node.id} 的同簇相似节点。这类节点用于说明模型表示空间中的相似性证据。`);
         } else if (action === "node-hyperedge-neighbors") {
             switchView("hypergraph");
-            setNarrative(`已高亮节点 ${node.id} 的共享超边邻居。`);
+            setNarrative(`正在查看节点 ${node.id} 的共享超边邻居。这类节点用于说明多节点高阶关系中的结构证据。`);
         }
         render();
     }
@@ -1215,16 +1271,16 @@
         });
 
         if (viewName === "global") {
-            setNarrative("当前为全局分析视图。支持拖动画布、拖动节点和超边中心，点击节点可进入局部关系分析。");
+            setNarrative("当前为整体聚类视图。不同颜色表示不同预测簇，可用于观察模型发现的潜在群体结构。");
         } else if (viewName === "hypergraph") {
             const hasSelected = Boolean(state.selectedNodeId);
             setNarrative(
                 hasSelected
-                    ? "当前为超图关系视图。已展示当前节点的一阶局部关系子图。"
-                    : "当前为超图关系视图。正在显示全局概览，点击节点可进入局部关系分析。"
+                    ? "当前为局部高阶关系视图。中心节点周围展示同簇相似节点和共享超边邻居。"
+                    : "请先点击或搜索节点，随后查看该节点的局部高阶关系。"
             );
         } else {
-            setNarrative("当前为边界风险视图。用于观察低纯度超边和边界节点分布。");
+            setNarrative("当前为边界风险视图，用于观察哪些节点或超边可能连接多个预测簇。");
         }
         render();
     }
@@ -1235,9 +1291,13 @@
 
     async function loadDataset(file) {
         if (!file) return;
+        const token = ++state.loadToken;
         setLoading(true, "数据加载中...");
         setStatus("数据加载中...");
         try {
+            await nextPaint();
+            if (token !== state.loadToken) return;
+
             let raw = null;
             if (window.CLUSTER_DATASETS && window.CLUSTER_DATASETS[file]) raw = window.CLUSTER_DATASETS[file];
             else {
@@ -1246,7 +1306,9 @@
                 raw = await response.json();
             }
 
+            if (token !== state.loadToken) return;
             const parsed = preprocessDataset(raw);
+            if (token !== state.loadToken) return;
             state.currentDatasetFile = file;
             state.currentDatasetName = getDisplayDatasetLabel(file);
             state.nodes = parsed.nodes;
@@ -1264,8 +1326,8 @@
             resetViewTransform();
 
             updatePanels();
-            setNarrative("当前为全局分析视图。点击节点可进入局部超图关系分析。");
-            setStatus(`已加载 ${parsed.dataset}，可输入节点编号进行局部关系分析。`);
+            setNarrative("数据已加载。颜色表示模型预测簇；点击任意节点后，右侧将展示该节点的局部高阶关系解释。");
+            setStatus(`已加载 ${parsed.dataset}。可点击图中节点，或输入节点编号进行解释。`);
             render();
         } catch (error) {
             state.nodes = [];
@@ -1275,16 +1337,16 @@
             showEmpty("数据加载失败，请检查 data/cluster/cluster-data.js 是否正确加载。");
             setStatus("数据加载失败，请检查 data/cluster/cluster-data.js 是否正确加载。");
         } finally {
-            setLoading(false);
+            if (token === state.loadToken) setLoading(false);
         }
     }
 
     function setScenario(scenarioId, preferredLabel = null) {
         state.currentScenarioId = scenarioId;
-        updateScenarioAndDatasetUI();
         const scenario = getCurrentScenario();
         const entries = getAvailableScenarioDatasetEntries(scenario);
         if (!entries.length) {
+            updateScenarioAndDatasetUI();
             setStatus(`应用领域 ${scenario.title} 暂无可用示例数据。`);
             return;
         }
@@ -1293,6 +1355,9 @@
             const preferred = entries.find((item) => canon(item.label) === canon(scenario.defaultDataset));
             entry = preferred?.entry || entries[0].entry;
         }
+        state.currentDatasetFile = entry.file;
+        state.currentDatasetName = getDisplayDatasetLabel(entry.file);
+        updateScenarioAndDatasetUI();
         if (datasetSelect) datasetSelect.value = entry.file;
         loadDataset(entry.file);
     }
@@ -1358,7 +1423,8 @@
             }
             const enterBtn = event.target.closest("[data-enter-scenario]");
             if (enterBtn) {
-                setScenario(enterBtn.dataset.enterScenario);
+                setScenario(enterBtn.dataset.enterScenario, enterBtn.dataset.enterDatasetLabel || null);
+                analysisMain?.scrollIntoView({ behavior: "smooth", block: "start" });
             }
         });
 
@@ -1383,14 +1449,34 @@
         colorMode?.addEventListener("change", () => {
             state.colorMode = colorMode.value;
             updateSelectionPanel();
+            const colorText =
+                state.colorMode === "purity"
+                        ? "风险强度着色用于突出边界节点和低纯度关系区域。"
+                        : "预测簇着色用于观察模型自动划分出的群体结构。";
+            setNarrative(`Step 2 已切换着色模式。${colorText}`);
             render();
         });
         edgeFilter?.addEventListener("change", () => {
             state.edgeFilter = edgeFilter.value;
+            const filterText =
+                {
+                    all: "显示全部超边，用于完整查看高阶关系。",
+                    high: "只显示高纯度超边，用于观察簇内较稳定的群体关系。",
+                    medium: "只显示中等纯度超边，用于观察可能含有边界样本的关系。",
+                    low: "只显示低纯度超边，用于定位模型难判别的混合关系。",
+                    mixed: "只显示跨簇超边，用于解释不同预测簇之间的连接来源。",
+                }[state.edgeFilter] || "已更新超边筛选。";
+            setNarrative(`Step 2 已应用超边筛选。${filterText}`);
             render();
         });
         showHyperedges?.addEventListener("change", () => {
             state.showHyperedges = showHyperedges.checked;
+            syncHyperedgeExplain();
+            setNarrative(
+                state.showHyperedges
+                    ? "Step 2 已显示超边链接。超边用于说明多个节点共同参与的高阶关系。"
+                    : "Step 2 已隐藏超边链接。当前更适合观察节点分布，但会减少结构解释信息。"
+            );
             render();
         });
 
@@ -1417,7 +1503,7 @@
             updateSelectionPanel();
             updateRecommendationPanels();
             setStatus("已重置当前选择。");
-            setNarrative("当前为全局分析视图。点击节点可进入局部超图关系分析。");
+            setNarrative("已重置当前选择。当前回到全局分析视图，可重新选择节点查看局部超图关系解释。");
             render();
         });
         exportButton?.addEventListener("click", () => {
@@ -1579,11 +1665,11 @@
 
     function bootstrap() {
         bindEvents();
+        if (showHyperedges) showHyperedges.checked = false;
+        syncHyperedgeExplain();
         resizeCanvas();
         loadManifest();
     }
 
     bootstrap();
 });
-
-

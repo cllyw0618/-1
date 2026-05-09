@@ -22,6 +22,8 @@
 }
 
 .hero-section,
+.scenario-section,
+.cluster-analysis-strip,
 .scenario-grid .scenario-card,
 .cluster-visual-stage,
 .cluster-data-panel,
@@ -48,8 +50,13 @@
     display: grid;
     grid-template-columns: minmax(0, 1.22fr) minmax(340px, 0.78fr);
     gap: 1rem;
+    margin-bottom: 2.7rem;
     overflow: hidden;
     padding: 1.1rem;
+}
+
+.scenario-section {
+    padding: 0.95rem;
 }
 
 .hero-background {
@@ -129,6 +136,18 @@
 .hero-desc {
     margin-top: 0.62rem;
     font-size: 0.84rem;
+}
+
+.hero-rule-note {
+    display: inline-flex;
+    margin: 0.72rem 0 0;
+    border: 1px solid rgba(14, 165, 233, 0.24);
+    border-radius: 999px;
+    padding: 0.34rem 0.68rem;
+    background: rgba(14, 165, 233, 0.09);
+    color: #0f766e;
+    font-size: 0.78rem;
+    font-weight: 700;
 }
 
 .hero-actions {
@@ -244,9 +263,45 @@
 
 .scenario-grid {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 0.72rem;
+}
+
+.scenario-merged-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.82rem;
+    align-items: start;
     margin-top: 0.75rem;
+}
+
+.scenario-stats-card {
+    align-self: start;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) minmax(260px, 0.38fr);
+    gap: 0.72rem;
+    align-items: center;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 14px;
+    padding: 0.62rem 0.72rem;
+    box-shadow: none;
+    background: rgba(248, 250, 252, 0.72);
+}
+
+.scenario-stats-card h3 {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.scenario-stats-card .stats-list {
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+}
+
+.scenario-stats-card #datasetSummaryCard {
+    margin: 0;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
 }
 
 .scenario-card {
@@ -288,12 +343,25 @@
     color: #334155;
     font-size: 0.65rem;
     font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.08s ease, background 0.08s ease, color 0.08s ease, transform 0.08s ease;
 }
 
 .scenario-datasets button.active {
     border-color: rgba(36, 107, 254, 0.52);
     background: rgba(36, 107, 254, 0.12);
     color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.scenario-datasets button:hover:not(:disabled) {
+    border-color: rgba(36, 107, 254, 0.46);
+    background: rgba(36, 107, 254, 0.08);
+}
+
+.scenario-datasets button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
 }
 
 .scenario-card .enter-btn {
@@ -305,6 +373,19 @@
     color: #1e3a8a;
     font-size: 0.71rem;
     font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.08s ease, background 0.08s ease, color 0.08s ease;
+}
+
+.scenario-card .enter-btn:hover {
+    border-color: rgba(36, 107, 254, 0.6);
+    background: rgba(36, 107, 254, 0.14);
+    color: #1d4ed8;
+}
+
+.scenario-card .enter-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.48;
 }
 
 .workspace-section .section-header {
@@ -484,6 +565,8 @@
 
 .panel-help,
 .panel-note,
+.step-explain,
+.field-explain,
 .card-caption,
 .selection-card p,
 .analysis-intro-card p,
@@ -492,6 +575,19 @@
     color: #64748b;
     font-size: 0.73rem;
     line-height: 1.48;
+}
+
+.step-explain {
+    border-left: 3px solid rgba(36, 107, 254, 0.34);
+    padding-left: 0.5rem;
+    color: #475569;
+}
+
+.field-explain {
+    border-radius: 8px;
+    padding: 0.45rem 0.5rem;
+    background: rgba(14, 165, 233, 0.08);
+    color: #334155;
 }
 
 .cluster-data-panel label {
@@ -615,14 +711,25 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.86rem;
+    padding: 0.9rem;
 }
 
 .analysis-intro-card {
     grid-column: 1 / -1;
+    min-height: auto;
+    border: 0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 0;
+    padding: 0 0 0.72rem;
+    background: transparent;
+    box-shadow: none;
 }
 
-.cluster-analysis-strip > section {
+.cluster-analysis-strip > section:not(.analysis-intro-card) {
     min-height: 214px;
+    border-radius: 12px;
+    background: rgba(248, 250, 252, 0.86);
+    box-shadow: none;
 }
 
 .cluster-metrics {
@@ -882,6 +989,11 @@
         grid-template-columns: 1fr;
     }
 
+    .scenario-stats-card {
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
+
     .scenario-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -898,6 +1010,10 @@
 @media (max-width: 920px) {
     .cluster-shell {
         padding-inline: 0.72rem;
+    }
+
+    .scenario-merged-layout {
+        grid-template-columns: 1fr;
     }
 
     .scenario-grid {
@@ -920,4 +1036,718 @@
     #clusterCanvas {
         height: 470px;
     }
+}
+
+.simplified-trial {
+    max-width: 1320px;
+    padding-bottom: 1rem;
+}
+
+.simplified-trial .hero-section,
+.simplified-trial .scenario-section,
+.simplified-trial .workspace-section,
+.simplified-trial .cluster-analysis-strip,
+.simplified-trial .bottom-cta {
+    margin-bottom: 0.38rem;
+}
+
+.simplified-trial .workspace-section {
+    margin-bottom: 0.34rem;
+}
+
+.simple-hero {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1.35rem;
+}
+
+.simple-hero .hero-left {
+    padding: 0.35rem 0.6rem;
+}
+
+.simple-hero .hero-left h1 {
+    max-width: 760px;
+    font-size: clamp(2rem, 3.2vw, 3rem);
+}
+
+.simple-hero .hero-subtitle {
+    max-width: 760px;
+    color: #334155;
+    font-size: 1rem;
+}
+
+.simple-steps {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.simple-steps article {
+    border: 1px solid rgba(36, 107, 254, 0.18);
+    border-radius: 12px;
+    padding: 0.72rem 0.82rem;
+    background: rgba(255, 255, 255, 0.82);
+}
+
+.simple-steps strong {
+    display: block;
+    color: #0f172a;
+    font-size: 0.9rem;
+}
+
+.simple-steps span {
+    display: block;
+    margin-top: 0.18rem;
+    color: #64748b;
+    font-size: 0.78rem;
+    line-height: 1.45;
+}
+
+.simple-scenario {
+    padding: 0.9rem;
+}
+
+.simple-scenario .scenario-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.simple-board {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 0.68rem;
+    align-items: stretch;
+}
+
+.simplified-trial #clusterCanvas {
+    height: 300px;
+}
+
+.simple-board .cluster-visual-stage,
+.simple-board .simple-panel {
+    height: 100%;
+}
+
+.simple-board .cluster-visual-stage {
+    display: flex;
+    flex-direction: column;
+}
+
+.simple-board .canvas-layer-wrap {
+    flex: 1 1 auto;
+}
+
+.simple-canvas-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: start;
+    margin-bottom: 0.7rem;
+}
+
+.simple-canvas-head h2 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 1.18rem;
+    font-weight: 800;
+}
+
+.simple-canvas-head p {
+    max-width: 760px;
+    margin: 0.26rem 0 0;
+    font-size: 0.82rem;
+}
+
+.simple-toolbar {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.simple-panel {
+    gap: 0.46rem;
+    align-content: start;
+    padding: 0.62rem;
+}
+
+.simple-panel .panel-section,
+.simple-panel .selection-card,
+.simple-panel .recommend-card,
+.simple-panel .reason-card,
+.simple-panel .hero-stats-card {
+    box-shadow: none;
+    padding: 0.58rem;
+    border-radius: 11px;
+}
+
+.simple-panel .panel-section {
+    gap: 0.36rem;
+}
+
+.simple-panel .step-explain,
+.simple-panel .panel-help,
+.simple-panel .selection-card p,
+.simple-panel .recommendation-panel p {
+    font-size: 0.7rem;
+    line-height: 1.42;
+}
+
+.simple-panel .stats-list {
+    gap: 0.34rem;
+}
+
+.simple-panel .stats-list > div {
+    padding: 0.34rem 0.46rem;
+}
+
+.simple-panel #datasetSummaryCard {
+    margin-top: 0.46rem;
+    padding: 0.45rem 0.52rem;
+}
+
+.primary-control {
+    border-color: rgba(36, 107, 254, 0.24);
+    background: #ffffff;
+}
+
+.primary-control h3,
+.simple-stats h3,
+.simple-recommend h3,
+.simple-reason h3 {
+    font-size: 0.92rem;
+}
+
+.simple-stats {
+    padding: 0.58rem;
+    border-radius: 12px;
+    background: rgba(248, 250, 252, 0.92);
+}
+
+.simple-stats .stats-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hidden-metric {
+    display: none;
+}
+
+.simple-actions {
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 12px;
+    padding: 0.46rem;
+    background: rgba(248, 250, 252, 0.92);
+}
+
+.simple-actions button {
+    border-radius: 8px;
+    padding: 0.34rem 0.48rem;
+}
+
+.explain-flow {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.48rem;
+    align-items: stretch;
+    margin-top: 0;
+    margin-bottom: 0.38rem;
+}
+
+.explain-flow article {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid rgba(148, 163, 184, 0.26);
+    border-radius: 14px;
+    min-height: 112px;
+    padding: 0.62rem 0.72rem;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.explain-flow h3 {
+    margin: 0 0 0.42rem;
+    color: #0f172a;
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.explain-flow p {
+    margin: 0;
+    color: #475569;
+    font-size: 0.76rem;
+    line-height: 1.5;
+}
+
+.simple-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.48rem;
+    padding: 0.58rem;
+}
+
+.simple-metrics .metric-card {
+    min-height: auto !important;
+}
+
+.simplified-trial .cluster-visual-stage,
+.simplified-trial .cluster-data-panel,
+.simplified-trial .explain-flow article,
+.simplified-trial .cluster-analysis-strip {
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.045);
+}
+
+.simplified-trial .analysis-narrative {
+    margin-top: 0.42rem;
+    padding: 0.44rem 0.62rem;
+}
+
+.simplified-trial .cluster-analysis-strip > section:not(.analysis-intro-card) {
+    min-height: 0;
+}
+
+.simple-note {
+    padding: 0.8rem 1rem;
+}
+
+.simple-note h3 {
+    font-size: 0.92rem;
+}
+
+.simple-note p {
+    font-size: 0.78rem;
+}
+
+@media (max-width: 1180px) {
+    .simple-hero,
+    .simple-board {
+        grid-template-columns: 1fr;
+    }
+
+    .simple-scenario .scenario-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .explain-flow {
+        grid-template-columns: 1fr;
+    }
+
+    .simplified-trial #clusterCanvas {
+        height: 420px;
+    }
+}
+
+@media (max-width: 720px) {
+    .simple-scenario .scenario-grid,
+    .simple-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .simple-canvas-head {
+        display: grid;
+    }
+
+    .simple-toolbar {
+        width: 100%;
+    }
+
+    .simple-toolbar .btn {
+        flex: 1 1 auto;
+    }
+}
+
+/* Dashboard layout pass: compact vertical rhythm for the trial page. */
+.simplified-trial {
+    --dashboard-gap: 16px;
+    --dashboard-gap-sm: 12px;
+    --dashboard-card-pad: 16px;
+    min-height: auto;
+    padding-top: 4.75rem;
+    padding-bottom: 1rem;
+}
+
+.simplified-trial .hero-section,
+.simplified-trial .scenario-section,
+.simplified-trial .workspace-section,
+.simplified-trial .explain-flow,
+.simplified-trial .cluster-analysis-strip,
+.simplified-trial .bottom-cta {
+    margin-bottom: var(--dashboard-gap) !important;
+}
+
+.simplified-trial .simple-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.34fr);
+    gap: var(--dashboard-gap);
+    padding: var(--dashboard-card-pad);
+}
+
+.simplified-trial .simple-hero .hero-left {
+    padding: 0;
+}
+
+.simplified-trial .simple-hero .hero-left h1 {
+    margin: 0.18rem 0 0.42rem;
+    font-size: clamp(1.55rem, 2.15vw, 2.25rem);
+    line-height: 1.16;
+}
+
+.simplified-trial .hero-subtitle,
+.simplified-trial .hero-desc {
+    max-width: 880px;
+    line-height: 1.5;
+}
+
+.simplified-trial .hero-desc {
+    margin-top: 0.36rem;
+}
+
+.simplified-trial .hero-actions {
+    margin-top: 0.6rem;
+}
+
+.simplified-trial .simple-steps {
+    gap: 8px;
+}
+
+.simplified-trial .simple-steps article {
+    padding: 10px 12px;
+}
+
+.simplified-trial .simple-steps span {
+    line-height: 1.38;
+}
+
+.simplified-trial .simple-scenario {
+    padding: var(--dashboard-card-pad);
+}
+
+.simplified-trial .section-header p {
+    margin-top: 0.24rem;
+    line-height: 1.45;
+}
+
+.simplified-trial .scenario-grid {
+    gap: var(--dashboard-gap-sm);
+}
+
+.simplified-trial .scenario-card {
+    gap: 0.34rem;
+    padding: 12px;
+}
+
+.simplified-trial .scenario-card p {
+    line-height: 1.38;
+}
+
+.simplified-trial .scenario-datasets {
+    gap: 0.24rem;
+}
+
+.simplified-trial .scenario-card .enter-btn {
+    padding: 0.28rem 0.5rem;
+}
+
+.simplified-trial .simple-board {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: var(--dashboard-gap);
+    align-items: stretch;
+}
+
+.simplified-trial .cluster-visual-stage,
+.simplified-trial .cluster-data-panel {
+    padding: var(--dashboard-card-pad);
+}
+
+.simplified-trial .cluster-visual-stage {
+    min-height: 0;
+}
+
+.simplified-trial .simple-canvas-head {
+    gap: var(--dashboard-gap-sm);
+    margin-bottom: var(--dashboard-gap-sm);
+}
+
+.simplified-trial .simple-canvas-head h2 {
+    font-size: 1.05rem;
+}
+
+.simplified-trial .simple-canvas-head p {
+    margin-top: 0.18rem;
+    line-height: 1.42;
+}
+
+.simplified-trial #clusterCanvas {
+    height: clamp(320px, 34vh, 420px);
+}
+
+.simplified-trial .analysis-narrative {
+    margin-top: var(--dashboard-gap-sm);
+}
+
+.simplified-trial .simple-panel {
+    gap: var(--dashboard-gap-sm);
+    padding: var(--dashboard-card-pad);
+}
+
+.simplified-trial .simple-panel .panel-section,
+.simplified-trial .simple-panel .selection-card,
+.simplified-trial .simple-panel .recommend-card,
+.simplified-trial .simple-panel .reason-card,
+.simplified-trial .simple-panel .hero-stats-card,
+.simplified-trial .simple-actions {
+    padding: 12px;
+}
+
+.simplified-trial .simple-panel .panel-section {
+    gap: 8px;
+}
+
+.simplified-trial .simple-panel .stats-list {
+    gap: 8px;
+}
+
+.simplified-trial .simple-panel #datasetSummaryCard {
+    margin-top: 8px;
+}
+
+.simplified-trial .explain-flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--dashboard-gap);
+}
+
+.simplified-trial .explain-flow article {
+    min-height: 0;
+    padding: 16px 18px;
+}
+
+.simplified-trial .explain-flow h3 {
+    margin-bottom: 0.34rem;
+}
+
+.simplified-trial .explain-flow p {
+    line-height: 1.48;
+}
+
+.simplified-trial .simple-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--dashboard-gap);
+    padding: var(--dashboard-card-pad);
+}
+
+.simplified-trial .simple-metrics .metric-card {
+    padding: 14px;
+}
+
+.simplified-trial .cluster-metrics {
+    gap: 10px;
+}
+
+.simplified-trial .metric-item {
+    padding: 10px 12px;
+}
+
+.simplified-trial .simple-note {
+    padding: 14px 16px;
+}
+
+@media (max-width: 1180px) {
+    .simplified-trial .simple-hero,
+    .simplified-trial .simple-board {
+        grid-template-columns: 1fr;
+    }
+
+    .simplified-trial .explain-flow {
+        grid-template-columns: 1fr;
+    }
+
+    .simplified-trial #clusterCanvas {
+        height: clamp(340px, 42vh, 460px);
+    }
+}
+
+@media (max-width: 720px) {
+    .simplified-trial {
+        --dashboard-gap: 14px;
+        --dashboard-gap-sm: 10px;
+        --dashboard-card-pad: 14px;
+        padding-top: 4.5rem;
+    }
+
+.simplified-trial .simple-scenario .scenario-grid,
+    .simplified-trial .simple-metrics {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tighten the handoff from the main workspace to the explanation cards. */
+.simplified-trial .workspace-section {
+    min-height: 0 !important;
+    margin-bottom: 24px !important;
+    padding-bottom: 0 !important;
+}
+
+.simplified-trial .simple-board {
+    align-items: stretch !important;
+}
+
+.simplified-trial .simple-board .cluster-visual-stage,
+.simplified-trial .simple-board .simple-panel {
+    align-self: stretch;
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+.simplified-trial .simple-board .simple-panel {
+    max-height: none;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    display: flex;
+    flex-direction: column;
+}
+
+.simplified-trial .simple-board .simple-actions {
+    margin-top: auto;
+}
+
+.simplified-trial .simple-board .canvas-layer-wrap {
+    flex: 0 0 auto !important;
+}
+
+.simplified-trial #clusterCanvas {
+    height: clamp(300px, 30vh, 380px);
+}
+
+.simplified-trial .explain-flow {
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+    gap: 20px;
+}
+
+.simplified-trial .explain-flow article {
+    padding: 18px 20px;
+}
+
+.simplified-trial .simple-metrics {
+    margin-top: 0 !important;
+}
+
+.simplified-trial .simple-metrics {
+    align-items: stretch;
+}
+
+.simplified-trial .simple-metrics .metric-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 0 !important;
+}
+
+.simplified-trial .simple-metrics .metric-card h3 {
+    margin-bottom: 16px;
+    font-size: 1rem;
+}
+
+.simplified-trial .simple-metrics .cluster-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+}
+
+.simplified-trial .simple-metrics .cluster-hyperedge-metrics .metric-item:nth-child(5) {
+    grid-column: 1 / -1;
+}
+
+.simplified-trial .simple-metrics .metric-item {
+    display: grid;
+    grid-template-rows: auto auto;
+    align-content: start;
+    min-height: 88px;
+    padding: 16px 18px;
+}
+
+.simplified-trial .simple-metrics .metric-item strong {
+    min-height: 1.45rem;
+    font-size: 1.05rem;
+    line-height: 1.25;
+}
+
+.simplified-trial .simple-metrics .metric-item span {
+    margin-top: 8px;
+    line-height: 1.42;
+}
+
+.simplified-trial .simple-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.simplified-trial .simple-panel::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background: rgba(100, 116, 139, 0.32);
+    background-clip: content-box;
+}
+
+/* Root cause fix: the base theme applies `section { padding: 9rem 0; }` on desktop. */
+.simplified-trial > section {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.simplified-trial > .simple-hero,
+.simplified-trial > .simple-scenario,
+.simplified-trial > .simple-metrics,
+.simplified-trial > .simple-note {
+    padding: var(--dashboard-card-pad) !important;
+}
+
+.simplified-trial > .workspace-section,
+.simplified-trial > .explain-flow {
+    padding: 0 !important;
+}
+
+.simplified-trial > .workspace-section {
+    margin-bottom: 28px !important;
+}
+
+.simplified-trial > .explain-flow {
+    margin-top: 0 !important;
+    margin-bottom: 28px !important;
+}
+
+/* Adaptive workbench height: only the canvas owns a responsive height. */
+.simplified-trial .simple-board {
+    align-items: stretch !important;
+}
+
+.simplified-trial .simple-board .cluster-visual-stage,
+.simplified-trial .simple-board .simple-panel {
+    align-self: stretch !important;
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+.simplified-trial .simple-board .cluster-visual-stage {
+    display: flex !important;
+    flex-direction: column;
+    padding-bottom: var(--dashboard-card-pad) !important;
+}
+
+.simplified-trial .simple-board .canvas-layer-wrap {
+    flex: 1 1 auto !important;
+    margin-bottom: 0 !important;
+    min-height: clamp(340px, 42vh, 500px);
+}
+
+.simplified-trial #clusterCanvas {
+    height: 100%;
+    min-height: clamp(340px, 42vh, 500px);
+    max-height: none;
+}
+
+.simplified-trial .analysis-narrative {
+    margin-top: 16px !important;
+    flex: 0 0 auto;
+}
+
+.simplified-trial .simple-board .simple-panel {
+    max-height: none;
 }
