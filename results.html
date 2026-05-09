@@ -126,18 +126,32 @@
             </p>
           </div>
           <div class="summary-metrics" aria-label="实验结果核心指标">
-            <div class="summary-metric-item">
-              <span>ACC</span><strong>86.00%</strong>
-            </div>
-            <div class="summary-metric-item">
-              <span>NMI</span><strong>42.87%</strong>
-            </div>
-            <div class="summary-metric-item">
-              <span>ARI</span><strong>51.85%</strong>
-            </div>
+            <table class="summary-score-table">
+              <thead>
+                <tr>
+                  <th>Dataset</th>
+                  <th>ACC</th>
+                  <th>NMI</th>
+                  <th>ARI</th>
+                  <th>F1</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Cora-C</td><td>71.4%</td><td>56.4%</td><td>47.6%</td><td>69.1%</td></tr>
+                <tr><td>Citeseer</td><td>69.8%</td><td>45.9%</td><td>46.2%</td><td>65.1%</td></tr>
+                <tr><td>Pubmed</td><td>69.4%</td><td>34.4%</td><td>32.2%</td><td>69.0%</td></tr>
+                <tr><td>Cora-A</td><td>72.6%</td><td>53.1%</td><td>50.1%</td><td>70.6%</td></tr>
+                <tr><td>DBLP</td><td>72.3%</td><td>63.9%</td><td>58.2%</td><td>70.4%</td></tr>
+                <tr><td>Zoo</td><td>77.2%</td><td>76.9%</td><td>66.0%</td><td>66.4%</td></tr>
+                <tr><td>20News</td><td>64.6%</td><td>39.5%</td><td>35.6%</td><td>63.2%</td></tr>
+                <tr><td>Mushroom</td><td>80.5%</td><td>30.3%</td><td>37.5%</td><td>80.5%</td></tr>
+                <tr><td>NTU2012</td><td>70.8%</td><td>83.8%</td><td>67.0%</td><td>63.7%</td></tr>
+                <tr><td>ModelNet40</td><td>93.8%</td><td>93.4%</td><td>90.7%</td><td>89.3%</td></tr>
+              </tbody>
+            </table>
           </div>
           <div class="summary-actions">
-            <a class="summary-btn primary" href="#quantitative">定量表格</a>
+            <a class="summary-btn primary" href="#quantitative">定量实验结果对比表</a>
             <a class="summary-btn outline" href="#ablation">消融分析</a>
           </div>
         </div>
@@ -440,3 +454,4 @@
     <script src="js/scripts.js"></script>
   </body>
 </html>
+
