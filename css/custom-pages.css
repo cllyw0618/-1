@@ -4032,3 +4032,21 @@
   }
 }
 
+/* Compact section subtitles across comparison/result pages */
+.similar-heading .section-subheading,
+.results-heading .section-subheading,
+.app-heading .section-subheading,
+.home-summary-heading .section-subheading,
+.home-services-heading .section-subheading,
+.home-process-heading .section-subheading,
+.resources-heading .section-subheading,
+.blog-heading .section-subheading,
+.page-section h3.section-subheading,
+.subpage-section h3.section-subheading {
+  max-width: 760px;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: clamp(0.86rem, 1.05vw, 0.98rem) !important;
+  line-height: 1.65 !important;
+}
+
