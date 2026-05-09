@@ -2874,9 +2874,94 @@
   line-height: 1.8;
 }
 
+.simple-ablation-card {
+  padding: 1.85rem;
+}
+
+.mini-ablation-chart {
+  display: grid;
+  grid-template-columns: 4.2rem repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+  min-height: 330px;
+  margin-top: 1.4rem;
+  padding: 1.35rem 1.15rem 1rem;
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(240, 253, 250, 0.74), rgba(255, 255, 255, 0.9)),
+    repeating-linear-gradient(0deg, rgba(15, 23, 42, 0.08) 0 1px, transparent 1px 25%);
+}
+
+.mini-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.2rem 0 2.05rem;
+  color: #64748b;
+  font-size: 0.88rem;
+  font-weight: 850;
+  text-align: right;
+}
+
+.mini-bar-card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: end;
+  min-width: 0;
+  padding: 0.25rem 0.9rem 0.7rem;
+  border: 1px solid rgba(20, 184, 166, 0.13);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.64);
+  text-align: center;
+}
+
+.mini-bar-card strong {
+  color: #0f172a;
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.mini-bar-card span {
+  color: #0f172a;
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.mini-bar {
+  display: block;
+  width: min(72%, 5rem);
+  min-height: 4.2rem;
+  margin: 0 auto 0.9rem;
+  border-radius: 18px 18px 8px 8px;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+}
+
+.mini-bar.full {
+  background: linear-gradient(180deg, #2dd4bf, #0f9f92);
+}
+
+.mini-bar.no-hy {
+  background: linear-gradient(180deg, #67c7dd, #1f7fa4);
+}
+
+.mini-bar.no-cl {
+  background: linear-gradient(180deg, #9aa9be, #6b7890);
+}
+
 @media (max-width: 767.98px) {
   .simple-ablation-row {
     grid-template-columns: 1fr;
+  }
+
+  .mini-ablation-chart {
+    grid-template-columns: 3.6rem repeat(3, minmax(5.5rem, 1fr));
+    gap: 0.7rem;
+    overflow-x: auto;
+    padding: 1rem 0.8rem 0.9rem;
+  }
+
+  .mini-bar-card {
+    padding-inline: 0.55rem;
   }
 }
 
@@ -3177,10 +3262,20 @@
   gap: 1.2rem;
 }
 
+.ablation-insight-stack.equal-insights {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
 .ablation-insight-card {
   position: relative;
   overflow: hidden;
-  padding: 1.8rem;
+  padding: 1.7rem 1.8rem;
+}
+
+.equal-insights .ablation-insight-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ablation-insight-card::before {
@@ -3203,6 +3298,20 @@
   margin-bottom: 0.85rem;
   color: #0f172a;
   font-weight: 950;
+}
+
+.ablation-insight-subtitle {
+  margin-top: 2.1rem;
+}
+
+@media (max-width: 991.98px) {
+  .ablation-insight-stack.equal-insights {
+    grid-template-rows: auto;
+  }
+
+  .equal-insights .ablation-insight-card {
+    justify-content: flex-start;
+  }
 }
 
 .competitor-card {
