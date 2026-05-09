@@ -7,6 +7,7 @@
 - `index.html`：首页（保留总览，不要删原板块）
 - `algorithm.html`：算法/方法详情页
 - `results.html`：实验结果与可视化页
+- `similar-tech.html`：同类技术介绍页
 - `resources.html`：资源页（论文/代码/数据/文档）
 - `css/styles.css`：原主题样式（尽量少动）
 - `css/custom-pages.css`：分页新增样式（优先在这里改）
@@ -56,6 +57,16 @@
 - 文档链接
 
 可改区域：`.resource-card`。
+
+### E. 同类技术组（`similar-tech.html`）
+
+建议维护内容：
+- 两阶段对比学习方法
+- 端到端聚类方法
+- 传统方法
+- 各方法的出处、思路和不足
+
+可改区域：`.similar-card` 卡片内容。
 
 ## 3. 导航栏怎么改（全员必看）
 
@@ -108,6 +119,7 @@
 - 成员 A：`algorithm.html`
 - 成员 B：`results.html`
 - 成员 C：`resources.html`
+- 成员 D：`similar-tech.html`
 - 负责人：只在最后统一合并 `index.html` 导航与摘要按钮
 
 ---
