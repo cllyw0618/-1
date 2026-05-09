@@ -921,3 +921,133 @@
         height: 470px;
     }
 }
+
+/* 2026-05 single-page IA refactor */
+.app-shell {
+    display: grid;
+    gap: 1rem;
+}
+
+.page-anchor-nav {
+    position: sticky;
+    top: 72px;
+    z-index: 30;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+}
+
+.page-anchor-nav a {
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 999px;
+    padding: 0.22rem 0.58rem;
+    color: #1e3a8a;
+    font-size: 0.71rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.page-anchor-nav a:hover {
+    border-color: rgba(37, 99, 235, 0.45);
+    background: rgba(37, 99, 235, 0.08);
+}
+
+.app-hero .hero-right {
+    align-content: start;
+}
+
+.hero-entry-panel .capability-grid {
+    gap: 0.52rem;
+}
+
+.app-scenario .scenario-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.app-scenario .scenario-grid .scenario-card:nth-child(n + 4) {
+    grid-column: span 1;
+}
+
+.jump-analysis-btn {
+    margin-top: 0.58rem;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.app-workspace .cluster-board {
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+    align-items: start;
+}
+
+.app-workspace .cluster-data-panel {
+    position: sticky;
+    top: 130px;
+}
+
+.flow-help summary,
+.deep-accordion details summary {
+    cursor: pointer;
+    color: #0f172a;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.deep-accordion {
+    display: grid;
+    gap: 0.62rem;
+}
+
+.deep-accordion details {
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 12px;
+    padding: 0.68rem;
+    background: rgba(248, 250, 252, 0.9);
+}
+
+.deep-accordion details > div {
+    margin-top: 0.56rem;
+}
+
+.app-overview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.72rem;
+}
+
+.app-overview .section-header {
+    grid-column: 1 / -1;
+}
+
+.app-overview .matrix-card {
+    grid-column: 1 / -1;
+}
+
+.app-note {
+    border-radius: 16px;
+}
+
+@media (max-width: 1240px) {
+    .app-workspace .cluster-board {
+        grid-template-columns: 1fr;
+    }
+
+    .app-workspace .cluster-data-panel {
+        position: static;
+    }
+}
+
+@media (max-width: 920px) {
+    .page-anchor-nav {
+        top: 64px;
+    }
+
+    .app-scenario .scenario-grid,
+    .app-overview {
+        grid-template-columns: 1fr;
+    }
+}
