@@ -586,7 +586,9 @@
         heroAcc.textContent = Number.isFinite(state.metrics.acc) ? state.metrics.acc.toFixed(3) : "--";
         heroNmi.textContent = Number.isFinite(state.metrics.nmi) ? state.metrics.nmi.toFixed(3) : "--";
         datasetSummaryCard.textContent = formatScenarioSummary(state.currentDatasetFile || "");
-        datasetSummary.textContent = `每个应用领域对应一个公开高阶关系数据样例，用于展示模型在该类场景中的聚类分析能力。当前示例：${state.currentDatasetName || "--"}。`;
+        if (datasetSummary) {
+            datasetSummary.textContent = `每个应用领域对应一个公开高阶关系数据样例，用于展示模型在该类场景中的聚类分析能力。当前示例：${state.currentDatasetName || "--"}。`;
+        }
     }
 
     function updateSelectionPanel() {

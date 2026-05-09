@@ -38,35 +38,31 @@
             <section class="hero-section" aria-label="产品首页">
                 <div class="hero-background" aria-hidden="true"></div>
                 <div class="hero-left">
-                    <p class="hero-eyebrow">IntraHC 应用化试用平台</p>
-                    <h1>高阶关系数据的智能聚类分析平台</h1>
-                    <p class="hero-subtitle">面向论文知识网络、科研合作网络、新闻话题网络等复杂关系场景，IntraHC 能够从属性信息与高阶超图结构中自动发现潜在群体、关联对象与边界样本。</p>
-                    <p class="hero-desc">本页面读取离线训练后的聚类结果，不展示在线训练过程。系统以匿名节点编号进行交互展示，在保护数据合规性的同时，呈现模型对复杂高阶关系的组织、划分与解释能力。</p>
-                    <p class="hero-rule-note">依据大赛规则，这里不使用真实标签。</p>
+                    <p class="hero-eyebrow">IntraHC 交互式结果解释</p>
+                    <h1>面向高阶关系数据的聚类结果展示</h1>
+                    <p class="hero-subtitle">本页面用于展示 IntraHC 如何结合节点属性与超边结构，将复杂关系数据划分为若干潜在群体，并解释单个节点的聚类依据。</p>
+                    <p class="hero-desc">演示使用离线训练后的聚类结果，节点以匿名编号呈现。页面不使用真实标签参与交互解释，仅基于预测簇、嵌入相似性和共享超边关系进行说明。</p>
+                    <p class="hero-rule-note">依据大赛规则，页面仅展示匿名节点与结构证据。</p>
                     <div class="hero-actions">
-                        <button type="button" class="btn btn-primary" id="startAnalysisBtn">开始体验</button>
-                        <button type="button" class="btn btn-outline-primary" id="viewScenarioBtn">查看应用场景</button>
+                        <button type="button" class="btn btn-primary" id="startAnalysisBtn">进入结果解释</button>
+                        <button type="button" class="btn btn-outline-primary" id="viewScenarioBtn">选择应用场景</button>
                     </div>
                 </div>
                 <div class="hero-right">
                     <section class="capability-card">
-                        <h3>应用能力概览</h3>
+                        <h3>展示流程概览</h3>
                         <div class="capability-grid">
                             <article>
-                                <strong>群体发现</strong>
-                                <p>自动识别潜在社区、主题群体或协作群体。</p>
+                                <strong>1. 场景定义</strong>
+                                <p>明确节点、属性和超边在当前数据中的业务含义。</p>
                             </article>
                             <article>
-                                <strong>关系推荐</strong>
-                                <p>基于同簇关系、共享超边和嵌入相似性推荐相关对象。</p>
+                                <strong>2. 聚类观察</strong>
+                                <p>通过颜色区分预测簇，观察模型发现的潜在群体结构。</p>
                             </article>
                             <article>
-                                <strong>边界识别</strong>
-                                <p>发现跨簇节点、低纯度超边和结构模糊区域。</p>
-                            </article>
-                            <article>
-                                <strong>结构解释</strong>
-                                <p>展示节点所在簇、共享超边邻居和局部高阶关系。</p>
+                                <strong>3. 节点解释</strong>
+                                <p>选中节点后，从同簇相似性、共享超边和边界风险三个角度解释结果。</p>
                             </article>
                         </div>
                     </section>
