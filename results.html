@@ -303,56 +303,43 @@
           </h3>
         </div>
         <div class="row g-4">
-          <div class="col-lg-6">
-            <div class="result-card">
-              <h4>关键组件消融</h4>
-              <div class="results-table-wrap compact">
-                <table class="results-compare-table">
-                  <thead>
-                    <tr>
-                      <th>实验设置</th>
-                      <th>NMI</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="highlight-row">
-                      <td>完整 IntraHC</td>
-                      <td>53.1%</td>
-                    </tr>
-                    <tr>
-                      <td>无超边内对比损失 (w/o hy)</td>
-                      <td>
-                        45.4%
-                        <span class="metric-drop"
-                          ><i class="fas fa-arrow-down"></i> 显著下滑</span
-                        >
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>无聚类损失 (w/o cl)</td>
-                      <td>收敛至较差表示</td>
-                    </tr>
-                  </tbody>
-                </table>
+          <div class="col-lg-12">
+            <div class="result-card ablation-chart-card ablation-delta-card">
+              <h4>消融可视化：两个模块对平均 NMI 的影响</h4>
+              <p class="ablation-chart-caption">差值 Δ = 完整模型 Full mean NMI - 去掉某模块后的 mean NMI；Δ 越大，说明该模块贡献越明显。</p>
+              <div class="simple-ablation-chart" aria-label="Ablation summary chart">
+                <div class="simple-ablation-row">
+                  <div>
+                    <strong>δ 模块</strong>
+                    <span>超边内对比学习</span>
+                  </div>
+                  <div class="simple-ablation-track"><i style="width: 18%"></i></div>
+                  <b>正向贡献</b>
+                </div>
+                <div class="simple-ablation-row">
+                  <div>
+                    <strong>LNAHC 模块</strong>
+                    <span>NCut 聚类指导</span>
+                  </div>
+                  <div class="simple-ablation-track"><i class="teal" style="width: 86%"></i></div>
+                  <b>贡献更明显</b>
+                </div>
               </div>
+              <p class="simple-ablation-note">消融含义：去掉模块后 NMI 下降，说明该模块对完整模型有帮助。整体看，LNAHC 在 Cora-A 等数据集上的贡献更突出，δ 模块的作用更稳定但幅度较小。</p>
             </div>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-12">
             <div class="ablation-insight-stack">
               <article class="result-card ablation-insight-card">
-                <h4>超边损失的有效性</h4>
+                <h4>δ 模块让节点表示更稳定</h4>
                 <p class="text-muted mb-0">
-                  移除超边内对比损失（w/o hy）后，模型性能显著下滑（例如在
-                  Cora-A 数据集上 NMI 从 53.1 降到
-                  45.4），这验证了超边内对比机制的有效性，解决了传统超图卷积导致节点特征过度平滑的问题。
+                  δ 对应超边内对比学习。它会约束同一超边中的节点关系，让模型在学习表示时保留高阶关联信息，减少节点表示被过度平滑的问题，因此通常带来稳定的正向增益。
                 </p>
               </article>
               <article class="result-card ablation-insight-card">
-                <h4>端到端聚类指导的必要性</h4>
+                <h4>LNAHC 模块强化聚类边界</h4>
                 <p class="text-muted mb-0">
-                  移除聚类损失（w/o
-                  cl）后，模型收敛到较差的表示质量。这验证了端到端聚类指导的重要性，首次将聚类目标纳入超图对比学习模型，避免了传统两阶段方法依赖后续
-                  K-means 等独立步骤的缺陷。
+                  LNAHC 对应 NCut 聚类指导。它在表示学习过程中直接引入聚类结构约束，使簇内节点更紧凑、簇间边界更清晰，所以在 Cora-A 等数据集上贡献更明显。
                 </p>
               </article>
             </div>
@@ -454,4 +441,9 @@
     <script src="js/scripts.js"></script>
   </body>
 </html>
+
+
+
+
+
 

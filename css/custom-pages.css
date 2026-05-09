@@ -2704,6 +2704,474 @@
   font-weight: 900;
 }
 
+.ablation-chart-card {
+  min-height: 100%;
+}
+
+.ablation-chart-caption {
+  margin: -0.25rem 0 1.35rem;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ablation-bar-chart {
+  display: grid;
+  grid-template-columns: 3.4rem minmax(0, 1fr);
+  gap: 1rem;
+  min-height: 280px;
+  padding: 1.1rem 1rem 1rem;
+  border: 1px solid rgba(20, 184, 166, 0.16);
+  border-radius: 16px;
+  background:
+    linear-gradient(to top, rgba(15, 23, 42, 0.06) 1px, transparent 1px) 0 0 / 100% 25%,
+    linear-gradient(145deg, rgba(240, 253, 250, 0.74), rgba(255, 255, 255, 0.92));
+}
+
+.ablation-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #64748b;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+.ablation-bars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: 1rem;
+}
+
+.ablation-bar-item {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 0.75rem;
+  min-width: 0;
+  height: 100%;
+  text-align: center;
+}
+
+.ablation-bar-track {
+  position: relative;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  min-height: 210px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.54);
+  box-shadow: inset 0 0 0 1px rgba(20, 184, 166, 0.09);
+}
+
+.ablation-bar {
+  position: relative;
+  width: min(72%, 4.8rem);
+  min-height: 3.2rem;
+  border-radius: 14px 14px 8px 8px;
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.14);
+}
+
+.ablation-bar.full {
+  background: linear-gradient(180deg, #22c7b8, #0f9889);
+}
+
+.ablation-bar.reduced {
+  background: linear-gradient(180deg, #59b7d3, #287fa3);
+}
+
+.ablation-bar.weak {
+  background: linear-gradient(180deg, #94a3b8, #64748b);
+}
+
+.ablation-bar strong {
+  position: absolute;
+  top: -1.7rem;
+  left: 50%;
+  color: #0f172a;
+  font-size: 0.9rem;
+  font-weight: 900;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.ablation-bar-item > span {
+  color: #334155;
+  font-size: 0.84rem;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.ablation-chart-note {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  color: #475569;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.ablation-chart-note span:first-child {
+  color: #0f766e;
+}
+
+.simple-ablation-chart {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.simple-ablation-row {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr) 6rem;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(20, 184, 166, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.simple-ablation-row strong,
+.simple-ablation-row b {
+  color: #0f172a;
+  font-weight: 900;
+}
+
+.simple-ablation-row span {
+  display: block;
+  margin-top: 0.25rem;
+  color: #64748b;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.simple-ablation-track {
+  height: 1rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.simple-ablation-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+}
+
+.simple-ablation-track i.teal {
+  background: linear-gradient(90deg, #14b8a6, #0f766e);
+}
+
+.simple-ablation-note {
+  margin: 1rem 0 0;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 767.98px) {
+  .simple-ablation-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ablation-delta-card {
+  padding: 1.85rem;
+}
+
+.ablation-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1rem;
+  margin: -0.4rem 0 1.3rem;
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.ablation-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.ablation-legend i {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 0.25rem;
+}
+
+.legend-delta {
+  background: #2563eb;
+}
+
+.legend-lnahc {
+  background: #f97316;
+}
+
+.ablation-delta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.ablation-delta-panel {
+  padding: 1rem;
+  border: 1px solid rgba(20, 184, 166, 0.16);
+  border-radius: 16px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(240, 253, 250, 0.56));
+}
+
+.ablation-delta-panel h5 {
+  margin: 0 0 0.9rem;
+  color: #0f3f74;
+  font-size: 1rem;
+  font-weight: 950;
+  text-align: center;
+}
+
+.delta-chart {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.delta-row {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.delta-row > span {
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-align: right;
+}
+
+.delta-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.16rem;
+  min-height: 2.15rem;
+  padding: 0.32rem 0.45rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(148, 163, 184, 0.14), rgba(255, 255, 255, 0.88), rgba(148, 163, 184, 0.14));
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.18);
+}
+
+.zero-line {
+  position: absolute;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  left: 50%;
+  width: 1px;
+  background: rgba(15, 23, 42, 0.36);
+}
+
+.delta-track b {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  min-width: 3.2rem;
+  max-width: calc(100% - 0.25rem);
+  min-height: 1.45rem;
+  padding: 0 0.38rem;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.delta-pos {
+  justify-self: start;
+}
+
+.delta-neg {
+  justify-self: end;
+}
+
+.delta-blue {
+  background: linear-gradient(90deg, #1d4ed8, #38bdf8);
+}
+
+.delta-orange {
+  background: linear-gradient(90deg, #f97316, #fbbf24);
+}
+
+@media (max-width: 991.98px) {
+  .ablation-delta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .delta-row {
+    grid-template-columns: 4.6rem minmax(0, 1fr);
+  }
+
+  .delta-track b {
+    min-width: 2.9rem;
+    font-size: 0.66rem;
+  }
+}
+
+.ablation-column-grid {
+  align-items: stretch;
+}
+
+.ablation-column-grid .ablation-delta-panel {
+  overflow: hidden;
+  padding: 0.9rem 0.85rem 1rem;
+  border-color: rgba(15, 63, 116, 0.22);
+  background: #ffffff;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+}
+
+.ablation-column-grid .ablation-delta-panel h5 {
+  color: #0f3f74;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+.delta-column-chart {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(4.2rem, 1fr));
+  align-items: stretch;
+  gap: 0.5rem;
+  min-height: 360px;
+  padding: 2.75rem 0.9rem 2.75rem;
+  overflow-x: auto;
+  border-radius: 12px;
+  background:
+    linear-gradient(to top, rgba(15, 23, 42, 0.08) 1px, transparent 1px) 0 15% / 100% 20%,
+    #ffffff;
+}
+
+.delta-zero-line {
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  top: 60%;
+  height: 2px;
+  background: rgba(15, 23, 42, 0.65);
+}
+
+.delta-column-group {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-width: 4.2rem;
+}
+
+.delta-column-pair {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.32rem;
+  min-height: 285px;
+}
+
+.delta-col {
+  position: absolute;
+  left: calc(50% - 0.95rem);
+  width: 0.72rem;
+  min-height: 0.28rem;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 7px 14px rgba(15, 23, 42, 0.16);
+}
+
+.delta-col:nth-child(2) {
+  left: calc(50% + 0.2rem);
+}
+
+.delta-col.pos {
+  bottom: 40%;
+}
+
+.delta-col.neg {
+  top: 60%;
+  border-radius: 0 0 4px 4px;
+}
+
+.delta-col.delta-blue {
+  background: linear-gradient(180deg, #2563eb, #1e40af);
+}
+
+.delta-col.delta-teal {
+  background: linear-gradient(180deg, #2dd4bf, #0f766e);
+}
+
+.delta-col[style*="0.3%"] em,
+.delta-col[style*="0.4%"] em,
+.delta-col[style*="0.8%"] em,
+.delta-col[style*="0.9%"] em,
+.delta-col[style*="1.2%"] em,
+.delta-col[style*="1.7%"] em,
+.delta-col[style*="1.8%"] em,
+.delta-col[style*="2.0%"] em,
+.delta-col[style*="2.3%"] em {
+  display: none;
+}
+
+.delta-col em {
+  position: absolute;
+  left: 50%;
+  color: inherit;
+  font-style: normal;
+  font-size: 0.62rem;
+  font-weight: 900;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.delta-col.pos em {
+  top: -1.05rem;
+  color: #0f3f74;
+}
+
+.delta-col.neg em {
+  bottom: -1.05rem;
+  color: #0f766e;
+}
+
+.delta-label {
+  align-self: end;
+  min-height: 1.8rem;
+  color: #0f172a;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.legend-lnahc {
+  background: #14b8a6;
+}
+
+@media (max-width: 767.98px) {
+  .delta-column-chart {
+    grid-template-columns: repeat(7, minmax(4.8rem, 1fr));
+  }
+
+  .delta-col em {
+    display: none;
+  }
+}
+
 .ablation-insight-stack {
   display: grid;
   gap: 1.2rem;
