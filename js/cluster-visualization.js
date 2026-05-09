@@ -101,6 +101,11 @@
     const selectionPanel = document.getElementById("selectionPanel");
     const recommendationPanel = document.getElementById("recommendationPanel");
     const recommendReasonPanel = document.getElementById("recommendReasonPanel");
+    const quickActionHint = document.getElementById("quickActionHint");
+    const quickHelpBtn = document.getElementById("quickHelpBtn");
+    const quickHelpPanel = document.getElementById("quickHelpPanel");
+    const overviewHelpBtn = document.getElementById("overviewHelpBtn");
+    const overviewHelpPanel = document.getElementById("overviewHelpPanel");
     const metricPanel = document.getElementById("metricPanel");
     const hyperedgePanel = document.getElementById("hyperedgePanel");
     const clusterMatrix = document.getElementById("clusterMatrix");
@@ -109,6 +114,7 @@
     const boundaryNodeList = document.getElementById("boundaryNodeList");
     const maxHyperedgeList = document.getElementById("maxHyperedgeList");
     const highConfidenceClusterList = document.getElementById("highConfidenceClusterList");
+    const highConfidenceClusterListDeep = document.getElementById("highConfidenceClusterListDeep");
     const clusterTooltip = document.getElementById("clusterTooltip");
     const canvasEmpty = document.getElementById("canvasEmpty");
     const canvasLoading = document.getElementById("canvasLoading");
@@ -174,6 +180,14 @@
 
     function setNarrative(msg) {
         if (analysisNarrative) analysisNarrative.textContent = msg;
+    }
+
+    function setQuickHint(msg) {
+        if (!quickActionHint) return;
+        quickActionHint.hidden = false;
+        quickActionHint.textContent = msg;
+        quickActionHint.classList.add("active");
+        setTimeout(() => quickActionHint.classList.remove("active"), 500);
     }
 
     function setLoading(flag, msg = "") {
@@ -535,6 +549,7 @@
     function renderScenarioCards() {
         if (!scenarioGrid) return;
         const html = APPLICATION_SCENARIOS.map((scenario) => {
+            const levelClass = scenario.id === "academic" ? "primary" : (scenario.id === "collaboration" || scenario.id === "news") ? "secondary" : "tertiary";
             const datasetButtons = scenario.datasets
                 .map((label) => {
                     const entry = getDatasetEntryByLabel(label);
@@ -543,7 +558,7 @@
                     return `<button type="button" data-scenario-id="${scenario.id}" data-dataset-label="${label}" class="${active}" ${disabled}>${label}</button>`;
                 })
                 .join("");
-            return `<article class="scenario-card ${state.currentScenarioId === scenario.id ? "active" : ""}">
+            return `<article class="scenario-card ${levelClass} ${state.currentScenarioId === scenario.id ? "active" : ""}">
                 <h3>${scenario.title}</h3>
                 <p>${scenario.subtitle}</p>
                 <p>示例数据：${scenario.datasets.join(" / ")}</p>
@@ -594,32 +609,29 @@
     function updateSelectionPanel() {
         const node = state.nodesById.get(state.selectedNodeId);
         if (!node) {
-            selectionPanel.innerHTML = "<h3>节点详情</h3><p>搜索或点击任意节点后，这里将展示该节点的预测簇、局部邻居、共享超边和推荐解释。</p>";
+            selectionPanel.innerHTML = "<h3>当前节点摘要</h3><p class='panel-help'>请选择一个节点后查看摘要信息。</p>";
             return;
         }
 
         const similarCount = node.top_similar.length;
         const neighborCount = node.hyperedge_neighbors.length;
-        const incidentCount = node.edgeIds.length;
-        const crossRatio = (node.crossClusterNeighborRatio * 100).toFixed(1);
-        const labelLine =
-            state.colorMode === "label" && Number.isFinite(node.label)
-                ? `<p class="node-explain">评测标签：L${node.label}（仅对照，不参与推理）</p>`
-                : "";
+        const riskLevel = node.boundaryScore >= 0.65 ? "高" : node.boundaryScore >= 0.45 ? "中" : "低";
 
         selectionPanel.innerHTML = `
-            <h3>节点详情</h3>
+            <h3>当前节点摘要</h3>
             <div class="node-detail-card">
-                <div class="node-title">${state.currentDatasetName || "示例"} Node #${String(node.id).padStart(4, "0")}</div>
-                <div class="node-meta">
-                    <span>预测簇：Cluster ${node.cluster}</span>
-                    <span>节点类型：匿名样本节点</span>
-                    <span>分配强度：${(node.confidence || 0).toFixed(2)}</span>
+                <div class="node-title">当前节点：${node.id}</div>
+                <div class="node-meta compact">
+                    <span>所属簇：Cluster ${node.cluster}</span>
+                    <span>边界风险：${riskLevel}</span>
+                    <span>共享超边：${neighborCount}</span>
+                    <span>高相似节点：${similarCount}</span>
                 </div>
-                <p class="node-explain">该节点被模型分配至 Cluster ${node.cluster}。系统基于训练后嵌入表示、同簇关系和共享超边关系分析其局部关联。</p>
-                <p class="node-explain">同簇相似节点：${similarCount} 个；共享超边邻居：${neighborCount} 个；参与超边：${incidentCount} 条；跨簇邻居比例：${crossRatio}%</p>
-                ${labelLine}
-                ${node.boundaryScore >= 0.45 ? `<div class="node-risk-warning">该节点连接了多个簇，可能处于边界区域，建议结合共享超边进一步分析。</div>` : ""}
+                <div class="analysis-chips compact-chips">
+                    <button type="button" data-action="node-similar">查看相似节点</button>
+                    <button type="button" data-action="node-hyperedge-neighbors">查看共享超边</button>
+                    <button type="button" data-action="node-boundary-risk">查看边界风险</button>
+                </div>
             </div>
         `;
     }
@@ -663,6 +675,7 @@
     }
 
     function updateMetricPanels() {
+        if (!metricPanel || !hyperedgePanel) return;
         const m = state.metrics || {};
         const core = [
             ["ACC", m.acc, "聚类映射后的分类准确率"],
@@ -762,7 +775,7 @@
         const maxEdges = [...state.hyperedges].sort((a, b) => b.size - a.size || a.purity - b.purity).slice(0, 10);
         maxHyperedgeList.innerHTML = maxEdges.length ? maxEdges.map((e) => edgeItemHTML(e, "max")).join("") : "<p class='panel-help'>暂无相关超边。</p>";
 
-        highConfidenceClusterList.innerHTML = state.clusterStats
+        const stableHtml = state.clusterStats
             .slice(0, 10)
             .map((c) => `<div class="list-item good">
                 <div class="list-title">Cluster ${c.clusterId}</div>
@@ -774,6 +787,34 @@
                 <p>该簇结构较稳定，簇内一致性较高。</p>
             </div>`)
             .join("");
+        highConfidenceClusterList.innerHTML = stableHtml || "<p class='panel-help'>暂无高置信簇。</p>";
+        if (highConfidenceClusterListDeep) {
+            highConfidenceClusterListDeep.innerHTML = stableHtml || "<p class='panel-help'>暂无高置信节点。</p>";
+        }
+
+        applyTopNWithToggle(crossEdgeList, 5);
+        applyTopNWithToggle(boundaryNodeList, 5);
+        applyTopNWithToggle(maxHyperedgeList, 5);
+        if (highConfidenceClusterListDeep) applyTopNWithToggle(highConfidenceClusterListDeep, 5);
+    }
+
+    function applyTopNWithToggle(container, topN = 5) {
+        if (!container) return;
+        const items = Array.from(container.querySelectorAll(".list-item, .recommend-item"));
+        container.querySelectorAll(".list-more-toggle").forEach((el) => el.remove());
+        if (items.length <= topN) return;
+        items.forEach((el, idx) => (el.hidden = idx >= topN));
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "mini-action list-more-toggle";
+        btn.textContent = "展开更多";
+        btn.addEventListener("click", () => {
+            const expanded = btn.dataset.expanded === "1";
+            items.forEach((el, idx) => (el.hidden = expanded ? idx >= topN : false));
+            btn.dataset.expanded = expanded ? "0" : "1";
+            btn.textContent = expanded ? "展开更多" : "收起";
+        });
+        container.appendChild(btn);
     }
 
     function updatePanels() {
@@ -1186,6 +1227,7 @@
         const node = state.nodesById.get(state.selectedNodeId);
         if (!node) {
             setStatus("请先搜索或点击一个节点。");
+            setQuickHint("请先选择一个节点，再使用快捷功能。");
             return;
         }
 
@@ -1193,18 +1235,28 @@
         if (action === "node-incident-edges") {
             switchView("hypergraph");
             setNarrative(`已聚焦节点 ${node.id} 的关联超边结构。`);
+            setStatus(`功能说明：节点所在超边用于解释“该节点和哪些节点经常共同出现/共同参与”。`);
+            setQuickHint("节点所在超边：查看与当前节点共同参与同一高阶关系的一组节点。");
         } else if (action === "node-boundary-risk") {
             switchView("boundary");
             setNarrative(`已切换边界风险视图，突出节点 ${node.id} 的边界相关结构。`);
+            setStatus(`功能说明：边界风险越高，表示该节点可能同时连接多个簇，归属更不稳定。`);
+            setQuickHint("边界风险：用于识别可能跨越多个簇的节点与混合关系区域。");
         } else if (action === "focus-selected-node") {
             switchView("hypergraph");
             setNarrative(`当前节点 ${node.id} 已处于局部关系视图中心。`);
+            setStatus(`功能说明：聚焦会把当前节点放在局部视图中心，便于查看其关键关系圈。`);
+            setQuickHint("聚焦当前节点：把当前节点放到中心位置，便于观察其邻域结构。");
         } else if (action === "node-similar") {
             switchView("hypergraph");
             setNarrative(`已高亮节点 ${node.id} 的同簇相似节点。`);
+            setStatus(`功能说明：同簇相似节点表示在表示空间中更接近，可作为聚类归属证据。`);
+            setQuickHint("同簇相似节点：高亮在表示空间中更接近的同簇节点。");
         } else if (action === "node-hyperedge-neighbors") {
             switchView("hypergraph");
             setNarrative(`已高亮节点 ${node.id} 的共享超边邻居。`);
+            setStatus(`功能说明：共享超边邻居表示与当前节点共同参与同一组高阶关系。`);
+            setQuickHint("共享超边邻居：高亮与当前节点共同出现在同一超边中的节点。");
         }
         render();
     }
@@ -1217,16 +1269,11 @@
         });
 
         if (viewName === "global") {
-            setNarrative("当前为全局分析视图。支持拖动画布、拖动节点和超边中心，点击节点可进入局部关系分析。");
+            setNarrative("当前视角：全局结构。点击节点可查看局部解释。");
         } else if (viewName === "hypergraph") {
-            const hasSelected = Boolean(state.selectedNodeId);
-            setNarrative(
-                hasSelected
-                    ? "当前为超图关系视图。已展示当前节点的一阶局部关系子图。"
-                    : "当前为超图关系视图。正在显示全局概览，点击节点可进入局部关系分析。"
-            );
+            setNarrative("当前视角：超边关系。点击节点可查看局部解释。");
         } else {
-            setNarrative("当前为边界风险视图。用于观察低纯度超边和边界节点分布。");
+            setNarrative("当前视角：边界节点。点击节点可查看局部解释。");
         }
         render();
     }
@@ -1258,16 +1305,21 @@
             state.metrics = parsed.metrics;
             state.stats = parsed.stats;
             state.clusterStats = parsed.clusterStats;
+            state.currentView = "global";
             state.selectedNodeId = null;
             state.hoveredNodeId = null;
             state.quickMode = null;
             state.localLayoutCache.clear();
             state.globalLayoutCache = null;
             resetViewTransform();
+            [analysisTabs, stepTabs].forEach((container) => {
+                container?.querySelectorAll("[data-view]").forEach((btn) => btn.classList.toggle("active", btn.dataset.view === "global"));
+            });
 
             updatePanels();
-            setNarrative("当前为全局分析视图。点击节点可进入局部超图关系分析。");
-            setStatus(`已加载 ${parsed.dataset}，可输入节点编号进行局部关系分析。`);
+            setNarrative("当前视角：全局结构。点击节点可查看局部解释。");
+            setStatus(`已加载 ${parsed.dataset}。当前展示训练结果子集（${parsed.stats.shownNodeCount}/${parsed.stats.nodeCount}），并使用匿名ID进行交互。`);
+            setQuickHint("说明：当前为可视化展示子集，节点使用匿名ID，不显示真实名称。");
             render();
         } catch (error) {
             state.nodes = [];
@@ -1336,20 +1388,34 @@
     function handleSearch() {
         const value = Number(searchInput.value);
         if (!Number.isFinite(value)) {
-            const max = Math.max(0, (state.stats.shownNodeCount || state.nodes.length) - 1);
-            setStatus(`未找到该节点，请输入 0 到 ${max} 范围内的节点编号。`);
+            const max = Math.max(0, state.nodes.length - 1);
+            setStatus(`输入无效。可输入真实节点ID，或输入 0 到 ${max} 的序号。`);
             return;
         }
-        if (!selectNode(value)) {
-            const max = Math.max(0, (state.stats.shownNodeCount || state.nodes.length) - 1);
-            setStatus(`未找到该节点，请输入 0 到 ${max} 范围内的节点编号。`);
+
+        const intValue = Math.trunc(value);
+        if (selectNode(intValue)) {
+            setStatus(`已定位节点 ${intValue}（按节点ID匹配）。`);
             return;
         }
-        setStatus(`已定位节点 ${value}。`);
+
+        if (Number.isInteger(intValue) && intValue >= 0 && intValue < state.nodes.length) {
+            const mappedId = state.nodes[intValue].id;
+            if (selectNode(mappedId)) {
+                setStatus(`已定位节点 ${mappedId}（按序号 ${intValue} 映射）。`);
+                return;
+            }
+        }
+
+        const max = Math.max(0, state.nodes.length - 1);
+        setStatus(`未找到该节点。可输入真实节点ID，或输入 0 到 ${max} 的序号。`);
     }
 
     function bindEvents() {
-        startButton?.addEventListener("click", () => analysisMain?.scrollIntoView({ behavior: "smooth", block: "start" }));
+        startButton?.addEventListener("click", () => {
+            analysisMain?.scrollIntoView({ behavior: "auto", block: "start" });
+            if (window.location.hash !== "#analysisMain") window.location.hash = "analysisMain";
+        });
         viewScenarioBtn?.addEventListener("click", () => scenarioSection?.scrollIntoView({ behavior: "smooth", block: "start" }));
 
         scenarioGrid?.addEventListener("click", (event) => {
@@ -1361,6 +1427,8 @@
             const enterBtn = event.target.closest("[data-enter-scenario]");
             if (enterBtn) {
                 setScenario(enterBtn.dataset.enterScenario);
+                analysisMain?.scrollIntoView({ behavior: "auto", block: "start" });
+                if (window.location.hash !== "#analysisMain") window.location.hash = "analysisMain";
             }
         });
 
@@ -1407,20 +1475,12 @@
         relayoutButton?.addEventListener("click", () => {
             if (state.selectedNodeId) state.localLayoutCache.delete(state.selectedNodeId);
             else state.globalLayoutCache = null;
-            setStatus("已重排当前视图布局。");
+            setStatus("已重置布局。");
             render();
         });
         resetButton?.addEventListener("click", () => {
-            state.selectedNodeId = null;
-            state.hoveredNodeId = null;
-            state.quickMode = null;
-            resetViewTransform();
-            hideTooltip();
-            updateSelectionPanel();
-            updateRecommendationPanels();
-            setStatus("已重置当前选择。");
-            setNarrative("当前为全局分析视图。点击节点可进入局部超图关系分析。");
-            render();
+            if (state.selectedNodeId) applyQuickAction("focus-selected-node");
+            else setStatus("请先选择节点后再聚焦。");
         });
         exportButton?.addEventListener("click", () => {
             const link = document.createElement("a");
@@ -1451,10 +1511,20 @@
             });
         });
 
-        document.querySelector(".analysis-chips")?.addEventListener("click", (event) => {
-            const btn = event.target.closest("button[data-action]");
+        document.querySelector(".cluster-data-panel")?.addEventListener("click", (event) => {
+            const btn = event.target.closest(".analysis-chips button[data-action]");
             if (!btn) return;
             applyQuickAction(btn.dataset.action);
+        });
+
+        quickHelpBtn?.addEventListener("click", () => {
+            if (!quickHelpPanel) return;
+            quickHelpPanel.hidden = !quickHelpPanel.hidden;
+        });
+
+        overviewHelpBtn?.addEventListener("click", () => {
+            if (!overviewHelpPanel) return;
+            overviewHelpPanel.hidden = !overviewHelpPanel.hidden;
         });
 
         clusterCanvas.addEventListener("pointerdown", (event) => {

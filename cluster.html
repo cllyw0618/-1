@@ -35,14 +35,6 @@
         </nav>
 
         <main class="cluster-shell app-shell">
-            <nav class="page-anchor-nav" aria-label="页面分区导航">
-                <a href="#heroSection">首页</a>
-                <a href="#scenarioSection">应用场景</a>
-                <a href="#analysisMain">交互分析</a>
-                <a href="#overviewSection">结果总览</a>
-                <a href="#deepSection">深入分析</a>
-            </nav>
-
             <section class="hero-section app-hero" id="heroSection" aria-label="系统首页">
                 <div class="hero-background" aria-hidden="true"></div>
                 <div class="hero-left">
@@ -51,19 +43,14 @@
                     <p class="hero-subtitle">基于超图建模、超边内判别增强与划分级聚类指导，支持从场景选择到节点级解释的一体化分析流程。</p>
                     <p class="hero-desc">当前流程采用两阶段训练结果：先进行 CAHC-style 对比预训练，再在微调阶段加入聚类模块与 latent dynamic cut regularization，最终提供可交互的结构解释能力。</p>
                     <div class="hero-actions">
-                        <button type="button" class="btn btn-primary" id="startAnalysisBtn">开始分析</button>
-                        <button type="button" class="btn btn-outline-primary" id="viewScenarioBtn">查看应用场景</button>
+                        <button type="button" class="btn btn-primary hero-btn-main" id="startAnalysisBtn">开始分析</button>
+                        <button type="button" class="btn btn-outline-primary hero-btn-sub" id="viewScenarioBtn">查看场景</button>
                     </div>
                 </div>
-                <div class="hero-right hero-entry-panel">
-                    <section class="capability-card">
-                        <h3>系统能力</h3>
-                        <div class="capability-grid">
-                            <article><strong>群体结构发现</strong><p>识别潜在簇结构与高阶关系模式。</p></article>
-                            <article><strong>节点级解释</strong><p>结合相似性、共享超边与边界风险解释归属。</p></article>
-                            <article><strong>结构风险定位</strong><p>快速识别跨簇超边与边界节点区域。</p></article>
-                        </div>
-                    </section>
+                <div class="hero-right hero-entry-panel hero-cap-lines">
+                    <div><strong>场景分析：</strong><span>支持多类高阶关系数据切换</span></div>
+                    <div><strong>结构发现：</strong><span>支持群体结构与关系网络分析</span></div>
+                    <div><strong>节点解释：</strong><span>支持局部节点与边界风险解释</span></div>
                 </div>
             </section>
 
@@ -101,9 +88,9 @@
                             <p>点击节点进入局部解释；拖拽、缩放用于快速浏览结构。</p>
                         </div>
                         <div class="view-tabs" id="analysisViewTabs" aria-label="视图切换">
-                            <button type="button" data-view="global" class="active">全局分析</button>
-                            <button type="button" data-view="hypergraph">超图关系</button>
-                            <button type="button" data-view="boundary">边界风险</button>
+                            <button type="button" data-view="global" class="active">全局结构</button>
+                            <button type="button" data-view="hypergraph">超边关系</button>
+                            <button type="button" data-view="boundary">边界节点</button>
                         </div>
                         <div class="canvas-layer-wrap" id="canvasContainer">
                             <canvas id="clusterCanvas"></canvas>
@@ -113,9 +100,9 @@
                         </div>
                         <div class="analysis-narrative" id="analysisNarrative">已进入交互分析区。请选择节点开始局部解释。</div>
                         <div class="cluster-toolbar">
-                            <button class="btn btn-primary btn-sm text-uppercase" id="relayoutView" type="button">重排布局</button>
-                            <button class="btn btn-outline-dark btn-sm text-uppercase" id="resetFocus" type="button">重置视图</button>
-                            <button class="btn btn-outline-dark btn-sm text-uppercase" id="exportView" type="button">导出图片</button>
+                            <button class="btn btn-primary btn-sm tool-main" id="relayoutView" type="button">重置布局</button>
+                            <button class="btn btn-outline-dark btn-sm" id="resetFocus" type="button">聚焦节点</button>
+                            <button class="btn btn-outline-dark btn-sm" id="exportView" type="button">导出图片</button>
                         </div>
                     </div>
 
@@ -130,9 +117,9 @@
                         <section class="panel-section">
                             <h3>分析控制</h3>
                             <div class="step-view-buttons" id="stepViewButtons">
-                                <button type="button" class="mini-action active" data-view="global">全局分析</button>
-                                <button type="button" class="mini-action" data-view="hypergraph">超图关系</button>
-                                <button type="button" class="mini-action" data-view="boundary">边界风险</button>
+                                <button type="button" class="mini-action active" data-view="global">全局结构</button>
+                                <button type="button" class="mini-action" data-view="hypergraph">超边关系</button>
+                                <button type="button" class="mini-action" data-view="boundary">边界节点</button>
                             </div>
                             <label>着色模式
                                 <select id="colorMode">
@@ -164,13 +151,21 @@
                             </div>
                         </section>
 
-                        <section class="selection-card" id="selectionPanel" hidden>
+                        <section class="selection-card" id="selectionPanel">
                             <h3>当前节点摘要</h3>
                             <p>选择节点后展示其簇归属、相似节点与结构风险。</p>
                         </section>
 
                         <section class="panel-section">
-                            <h3>快捷解释</h3>
+                            <h3>快捷功能</h3>
+                            <button type="button" class="mini-action help-toggle-btn" id="quickHelpBtn">提示</button>
+                            <div class="help-panel" id="quickHelpPanel" hidden>
+                                这里的功能是“看这个节点为什么会被分到这个簇”：
+                                `同簇相似节点`看它和谁最像；
+                                `共享超边邻居`看它和谁经常一起出现；
+                                `节点所在超边`看它参与了哪些关系组；
+                                `边界风险`看它是不是“夹在多个簇中间”。
+                            </div>
                             <div class="analysis-chips">
                                 <button type="button" data-action="node-similar">同簇相似节点</button>
                                 <button type="button" data-action="node-hyperedge-neighbors">共享超边邻居</button>
@@ -178,6 +173,7 @@
                                 <button type="button" data-action="node-boundary-risk">边界风险</button>
                                 <button type="button" data-action="focus-selected-node">聚焦当前节点</button>
                             </div>
+                            <div class="quick-action-hint" id="quickActionHint" hidden>功能说明会在这里高亮显示。先选择一个节点，再点击上方快捷功能。</div>
                         </section>
 
                         <details class="panel-section flow-help">
@@ -191,25 +187,21 @@
             <section class="cluster-analysis-strip app-overview" id="overviewSection" aria-label="结构结果总览">
                 <header class="section-header">
                     <h2>结构结果总览</h2>
-                    <p>摘要优先展示核心指标、关键结构结果与风险结构。</p>
+                    <p>以下结果用于概括当前场景下的整体结构表现，包括簇级分布、风险结构与高置信区域。</p>
+                    <button type="button" class="mini-action help-toggle-btn overview-help-btn" id="overviewHelpBtn">提示</button>
+                    <div class="help-panel overview-help-panel" id="overviewHelpPanel" hidden>
+                        `聚类解释矩阵`：看系统把样本分成了哪些群体。<br />
+                        `关键风险结构`：看哪些关系“跨群体”，通常更复杂、更容易混淆。<br />
+                        `高置信簇概览`：看哪些群体最稳定、最清晰。
+                    </div>
                 </header>
-                <section class="metric-card">
-                    <h3>核心指标摘要</h3>
-                    <div class="cluster-metrics" id="metricPanel"></div>
-                    <div class="cluster-metrics cluster-hyperedge-metrics" id="hyperedgePanel"></div>
-                </section>
-                <section class="matrix-card">
-                    <h3>聚类解释矩阵</h3>
-                    <p class="card-caption">基于预测簇与结构统计的解释矩阵。</p>
-                    <div id="clusterMatrix" class="cluster-matrix"></div>
-                </section>
-                <section class="edge-list-card">
-                    <h3>关键风险结构</h3>
+                <section class="edge-list-card risk-card">
+                    <h3><span class="risk-dot"></span>风险结构提示</h3>
                     <p class="card-caption">低纯度与跨簇超边 Top 10。</p>
                     <div id="topEdgeList" class="top-edge-list"></div>
                 </section>
-                <section class="edge-list-card">
-                    <h3>高置信簇概览</h3>
+                <section class="edge-list-card stable-card">
+                    <h3><span class="stable-dot"></span>稳定簇概览</h3>
                     <div id="highConfidenceClusterList" class="top-edge-list"></div>
                 </section>
             </section>
@@ -232,10 +224,14 @@
                         <summary>最大规模超边列表</summary>
                         <div id="maxHyperedgeList" class="top-edge-list"></div>
                     </details>
+                    <details class="edge-list-card">
+                        <summary>高置信节点</summary>
+                        <div id="highConfidenceClusterListDeep" class="top-edge-list"></div>
+                    </details>
                     <details class="recommend-card">
-                        <summary>当前节点相关推荐</summary>
+                        <summary>推荐结果</summary>
                         <div id="recommendationPanel" class="recommendation-panel">
-                            <p>请选择一个节点后查看相关推荐。</p>
+                            <p class="panel-help">ℹ 请先在交互分析区选择一个节点后查看相关推荐。</p>
                         </div>
                     </details>
                     <details class="reason-card">
@@ -250,7 +246,15 @@
             <section class="bottom-cta app-note">
                 <h3>方法说明</h3>
                 <p>系统采用 CAHC-style contrastive pretraining、attribute-guided intra-hyperedge repulsion 与 latent dynamic cut regularization 的端到端分析流程。</p>
+                <p class="note-badge">当前页面展示训练结果子集（shown_node_count / node_count），以保证移动端可视化与交互流畅。</p>
+                <p class="note-badge">节点使用匿名 ID 展示，不使用真实名称与真实标签参与交互解释。</p>
             </section>
+
+            <div hidden aria-hidden="true">
+                <div id="metricPanel"></div>
+                <div id="hyperedgePanel"></div>
+                <div id="clusterMatrix"></div>
+            </div>
         </main>
 
         <footer class="site-footer py-5">
