@@ -1356,3 +1356,391 @@
 .card-caption {
     color: #475569;
 }
+
+/* Homepage-aligned visual refresh */
+.cluster-page {
+    background:
+        radial-gradient(circle at 18% 10%, rgba(20, 184, 166, 0.13), transparent 30rem),
+        radial-gradient(circle at 84% 18%, rgba(37, 99, 235, 0.08), transparent 32rem),
+        linear-gradient(180deg, #ffffff 0%, #f8fafc 48%, #f0fdfa 100%);
+    color: #0f172a;
+}
+
+.cluster-shell {
+    position: relative;
+}
+
+.cluster-shell::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+        radial-gradient(circle at 18% 26%, rgba(20, 184, 166, 0.16) 0 1.5px, transparent 1.8px),
+        radial-gradient(circle at 72% 36%, rgba(37, 99, 235, 0.12) 0 1.5px, transparent 1.8px),
+        linear-gradient(115deg, transparent 0 36%, rgba(20, 184, 166, 0.07) 36.1% 36.35%, transparent 36.55% 100%),
+        linear-gradient(24deg, transparent 0 60%, rgba(37, 99, 235, 0.05) 60.1% 60.35%, transparent 60.55% 100%);
+    background-size: 420px 260px, 420px 260px, 540px 340px, 620px 400px;
+    opacity: 0.62;
+    pointer-events: none;
+}
+
+.hero-section,
+.scenario-grid .scenario-card,
+.cluster-visual-stage,
+.cluster-data-panel,
+.analysis-intro-card,
+.metric-card,
+.matrix-card,
+.edge-list-card,
+.recommend-card,
+.reason-card,
+.selection-card,
+.cluster-tooltip,
+.cluster-toolbar,
+.bottom-cta,
+.capability-card,
+.hero-stats-card,
+.deep-accordion details,
+.panel-section {
+    position: relative;
+    overflow: hidden;
+    border-color: rgba(20, 184, 166, 0.16);
+    background:
+        radial-gradient(circle at 88% 14%, rgba(20, 184, 166, 0.11), transparent 28%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.72));
+    box-shadow:
+        0 22px 60px rgba(15, 23, 42, 0.07),
+        inset 0 1px 0 rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(18px);
+    transition:
+        transform 0.34s ease,
+        border-color 0.34s ease,
+        box-shadow 0.34s ease,
+        background-color 0.34s ease;
+}
+
+.hero-section {
+    border-radius: 1.25rem;
+    padding: clamp(1.1rem, 2vw, 1.55rem);
+}
+
+.hero-section::after,
+.scenario-grid .scenario-card::after,
+.cluster-visual-stage::after,
+.cluster-data-panel::after,
+.edge-list-card::after,
+.recommend-card::after,
+.reason-card::after,
+.selection-card::after,
+.deep-accordion details::after {
+    content: "";
+    position: absolute;
+    top: -45%;
+    left: -35%;
+    width: 70%;
+    height: 190%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.48), transparent);
+    transform: rotate(18deg) translateX(-125%);
+    transition: transform 0.72s ease;
+    pointer-events: none;
+}
+
+.scenario-grid .scenario-card:hover,
+.cluster-visual-stage:hover,
+.cluster-data-panel:hover,
+.edge-list-card:hover,
+.recommend-card:hover,
+.reason-card:hover,
+.selection-card:hover,
+.deep-accordion details:hover,
+.hero-stats-card:hover {
+    border-color: rgba(20, 184, 166, 0.34);
+    box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.1),
+        0 0 38px rgba(20, 184, 166, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.94);
+    transform: translateY(-7px);
+}
+
+.scenario-grid .scenario-card:hover::after,
+.cluster-visual-stage:hover::after,
+.cluster-data-panel:hover::after,
+.edge-list-card:hover::after,
+.recommend-card:hover::after,
+.reason-card:hover::after,
+.selection-card:hover::after,
+.deep-accordion details:hover::after {
+    transform: rotate(18deg) translateX(235%);
+}
+
+.hero-background {
+    background:
+        radial-gradient(circle at 86% 18%, rgba(20, 184, 166, 0.2), transparent 30%),
+        radial-gradient(circle at 18% 72%, rgba(37, 99, 235, 0.08), transparent 28%),
+        linear-gradient(115deg, transparent 0 36%, rgba(20, 184, 166, 0.08) 36.1% 36.35%, transparent 36.55% 100%),
+        linear-gradient(24deg, transparent 0 58%, rgba(37, 99, 235, 0.06) 58.1% 58.35%, transparent 58.55% 100%),
+        rgba(255, 255, 255, 0.46);
+    background-size: auto, auto, 540px 340px, 620px 400px, auto;
+    animation: clusterHeroTexture 9s ease-in-out infinite;
+}
+
+.hero-background::before {
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.24), rgba(20, 184, 166, 0));
+    animation: clusterHaloFloat 6.4s ease-in-out infinite;
+}
+
+.hero-background::after {
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.14), rgba(37, 99, 235, 0));
+    animation: clusterHaloFloat 7.2s ease-in-out infinite reverse;
+}
+
+.hero-eyebrow,
+.panel-title span,
+.hero-cap-lines strong,
+.recommend-section h4,
+.reason-grid strong {
+    color: #0f766e;
+}
+
+.hero-left h1,
+.section-header h2,
+.cluster-canvas-head h3,
+.panel-section h3,
+.matrix-card h3,
+.edge-list-card h3,
+.selection-card h3,
+.scenario-card h3 {
+    color: #0f172a;
+    font-weight: 950;
+}
+
+.hero-subtitle,
+.hero-desc,
+.section-header p,
+.panel-help,
+.card-caption,
+.selection-card p,
+.analysis-intro-card p,
+.bottom-cta p {
+    color: #64748b;
+}
+
+.btn-primary,
+.hero-btn-main,
+.jump-analysis-btn,
+.tool-main {
+    border-color: rgba(45, 212, 191, 0.52) !important;
+    background:
+        radial-gradient(circle at 84% 18%, rgba(153, 246, 228, 0.44), transparent 30%),
+        linear-gradient(135deg, rgba(15, 118, 110, 0.96), rgba(20, 184, 166, 0.9)) !important;
+    color: #ffffff !important;
+    box-shadow:
+        0 16px 32px rgba(20, 184, 166, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease;
+}
+
+.btn-primary:hover,
+.hero-btn-main:hover,
+.jump-analysis-btn:hover,
+.tool-main:hover {
+    box-shadow:
+        0 22px 46px rgba(20, 184, 166, 0.28),
+        0 0 40px rgba(20, 184, 166, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+.btn-outline-primary,
+.btn-outline-dark,
+.mini-action,
+.scenario-card .enter-btn,
+.analysis-chips button,
+.view-tabs button,
+.step-view-buttons button {
+    border-color: rgba(20, 184, 166, 0.28) !important;
+    background: rgba(255, 255, 255, 0.74) !important;
+    color: #0f766e !important;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-dark:hover,
+.mini-action:hover,
+.scenario-card .enter-btn:hover,
+.analysis-chips button:hover,
+.view-tabs button:hover,
+.step-view-buttons button:hover {
+    border-color: rgba(20, 184, 166, 0.48) !important;
+    background: rgba(240, 253, 250, 0.88) !important;
+    box-shadow: 0 14px 30px rgba(20, 184, 166, 0.12);
+    transform: translateY(-2px);
+}
+
+.view-tabs button.active,
+.step-view-buttons button.active,
+.scenario-datasets button.active {
+    border-color: rgba(20, 184, 166, 0.5) !important;
+    background: rgba(204, 251, 241, 0.68) !important;
+    color: #0f766e !important;
+    box-shadow:
+        inset 0 -2px 0 #14b8a6,
+        0 10px 22px rgba(20, 184, 166, 0.1);
+}
+
+.scenario-card.active,
+.scenario-card.primary {
+    border-color: rgba(20, 184, 166, 0.48);
+    background:
+        radial-gradient(circle at 86% 16%, rgba(20, 184, 166, 0.16), transparent 30%),
+        linear-gradient(145deg, rgba(240, 253, 250, 0.94), rgba(255, 255, 255, 0.9));
+    box-shadow:
+        0 24px 62px rgba(20, 184, 166, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.94);
+}
+
+.stats-list > div,
+.metric-item,
+.recommend-item,
+.list-item,
+.matrix-row,
+.reason-grid div,
+.capability-grid article {
+    border-color: rgba(20, 184, 166, 0.16);
+    background: rgba(255, 255, 255, 0.82);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.stats-list > div:hover,
+.metric-item:hover,
+.recommend-item:hover,
+.list-item:hover,
+.matrix-row:hover,
+.reason-grid div:hover,
+.capability-grid article:hover {
+    border-color: rgba(20, 184, 166, 0.34);
+    box-shadow: 0 14px 30px rgba(20, 184, 166, 0.1);
+    transform: translateY(-3px);
+}
+
+#datasetSummaryCard,
+.analysis-narrative,
+.bottom-cta,
+.quick-action-hint,
+.help-panel,
+.note-badge {
+    border-color: rgba(20, 184, 166, 0.2);
+    background:
+        radial-gradient(circle at 86% 16%, rgba(20, 184, 166, 0.1), transparent 30%),
+        rgba(240, 253, 250, 0.74);
+    color: #0f766e;
+}
+
+.cluster-data-panel select,
+.search-row input {
+    border-color: rgba(20, 184, 166, 0.22);
+    background: rgba(255, 255, 255, 0.86);
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.cluster-data-panel select:focus,
+.search-row input:focus {
+    border-color: rgba(20, 184, 166, 0.52);
+    box-shadow: 0 0 0 0.18rem rgba(20, 184, 166, 0.12);
+    outline: none;
+}
+
+.cluster-check input {
+    accent-color: #14b8a6;
+}
+
+.canvas-layer-wrap {
+    border-color: rgba(20, 184, 166, 0.16);
+    background:
+        linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+        #f8fafc;
+    background-size: 2rem 2rem;
+}
+
+.cluster-empty,
+.cluster-loading {
+    background: rgba(248, 250, 252, 0.9);
+    color: #0f766e;
+}
+
+.risk-dot {
+    background: #14b8a6;
+}
+
+.stable-dot {
+    background: #2563eb;
+}
+
+.app-overview .risk-card,
+.app-overview .stable-card,
+.list-item.risk,
+.list-item.good,
+.node-risk-warning {
+    border-color: rgba(20, 184, 166, 0.24);
+    background:
+        radial-gradient(circle at 88% 14%, rgba(20, 184, 166, 0.1), transparent 28%),
+        rgba(255, 255, 255, 0.86);
+    color: #0f766e;
+}
+
+.list-meta span,
+.node-meta span,
+.recommend-main .score {
+    color: #0f766e;
+}
+
+.node-meta span,
+.recommend-tags span {
+    background: rgba(204, 251, 241, 0.62);
+    color: #0f766e;
+}
+
+@keyframes clusterHeroTexture {
+    0%,
+    100% {
+        background-position: center, center, 0 0, 0 0, center;
+    }
+    50% {
+        background-position: center, center, 22px -16px, -18px 14px, center;
+    }
+}
+
+@keyframes clusterHaloFloat {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate3d(0, -18px, 0) scale(1.08);
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-background,
+    .hero-background::before,
+    .hero-background::after {
+        animation: none !important;
+    }
+}
