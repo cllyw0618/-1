@@ -69,6 +69,17 @@ window.addEventListener('DOMContentLoaded', event => {
         '.competitor-card',
         '.ablation-insight-card',
         '.result-showcase-card',
+        '.cluster-page .app-hero',
+        '.cluster-page .scenario-section .section-header',
+        '.cluster-page .scenario-stats-card',
+        '.cluster-page .workspace-section .section-header',
+        '.cluster-page .cluster-visual-stage',
+        '.cluster-page .cluster-data-panel',
+        '.cluster-page .app-overview .section-header',
+        '.cluster-page .edge-list-card',
+        '.cluster-page .app-deep .section-header',
+        '.cluster-page .deep-accordion details',
+        '.cluster-page .bottom-cta',
     ];
 
     const revealItems = Array.from(document.querySelectorAll(revealSelectors.join(',')));
