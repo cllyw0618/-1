@@ -277,7 +277,7 @@
             "div",
             { className: "mt-10 flex flex-col gap-4 sm:flex-row" },
             e(HeroButton, {
-              href: "demo.html",
+              href: "cluster.html",
               label: "立即试用",
               icon: "fas fa-arrow-right",
               primary: true,
