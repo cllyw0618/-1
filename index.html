@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>IntraHC | 首页</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/custom-pages.css" rel="stylesheet" />
+        <style>
+            @media (min-width: 992px) {
+                .nav-item.dropdown:hover .dropdown-menu {
+                    display: block !important;
+                    margin-top: 0;
+                }
+            }
+
+            .dropdown-menu {
+                border-radius: 8px;
+                padding: 0.5rem 0;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+                animation: fadeIn 0.3s ease;
+            }
+
+            .dropdown-item {
+                padding: 0.6rem 1.5rem;
+                font-weight: 500;
+                transition: all 0.2s;
+            }
+
+            .dropdown-item:hover {
+                background-color: #f8f9fa;
+                color: #ffc107 !important;
+                padding-left: 1.8rem;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
+        <script>
+            window.tailwind = {
+                config: {
+                    corePlugins: {
+                        preflight: false,
+                    },
+                },
+            };
+        </script>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand intrahc-brand" href="index.html"><span class="brand-mark"></span><span>IntraHC</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                   <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+    <li class="nav-item"><a class="nav-link active" href="index.html">首页</a></li>
+    <li class="nav-item"><a class="nav-link" href="algorithm.html">算法方法</a></li>
+    <li class="nav-item"><a class="nav-link" href="results.html">实验结果</a></li>
+    <li class="nav-item"><a class="nav-link" href="workflow.html">技术流程</a></li>
+    <li class="nav-item"><a class="nav-link" href="resources.html">项目资源</a></li>
+                <li class="nav-item nav-cta-item"><a class="nav-link nav-trial-btn" href="cluster.html">立即试用</a></li>
+</ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead" id="home-hero-root">
+            <div class="container">
+                <div class="masthead-subheading">IntraHC</div>
+                <div class="masthead-heading">Intra-hyperedge Contrastive Learning for End-to-End Attributed Hypergraph Clustering</div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="algorithm.html">查看详情</a>
+            </div>
+        </header>
+        <section class="subpage-section home-summary bg-light" id="home-summary">
+            <div class="container">
+                <div class="text-center mb-5 home-summary-heading">
+                    <span class="summary-kicker">Explore Sections</span>
+                    <h2 class="section-heading text-uppercase">模块总览</h2>
+                    <h3 class="section-subheading text-muted">首页保留原有内容，下方卡片可直达各独立子页</h3>
+                </div>
+                <div class="summary-card-grid">
+                    <div class="summary-card-slot">
+                        <article class="feature-card summary-card h-100">
+                            <div class="summary-card-top">
+                                <span class="summary-index">01</span>
+                                <span class="summary-icon"><i class="fas fa-diagram-project"></i></span>
+                            </div>
+                            <h4>算法方法</h4>
+                            <p class="text-muted mb-4">保留算法核心优势简介，并在子页展开方法细节与创新点。</p>
+                            <a class="summary-link" href="algorithm.html">查看详情 <i class="fas fa-arrow-right"></i></a>
+                        </article>
+                    </div>
+                    <div class="summary-card-slot">
+                        <article class="feature-card summary-card h-100">
+                            <div class="summary-card-top">
+                                <span class="summary-index">02</span>
+                                <span class="summary-icon"><i class="fas fa-chart-line"></i></span>
+                            </div>
+                            <h4>实验结果</h4>
+                            <p class="text-muted mb-4">保留成果摘要，并在子页补充指标、对比和可视化。</p>
+                            <a class="summary-link" href="results.html">查看详情 <i class="fas fa-arrow-right"></i></a>
+                        </article>
+                    </div>
+                    <div class="summary-card-slot">
+                        <article class="feature-card summary-card h-100">
+                            <div class="summary-card-top">
+                                <span class="summary-index">03</span>
+                                <span class="summary-icon"><i class="fas fa-route"></i></span>
+                            </div>
+                            <h4>技术路线</h4>
+                            <p class="text-muted mb-4">首页继续展示流程概览，子页采用步骤式结构进一步说明。</p>
+                            <a class="summary-link" href="workflow.html">查看详情 <i class="fas fa-arrow-right"></i></a>
+                        </article>
+                    </div>
+                    <div class="summary-card-slot">
+                        <article class="feature-card summary-card h-100">
+                            <div class="summary-card-top">
+                                <span class="summary-index">04</span>
+                                <span class="summary-icon"><i class="fas fa-database"></i></span>
+                            </div>
+                            <h4>项目资源</h4>
+                            <p class="text-muted mb-4">统一汇总论文、代码、数据和文档入口。</p>
+                            <a class="summary-link" href="resources.html">查看详情 <i class="fas fa-arrow-right"></i></a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Services-->    
+        <section class="page-section home-services" id="services">
+    <div class="container">
+        <div class="text-center home-services-heading">
+            <span class="services-kicker">Core Advantages</span>
+            <h2 class="section-heading text-uppercase">算法核心优势</h2>
+            <h3 class="section-subheading text-muted">IntraHC 面向属性超图聚类的三大创新点</h3>
+        </div>
+        <div class="row g-4 text-center services-card-grid">
+            
+            <div class="col-md-4">
+                <article class="service-glass-card h-100">
+                    <span class="service-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </span>
+                    <h4 class="my-3">属性超图建模</h4>
+                    <p class="text-muted">融合网络拓扑结构与节点属性特征，构建高阶超边关系，捕获更丰富的局部与全局信息。</p>
+                </article>
+            </div>
+            
+            <div class="col-md-4">
+                <article class="service-glass-card h-100">
+                    <span class="service-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </span>
+                    <h4 class="my-3">超边内对比学习</h4>
+                    <p class="text-muted">在超边内部构造稳定的正样本一致性约束，有效缓解噪声与结构稀疏带来的表征偏移。</p>
+                </article>
+            </div>
+            
+            <div class="col-md-4">
+                <article class="service-glass-card h-100">
+                    <span class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </span>
+                    <h4 class="my-3">端到端聚类优化</h4>
+                    <p class="text-muted">将特征表征学习与聚类目标函数联合训练，减少两阶段方法的误差累积与次优风险。</p>
+                </article>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="text-center mt-5">
+            <a class="services-link" href="algorithm.html">查看详情 <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+        <!-- Application Scenarios-->
+        <section class="page-section app-section" id="portfolio">
+            <div class="container">
+                <div class="text-center app-heading">
+                    <span class="summary-kicker">Application Scenarios</span>
+                    <h2 class="section-heading text-uppercase">应用场景</h2>
+                    <h3 class="section-subheading text-muted">围绕高阶关系建模能力，展示 IntraHC 在科研协作、推荐、生物医药与城市交通中的应用潜力。</h3>
+                </div>
+                <div class="row g-4 app-card-grid">
+                    <div class="col-lg-6">
+                        <article class="app-card h-100">
+                            <div class="app-visual visual-archives" aria-hidden="true">
+                                <span class="glass-plane plane-a"></span>
+                                <span class="glass-plane plane-b"></span>
+                                <i class="app-node n1"></i>
+                                <i class="app-node n2"></i>
+                                <i class="app-node n3"></i>
+                                <i class="app-node n4"></i>
+                                <i class="energy-line l1"></i>
+                                <i class="energy-line l2"></i>
+                                <i class="energy-line l3"></i>
+                            </div>
+                            <div class="app-content">
+                                <span class="app-index">01 / Collaborative Archives</span>
+                                <h3>学术协作与社交网络分析</h3>
+                                <p>用于识别和分析多作者论文、跨学科科研项目组以及社群结构。超图能精确捕捉“多个作者共同完成一项工作”这种高阶协作关系，优于普通的两两连接。</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-6">
+                        <article class="app-card h-100">
+                            <div class="app-visual visual-session" aria-hidden="true">
+                                <span class="session-halo"></span>
+                                <i class="geo-block cube-a"></i>
+                                <i class="geo-block cube-b"></i>
+                                <i class="geo-block cone-a"></i>
+                                <i class="geo-block prism-a"></i>
+                            </div>
+                            <div class="app-content">
+                                <span class="app-index">02 / Session Clouds</span>
+                                <h3>电商会话协同与推荐系统</h3>
+                                <p>用于分析用户的单次购物会话或历史购买记录。超图可以将“一个订单内购买的多种不同类型商品”视为一个超边，挖掘更精准的非 Pairwise 商品关联。</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-6">
+                        <article class="app-card h-100">
+                            <div class="app-visual visual-bio" aria-hidden="true">
+                                <span class="slide-plane"></span>
+                                <i class="bio-path p1"></i>
+                                <i class="bio-node b1"></i>
+                                <i class="bio-node b2"></i>
+                                <i class="bio-node b3"></i>
+                                <i class="bio-node b4"></i>
+                            </div>
+                            <div class="app-content">
+                                <span class="app-index">03 / Microscopic Pathways</span>
+                                <h3>生物医药分子互作与药物发现</h3>
+                                <p>用于分析蛋白质复合物、代谢通路或基因关联网络。超图适合表达多个基因或蛋白质协同参与复杂生物过程，并融合生物属性进行聚类。</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-6">
+                        <article class="app-card h-100">
+                            <div class="app-visual visual-traffic" aria-hidden="true">
+                                <span class="city-grid"></span>
+                                <i class="traffic-line t1"></i>
+                                <i class="traffic-line t2"></i>
+                                <i class="traffic-line t3"></i>
+                                <i class="traffic-node u1"></i>
+                                <i class="traffic-node u2"></i>
+                                <i class="traffic-node u3"></i>
+                                <i class="traffic-shield s1"></i>
+                                <i class="traffic-shield s2"></i>
+                            </div>
+                            <div class="app-content">
+                                <span class="app-index">04 / Minimalist Traffic Map</span>
+                                <h3>城市交通流聚类与路径规划</h3>
+                                <p>用于识别和预测城市道路交通模式。超图可以将完整公交线路或同一拥堵区域影响的多个路段视为超边，融合流量、车速等属性进行聚类分析。</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="text-center mt-5">
+                    <a class="services-link" href="results.html">查看结果 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- Workflow Overview-->
+        <section class="page-section home-process-section" id="about">
+            <div class="container">
+                <div class="text-center home-process-heading">
+                    <span class="summary-kicker">Project Workflow Overview</span>
+                    <h2 class="section-heading text-uppercase">项目流程概述</h2>
+                    <h3 class="section-subheading text-muted">从数据感知、聚类计算到白盒溯源与风险干预，形成一条清晰的端到端分析流程。</h3>
+                </div>
+                <ul class="timeline process-timeline">
+                    <li>
+                        <div class="timeline-image process-visual visual-perception">
+                            <span class="input-plane"></span>
+                            <span class="preprocess-prism">Pre</span>
+                            <i class="data-dot d1"></i>
+                            <i class="data-dot d2"></i>
+                            <i class="data-dot d3"></i>
+                            <i class="data-stream s1"></i>
+                            <i class="data-stream s2"></i>
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>01 / Data Perception</h4>
+                                <h4 class="subheading">多模态数据感知</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">数据收集与多维特征预处理，完成最初属性提取。</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image process-visual visual-engine">
+                            <span class="engine-core"></span>
+                            <i class="engine-node e1"></i>
+                            <i class="engine-node e2"></i>
+                            <i class="engine-node e3"></i>
+                            <i class="engine-flow f1"></i>
+                            <i class="engine-flow f2"></i>
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>02 / CAHC Clustering Engine</h4>
+                                <h4 class="subheading">CAHC 聚类计算引擎</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">端到端联合优化算法引擎，处理复杂高阶关系与属性对齐。</p></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="timeline-image process-visual visual-trace">
+                            <span class="trace-sheets"></span>
+                            <span class="magnifier"></span>
+                            <i class="trace-line t1"></i>
+                            <i class="trace-line t2"></i>
+                            <i class="trace-node r1"></i>
+                            <i class="trace-node r2"></i>
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>03 / White-box Traceability</h4>
+                                <h4 class="subheading">白盒可溯源分析</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">模型运行过程解释与错误溯源，定位关键风险特征。</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image process-visual visual-risk">
+                            <i class="risk-pillar low"></i>
+                            <i class="risk-pillar mid"></i>
+                            <i class="risk-pillar high"></i>
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>04 / Graded Intervention</h4>
+                                <h4 class="subheading">风险分级与干预机制</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">输出风险评级与具体分级预警，提供干预决策建议。</p></div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="text-center mt-5">
+                    <a class="services-link" href="workflow.html">查看详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- Contact-->
+        <section class="page-section" id="contact">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Contact Us</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+                <!-- * * * * * * * * * * * * * * *-->
+                <!-- * * SB Forms Contact Form * *-->
+                <!-- * * * * * * * * * * * * * * *-->
+                <!-- This form is pre-integrated with SB Forms.-->
+                <!-- To make this form functional, sign up at-->
+                <!-- https://startbootstrap.com/solution/contact-forms-->
+                <!-- to get an API token!-->
+                <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <!-- Name input-->
+                                <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                            </div>
+                            <div class="form-group">
+                                <!-- Email address input-->
+                                <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
+                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                            </div>
+                            <div class="form-group mb-md-0">
+                                <!-- Phone number input-->
+                                <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0">
+                                <!-- Message input-->
+                                <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
+                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Submit success message-->
+                    <!---->
+                    <!-- This is what your users will see when the form-->
+                    <!-- has successfully submitted-->
+                    <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center text-white mb-3">
+                            <div class="fw-bolder">Form submission successful!</div>
+                            To activate this form, sign up at
+                            <br />
+                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                        </div>
+                    </div>
+                    <!-- Submit error message-->
+                    <!---->
+                    <!-- This is what your users will see when there is-->
+                    <!-- an error submitting the form-->
+                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                    <!-- Submit Button-->
+                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>
+                </form>
+                <div class="row mt-5 g-3 justify-content-center">
+                    <div class="col-md-6 text-center">
+                        <a class="btn btn-outline-light text-uppercase" href="resources.html">项目资源</a>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer-section">
+                <div class="footer-container">
+                    <h3 class="footer-title">开源资源入口</h3>
+                    <div class="link-group">
+                        <a href="https://github.com/cllyw0618/-1" target="_blank" class="res-btn"><i class="fab fa-github"></i> GitHub 源码</a>
+                        <a href="resources.html" class="res-btn"><i class="fas fa-database"></i> 数据集获取</a>
+                    </div>
+
+                    <hr class="footer-divider" />
+
+                    <div class="acknowledgments">
+                        <p><strong>致谢：</strong> 特别感谢指导老师的悉心指导，以及中国计算机设计大赛组委会对本项目的大力支持。</p>
+                    </div>
+                </div>
+            </footer>
+</section>
+        <!-- Footer-->
+        <footer class="site-footer py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <h6>IntraHC</h6>
+                <p class="mb-0">Intra-hyperedge Contrastive Learning for End-to-End Attributed Hypergraph Clustering.</p>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>页面导航</h6>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="algorithm.html">算法方法</a></li>
+                    <li><a href="results.html">实验结果</a></li>
+                    <li><a href="workflow.html">技术流程</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>项目内容</h6>
+                <ul>
+                    <li><a href="resources.html">项目资源</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>联系与社交</h6>
+                <div class="d-flex gap-2 mb-2">
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p class="small mb-0">欢迎补充邮箱、GitHub、论文链接。</p>
+            </div>
+        </div>
+        <div class="footer-bottom mt-4 pt-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
+            <small>Copyright &copy; IntraHC 2026</small>
+            <div>
+                <a class="me-3" href="#!">Privacy Policy</a>
+                <a href="#!">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+        <script src="js/home-hero.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>实验结果 | IntraHC</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/custom-pages.css" rel="stylesheet" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand intrahc-brand" href="index.html"><span class="brand-mark"></span><span>IntraHC</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars ms-1"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
+                <li class="nav-item"><a class="nav-link" href="algorithm.html">算法方法</a></li>
+                <li class="nav-item"><a class="nav-link active" href="results.html">实验结果</a></li>
+                <li class="nav-item"><a class="nav-link" href="workflow.html">技术流程</a></li>
+                <li class="nav-item"><a class="nav-link" href="resources.html">项目资源</a></li>
+                <li class="nav-item nav-cta-item"><a class="nav-link nav-trial-btn" href="cluster.html">立即试用</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="results-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 results-hero-content">
+                <div class="results-hero-meta">
+                    <a class="back-link results-back-link" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
+                    <span class="results-hero-label">Experiment Results</span>
+                </div>
+                <h1>实验结果与可视化</h1>
+                <p>通过核心指标、对比实验、消融实验与嵌入空间可视化，呈现 IntraHC 在属性超图聚类任务中的稳定表现。</p>
+                <div class="results-hero-actions">
+                    <a class="summary-btn primary" href="#metrics">查看指标</a>
+                    <a class="summary-btn primary" href="#comparison">对比实验</a>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="results-visual" aria-hidden="true">
+                    <div class="result-radar">
+                        <div class="radar-grid outer"></div>
+                        <div class="radar-grid middle"></div>
+                        <div class="radar-grid inner"></div>
+                        <div class="radar-axis axis-one"></div>
+                        <div class="radar-axis axis-two"></div>
+                        <div class="radar-axis axis-three"></div>
+                        <div class="radar-score"></div>
+                        <div class="radar-vertex vertex-acc"><span>ACC</span></div>
+                        <div class="radar-vertex vertex-nmi"><span>NMI</span></div>
+                        <div class="radar-vertex vertex-ari"><span>ARI</span></div>
+                    </div>
+                    <div class="result-node node-one"></div>
+                    <div class="result-node node-two"></div>
+                    <div class="result-node node-three"></div>
+                    <div class="result-stack">
+                        <span>Performance Overview</span>
+                        <span>Cluster Quality</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="result-summary-bridge">
+    <div class="container">
+        <div class="summary-card">
+            <div class="summary-text">
+                <span class="summary-label">Experiment Overview</span>
+                <h2>实验结果总览</h2>
+                <p>IntraHC 在属性超图聚类任务中取得了稳定的实验表现。通过核心指标、对比实验、消融实验与嵌入空间可视化，可以直观展示模型在高阶关系建模场景下的有效性。</p>
+            </div>
+            <div class="summary-metrics" aria-label="实验结果核心指标">
+                <div class="summary-metric-item">
+                    <span>ACC</span>
+                    <strong>92.4%</strong>
+                </div>
+                <div class="summary-metric-item">
+                    <span>NMI</span>
+                    <strong>88.7%</strong>
+                </div>
+                <div class="summary-metric-item">
+                    <span>ARI</span>
+                    <strong>85.9%</strong>
+                </div>
+                <div class="summary-metric-item">
+                    <span>F1</span>
+                    <strong>90.1%</strong>
+                </div>
+            </div>
+            <div class="summary-actions">
+                <a class="summary-btn primary" href="#metrics">查看实验指标</a>
+                <a class="summary-btn outline" href="#comparison">查看对比实验</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="subpage-section results-showcase-section">
+    <div class="container">
+        <div class="text-center mb-5 results-heading">
+            <span class="results-kicker">Visual Evidence</span>
+            <h2 class="section-heading text-uppercase">成果展示</h2>
+            <h3 class="section-subheading text-muted">从指标、对比、消融和可视化四个角度呈现实验结论。</h3>
+        </div>
+        <div class="row g-4 results-showcase-grid">
+            <div class="col-md-6 col-lg-4">
+                <div class="result-showcase-card">
+                    <span class="result-showcase-index">01</span>
+                    <div class="result-showcase-icon"><i class="fas fa-chart-simple"></i></div>
+                    <h4>核心指标稳定</h4>
+                    <p>ACC、NMI、ARI 和 F1 均保持较高表现，说明 IntraHC 在属性超图聚类任务中具备稳定的整体判别能力。</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="result-showcase-card">
+                    <span class="result-showcase-index">02</span>
+                    <div class="result-showcase-icon"><i class="fas fa-code-compare"></i></div>
+                    <h4>对比实验优势</h4>
+                    <p>相较传统两阶段方法，端到端联合优化减少了表示学习与聚类目标之间的割裂，在稀疏场景更稳健。</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="result-showcase-card">
+                    <span class="result-showcase-index">03</span>
+                    <div class="result-showcase-icon"><i class="fas fa-layer-group"></i></div>
+                    <h4>消融验证有效</h4>
+                    <p>移除超边内对比损失后性能下降，验证高阶一致性目标对聚类边界和嵌入质量具有关键作用。</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="result-showcase-card">
+                    <span class="result-showcase-index">04</span>
+                    <div class="result-showcase-icon"><i class="fas fa-circle-nodes"></i></div>
+                    <h4>嵌入空间清晰</h4>
+                    <p>可视化结果呈现更紧凑的类内分布与更明确的类间边界，便于解释模型学习到的高阶结构。</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="result-showcase-card">
+                    <span class="result-showcase-index">05</span>
+                    <div class="result-showcase-icon"><i class="fas fa-gauge-high"></i></div>
+                    <h4>训练过程可控</h4>
+                    <p>指标变化趋势平稳，便于在实验过程中观察收敛状态，并及时定位数据或参数设置问题。</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="result-showcase-card">
+                    <span class="result-showcase-index">06</span>
+                    <div class="result-showcase-icon"><i class="fas fa-diagram-project"></i></div>
+                    <h4>结论可复现</h4>
+                    <p>实验内容按照数据、方法、指标、可视化组织，方便团队后续补充图表和复现实验记录。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="subpage-section bg-light" id="metrics">
+    <div class="container">
+        <div class="text-center mb-5 results-heading">
+            <span class="results-kicker">Metric Details</span>
+            <h2 class="section-heading text-uppercase">实验指标详情</h2>
+            <h3 class="section-subheading text-muted">关键指标用于衡量聚类准确性、一致性与类别划分质量。</h3>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="result-card result-metric-card text-center"><h6 class="text-muted">ACC</h6><h3 class="mb-0">92.4%</h3><p class="mb-0">整体聚类准确率</p></div>
+            </div>
+            <div class="col-md-3">
+                <div class="result-card result-metric-card text-center"><h6 class="text-muted">NMI</h6><h3 class="mb-0">88.7%</h3><p class="mb-0">标签互信息一致性</p></div>
+            </div>
+            <div class="col-md-3">
+                <div class="result-card result-metric-card text-center"><h6 class="text-muted">ARI</h6><h3 class="mb-0">85.9%</h3><p class="mb-0">调整兰德指数</p></div>
+            </div>
+            <div class="col-md-3">
+                <div class="result-card result-metric-card text-center"><h6 class="text-muted">F1</h6><h3 class="mb-0">90.1%</h3><p class="mb-0">综合分类质量</p></div>
+            </div>
+        </div>
+        <div class="row g-4 mt-1" id="comparison">
+            <div class="col-lg-6">
+                <div class="result-card">
+                    <h4>对比实验</h4>
+                    <p class="text-muted mb-0">与传统两阶段超图聚类基线相比，IntraHC 在稀疏结构场景保持更稳定性能，尤其在小样本类别上提升明显。</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="result-card">
+                    <h4>消融实验</h4>
+                    <p class="text-muted mb-0">移除超边内对比损失后，NMI/ARI 均出现下降，说明超边级一致性目标对聚类判别边界具有关键作用。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container text-center">
+        <h3 class="mb-3">查看完整流程设计</h3>
+        <a class="btn btn-primary text-uppercase" href="workflow.html">前往流程页</a>
+    </div>
+</section>
+
+<footer class="site-footer py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <h6>IntraHC</h6>
+                <p class="mb-0">Intra-hyperedge Contrastive Learning for End-to-End Attributed Hypergraph Clustering.</p>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>页面导航</h6>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="algorithm.html">算法方法</a></li>
+                    <li><a href="results.html">实验结果</a></li>
+                    <li><a href="workflow.html">技术流程</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>项目内容</h6>
+                <ul>
+                    <li><a href="resources.html">项目资源</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>联系与社交</h6>
+                <div class="d-flex gap-2 mb-2">
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p class="small mb-0">欢迎补充邮箱、GitHub、论文链接。</p>
+            </div>
+        </div>
+        <div class="footer-bottom mt-4 pt-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
+            <small>Copyright &copy; IntraHC 2026</small>
+            <div>
+                <a class="me-3" href="#!">Privacy Policy</a>
+                <a href="#!">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>

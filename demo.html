@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="IntraHC hypergraph clustering interactive demo" />
+        <title>立即试用 - 超图聚类可视化 | IntraHC</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/custom-pages.css" rel="stylesheet" />
+        <link href="css/cluster.css" rel="stylesheet" />
+    </head>
+    <body class="cluster-page">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand intrahc-brand" href="index.html"><span class="brand-mark"></span><span>IntraHC</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
+                        <li class="nav-item"><a class="nav-link" href="algorithm.html">算法方法</a></li>
+                        <li class="nav-item"><a class="nav-link" href="results.html">实验结果</a></li>
+                        <li class="nav-item"><a class="nav-link" href="workflow.html">技术流程</a></li>
+                        <li class="nav-item"><a class="nav-link" href="resources.html">项目资源</a></li>
+                        <li class="nav-item nav-cta-item"><a class="nav-link nav-trial-btn active" href="cluster.html">立即试用</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="cluster-shell">
+            <section class="cluster-hero">
+                <div class="cluster-copy">
+                    <p class="cluster-eyebrow">IntraHC Hypergraph Result View</p>
+                    <h1>超图聚类结果可视化</h1>
+                    <p>围绕节点、预测簇、真实标签和超边连接关系，交互式分析超边内部一致性、跨簇超边以及模型聚类困难区域。</p>
+                </div>
+                <div class="cluster-stats" aria-label="超图聚类状态">
+                    <div>
+                        <span id="clusterCount">--</span>
+                        <small>预测簇</small>
+                    </div>
+                    <div>
+                        <span id="nodeCount">--</span>
+                        <small>节点</small>
+                    </div>
+                    <div>
+                        <span id="hyperedgeCount">--</span>
+                        <small>超边</small>
+                    </div>
+                    <div>
+                        <span id="stageLabel">--</span>
+                        <small>数据集</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cluster-board" aria-label="瓒呭浘鑱氱被鐢诲竷">
+                <div class="cluster-visual-stage">
+                    <div class="cluster-canvas-head">
+                        <div>
+                            <span>Hypergraph View</span>
+                            <strong>鐐瑰嚮鏌ョ湅璇︽儏锛屾嫋鎷借妭鐐瑰彲鎵嬪姩璋冩暣甯冨眬</strong>
+                        </div>
+                        <div class="cluster-quality-legend">
+                            <span><i class="legend-high"></i>楂樼函搴?/span>
+                            <span><i class="legend-mid"></i>涓瓑</span>
+                            <span><i class="legend-low"></i>浣庣函搴?璺ㄧ皣</span>
+                        </div>
+                    </div>
+                    <canvas id="clusterCanvas"></canvas>
+                    <div class="cluster-tooltip" id="clusterTooltip" role="status" aria-live="polite"></div>
+                    <div class="cluster-toolbar">
+                        <button class="btn btn-primary btn-sm text-uppercase" id="relayoutView" type="button">閲嶆帓甯冨眬</button>
+                        <button class="btn btn-outline-dark btn-sm text-uppercase" id="resetFocus" type="button">閲嶇疆鑱氱劍</button>
+                        <button class="btn btn-outline-dark btn-sm text-uppercase" id="exportView" type="button">瀵煎嚭鍥剧墖</button>
+                    </div>
+                </div>
+
+                <aside class="cluster-data-panel" aria-label="鍙鍖栨帶鍒堕潰鏉?>
+                    <div class="panel-title">
+                        <span>Analysis Panel</span>
+                        <strong>浜や簰鍒嗘瀽</strong>
+                    </div>
+
+                    <section class="panel-section panel-section-compact">
+                        <h3>鏁版嵁涓庤鍥?/h3>
+                        <label>
+                            鏁版嵁闆?
+                            <select id="datasetSelect"></select>
+                        </label>
+                        <button class="mini-action" id="surveyView" type="button">闂嵎鏁版嵁瑙嗗浘</button>
+                        <label>
+                            瑙嗗浘妯″紡
+                            <select id="colorMode">
+                                <option value="cluster">棰勬祴绨囩潃鑹?/option>
+                                <option value="label">鐪熷疄鏍囩鐫€鑹?/option>
+                                <option value="purity">瓒呰竟绾害瑙嗗浘</option>
+                            </select>
+                        </label>
+                        <label>
+                            瓒呰竟绛涢€?
+                            <select id="edgeFilter">
+                                <option value="all">鍏ㄩ儴瓒呰竟</option>
+                                <option value="high">楂樼函搴﹁秴杈?/option>
+                                <option value="medium">涓瓑绾害瓒呰竟</option>
+                                <option value="low">浣庣函搴﹁秴杈?/option>
+                                <option value="mixed">璺ㄧ皣瓒呰竟</option>
+                            </select>
+                        </label>
+                        <label class="cluster-check">
+                            <input id="showHyperedges" type="checkbox" checked />
+                            鏄剧ず瓒呰竟
+                        </label>
+                        <div class="search-row">
+                            <input id="nodeSearch" type="number" min="0" placeholder="杈撳叆鑺傜偣 ID" />
+                            <button class="mini-action" id="searchNode" type="button">瀹氫綅</button>
+                        </div>
+                        <div class="analysis-chips" aria-label="蹇€熷垎鏋愬叆鍙?>
+                            <button type="button" data-action="mixed">璺ㄧ皣瓒呰竟</button>
+                            <button type="button" data-action="low">浣庣函搴﹁秴杈?/button>
+                            <button type="button" data-action="largest">鏈€澶ц妯¤秴杈?/button>
+                        </div>
+                    </section>
+
+                    <section class="selection-card" id="selectionPanel">
+                        <h3>褰撳墠閫夋嫨</h3>
+                        <p>鐐瑰嚮鐢诲竷涓殑鑺傜偣銆佽秴杈逛腑蹇冩垨绨囨爣绛撅紝鏌ョ湅缁撴瀯璇︽儏銆?/p>
+                    </section>
+
+                    <p id="dataStatus">姝ｅ湪鍔犺浇瓒呭浘鑱氱被缁撴灉...</p>
+                </aside>
+
+                <section class="cluster-analysis-strip" aria-label="瓒呭浘鍒嗘瀽缁撴灉">
+                    <section class="metric-card">
+                        <h3>鎸囨爣姒傝</h3>
+                        <div class="cluster-metrics" id="metricPanel"></div>
+                        <div class="cluster-metrics cluster-hyperedge-metrics" id="hyperedgePanel"></div>
+                    </section>
+
+                    <section class="recommend-card">
+                        <h3>鐩稿叧鑺傜偣鎺ㄨ崘</h3>
+                        <div id="recommendationPanel" class="recommendation-panel">
+                            <p>閫夋嫨涓€涓妭鐐瑰悗锛岀郴缁熶細鍩轰簬鍚岀皣鍏崇郴銆佸叡浜秴杈瑰拰鏍囩涓€鑷存€ф帹鑽愮浉鍏宠妭鐐广€?/p>
+                        </div>
+                    </section>
+
+                    <section class="reason-card">
+                        <h3>鎺ㄨ崘渚濇嵁</h3>
+                        <div class="reason-grid">
+                            <div>
+                                <strong>鍚岀皣鍏崇郴</strong>
+                                <span>浼樺厛閫夋嫨涓庡綋鍓嶈妭鐐瑰鍦ㄥ悓涓€棰勬祴绨囩殑鑺傜偣銆?/span>
+                            </div>
+                            <div>
+                                <strong>鍏变韩瓒呰竟</strong>
+                                <span>缁熻涓や釜鑺傜偣鍏卞悓鍙備笌鐨勮秴杈规暟閲忋€?/span>
+                            </div>
+                            <div>
+                                <strong>鏍囩涓€鑷?/strong>
+                                <span>鑻ョ湡瀹炴爣绛句竴鑷达紝璇存槑鑱氱被缁撴灉鏇村鏄撹В閲娿€?/span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="matrix-card">
+                        <h3>绨?鏍囩鏋勬垚</h3>
+                        <div id="clusterMatrix" class="cluster-matrix"></div>
+                    </section>
+
+                    <section class="edge-list-card">
+                        <h3>浣庣函搴﹁秴杈?Top 10</h3>
+                        <div id="topEdgeList" class="top-edge-list"></div>
+                    </section>
+                </section>
+            </section>
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="data/cluster/cluster-data.js"></script>
+        <script src="js/cluster-visualization.js"></script>
+    </body>
+</html>

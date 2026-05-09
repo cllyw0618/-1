@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>技术流程 | IntraHC</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/custom-pages.css" rel="stylesheet" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand intrahc-brand" href="index.html"><span class="brand-mark"></span><span>IntraHC</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars ms-1"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
+                <li class="nav-item"><a class="nav-link" href="algorithm.html">算法方法</a></li>
+                <li class="nav-item"><a class="nav-link" href="results.html">实验结果</a></li>
+                <li class="nav-item"><a class="nav-link active" href="workflow.html">技术流程</a></li>
+                <li class="nav-item"><a class="nav-link" href="resources.html">项目资源</a></li>
+                <li class="nav-item nav-cta-item"><a class="nav-link nav-trial-btn" href="cluster.html">立即试用</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="page-hero workflow-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 workflow-hero-copy">
+                <a class="back-link mb-3" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
+                <span class="workflow-kicker">Technical Workflow</span>
+                <h1>技术路线与实施流程</h1>
+                <p>从属性超图构建、超边内对比学习到聚类评估，形成一条清晰、可复现、可展示的端到端研究流程。</p>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="workflow-visual" aria-hidden="true">
+                    <div class="pipeline-flow flow-one"></div>
+                    <div class="pipeline-flow flow-two"></div>
+
+                    <div class="pipeline-stage stage-input">
+                        <span class="pipeline-label">Data Input &amp; Hypergraph Construction</span>
+                        <div class="stage-glass">
+                            <i class="pipeline-node n1"></i>
+                            <i class="pipeline-node n2"></i>
+                            <i class="pipeline-node n3"></i>
+                            <i class="pipeline-node n4"></i>
+                            <i class="pipeline-edge e1"></i>
+                            <i class="pipeline-edge e2"></i>
+                            <i class="pipeline-edge e3"></i>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-stage stage-core">
+                        <span class="pipeline-label">Intra-edge Contrastive Learning</span>
+                        <div class="stage-glass">
+                            <i class="contrast-plane plane-a"></i>
+                            <i class="contrast-plane plane-b"></i>
+                            <i class="contrast-node c1"></i>
+                            <i class="contrast-node c2"></i>
+                            <i class="contrast-node c3"></i>
+                            <i class="contrast-node c4"></i>
+                            <i class="contrast-link cl1"></i>
+                            <i class="contrast-link cl2"></i>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-stage stage-output">
+                        <span class="pipeline-label">Clustering Evaluation</span>
+                        <div class="stage-glass">
+                            <i class="cluster-dot d1"></i>
+                            <i class="cluster-dot d2"></i>
+                            <i class="cluster-dot d3"></i>
+                            <i class="cluster-dot d4"></i>
+                            <i class="cluster-dot d5"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="subpage-section workflow-section">
+    <div class="container">
+        <div class="text-center mb-5 workflow-heading">
+            <span class="workflow-kicker">Process Overview</span>
+            <h2 class="section-heading text-uppercase">流程总览</h2>
+            <h3 class="section-subheading text-muted">围绕 IntraHC 的核心模块，将研究步骤拆解为四个连续阶段。</h3>
+        </div>
+        <div class="row g-4 workflow-grid">
+            <div class="col-md-6 col-lg-3">
+                <div class="step-card">
+                    <span class="step-index">01</span>
+                    <div class="workflow-icon"><i class="fas fa-database"></i></div>
+                    <h5>数据整理</h5>
+                    <p class="text-muted mb-0">统一节点属性、标签信息和关系结构，为后续超图建模提供干净输入。</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="step-card">
+                    <span class="step-index">02</span>
+                    <div class="workflow-icon"><i class="fas fa-project-diagram"></i></div>
+                    <h5>超图构建</h5>
+                    <p class="text-muted mb-0">根据相似性与高阶关联生成超边，使模型能够捕获普通图难以表达的群体关系。</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="step-card">
+                    <span class="step-index">03</span>
+                    <div class="workflow-icon"><i class="fas fa-layer-group"></i></div>
+                    <h5>表征学习</h5>
+                    <p class="text-muted mb-0">通过超边内对比学习融合节点属性与拓扑结构，学习更稳定的嵌入表示。</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="step-card">
+                    <span class="step-index">04</span>
+                    <div class="workflow-icon"><i class="fas fa-chart-line"></i></div>
+                    <h5>聚类评估</h5>
+                    <p class="text-muted mb-0">结合 ACC、NMI、ARI、F1 与可视化结果，验证模型的聚类质量和鲁棒性。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="subpage-section workflow-detail-section">
+    <div class="container">
+        <div class="text-center mb-5 workflow-heading">
+            <span class="workflow-kicker">Implementation Path</span>
+            <h2 class="section-heading text-uppercase">实施路径</h2>
+            <h3 class="section-subheading text-muted">把实验流程拆成可协作、可检查、可迭代的三个任务层。</h3>
+        </div>
+        <div class="row g-4 workflow-detail-grid">
+            <div class="col-lg-4">
+                <div class="step-card"><span class="step-index">A</span><h4>数据准备</h4><p class="text-muted mb-0">整理节点属性、关系结构与数据清洗策略，为超图构建提供稳定输入。</p></div>
+            </div>
+            <div class="col-lg-4">
+                <div class="step-card"><span class="step-index">B</span><h4>模型训练</h4><p class="text-muted mb-0">执行端到端训练，联合优化表示学习与聚类目标，并持续监控核心指标。</p></div>
+            </div>
+            <div class="col-lg-4">
+                <div class="step-card"><span class="step-index">C</span><h4>结果评估</h4><p class="text-muted mb-0">通过对比实验、消融实验与可视化复盘模型行为，形成迭代依据。</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <h6>IntraHC</h6>
+                <p class="mb-0">Intra-hyperedge Contrastive Learning for End-to-End Attributed Hypergraph Clustering.</p>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>页面导航</h6>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="algorithm.html">算法方法</a></li>
+                    <li><a href="results.html">实验结果</a></li>
+                    <li><a href="workflow.html">技术流程</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>项目内容</h6>
+                <ul>
+                    <li><a href="resources.html">项目资源</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h6>联系与社交</h6>
+                <div class="d-flex gap-2 mb-2">
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p class="small mb-0">欢迎补充邮箱、GitHub、论文链接。</p>
+            </div>
+        </div>
+        <div class="footer-bottom mt-4 pt-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
+            <small>Copyright &copy; IntraHC 2026</small>
+            <div>
+                <a class="me-3" href="#!">Privacy Policy</a>
+                <a href="#!">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>
