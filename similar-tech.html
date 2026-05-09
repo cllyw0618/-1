@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="IntraHC 同类算法、主流算法与应用竞品对比分析"
+    />
+    <title>同类技术对比 | IntraHC</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/custom-pages.css" rel="stylesheet" />
+  </head>
+  <body id="page-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand intrahc-brand" href="index.html"><span class="brand-mark"></span><span>IntraHC</span></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          Menu <i class="fas fa-bars ms-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="algorithm.html">算法方法</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="results.html">实验结果</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="similar-tech.html">同类技术</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resources.html">项目资源</a>
+            </li>
+            <li class="nav-item nav-cta-item">
+              <a class="nav-link nav-trial-btn" href="cluster.html">立即试用</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="page-hero similar-hero">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7 similar-hero-copy">
+            <a class="back-link mb-4" href="index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
+            <span class="similar-kicker">Algorithm & Application Comparison</span>
+            <h1>高阶关系数据智能聚类系统对比分析</h1>
+            <p>
+              相比传统聚类方法，我们更适合复杂关系数据；相比同类超图方法，我们进一步引入超边内对比与
+              ncut-like 聚类指导；相比现有应用平台，我们不仅能检索与展示，更能发现结构与群组。
+            </p>
+            <div class="similar-hero-tags" aria-label="核心能力标签">
+              <span>高阶关系建模</span>
+              <span>局部判别增强</span>
+              <span>全局可聚类性优化</span>
+            </div>
+            <div class="similar-hero-actions">
+              <a class="summary-btn primary" href="#mainstream">查看算法对比</a>
+              <a class="summary-btn outline" href="#scenarios">查看应用场景</a>
+            </div>
+          </div>
+          <div class="col-lg-5 d-none d-lg-block">
+            <div class="similar-visual" aria-hidden="true">
+              <div class="similar-ring ring-a"></div>
+              <div class="similar-ring ring-b"></div>
+              <div class="similar-core">IntraHC</div>
+              <span class="similar-node node-a">K-Means</span>
+              <span class="similar-node node-b">TriCL</span>
+              <span class="similar-node node-c">SE-HSSL</span>
+              <span class="similar-node node-d">Louvain</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="subpage-section similar-section" id="mainstream">
+        <div class="container">
+          <div class="text-center mb-5 similar-heading">
+            <span class="similar-kicker">Mainstream Algorithms</span>
+            <h2 class="section-heading text-uppercase">与当前主流常用算法的对比</h2>
+            <h3 class="section-subheading text-muted">
+              现有方法大多基于点特征、pairwise 图结构或单一相似度关系；IntraHC
+              面向高阶关系数据进行联合建模与聚类优化。
+            </h3>
+          </div>
+          <div class="row g-4 similar-card-grid">
+            <div class="col-md-6 col-xl">
+              <article class="similar-card h-100">
+                <span class="tech-tag">K-Means</span>
+                <h4>基础样本聚类</h4>
+                <dl>
+                  <dt>优点</dt>
+                  <dd>实现简单、运行高效，适合作为低成本聚类基线。</dd>
+                  <dt class="pain-point-label">不足</dt>
+                  <dd>只能基于点特征划分，无法利用多节点共同参与的高阶关系。</dd>
+                  <dt>IntraHC 优势</dt>
+                  <dd>能够建模群体关系，不再局限于欧氏空间中的单点距离。</dd>
+                </dl>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl">
+              <article class="similar-card h-100">
+                <span class="tech-tag">Spectral Clustering</span>
+                <h4>相似图划分</h4>
+                <dl>
+                  <dt>优点</dt>
+                  <dd>能利用相似度图结构，适合中小规模图划分任务。</dd>
+                  <dt class="pain-point-label">不足</dt>
+                  <dd>通常处理 pairwise 图，难以完整表达超边语义。</dd>
+                  <dt>IntraHC 优势</dt>
+                  <dd>从普通图提升到超图，保留更完整的群体关联信息。</dd>
+                </dl>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl">
+              <article class="similar-card h-100">
+                <span class="tech-tag">GCN / GAT + K-Means</span>
+                <h4>图表示后聚类</h4>
+                <dl>
+                  <dt>优点</dt>
+                  <dd>表示学习能力强，可融合节点属性与局部图结构。</dd>
+                  <dt class="pain-point-label">不足</dt>
+                  <dd>聚类通常是后处理，表示目标与聚类目标容易割裂。</dd>
+                  <dt>IntraHC 优势</dt>
+                  <dd>聚类模块直接纳入训练，形成端到端优化闭环。</dd>
+                </dl>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl">
+              <article class="similar-card h-100">
+                <span class="tech-tag">Embedding Retrieval</span>
+                <h4>语义相似检索</h4>
+                <dl>
+                  <dt>优点</dt>
+                  <dd>工业部署成熟，适合论文、文本和推荐场景中的近邻查找。</dd>
+                  <dt class="pain-point-label">不足</dt>
+                  <dd>更偏 pairwise 检索，难以发现稳定的群组结构。</dd>
+                  <dt>IntraHC 优势</dt>
+                  <dd>不只找相似对象，还能发现相关的一群和潜在结构簇。</dd>
+                </dl>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl">
+              <article class="similar-card h-100">
+                <span class="tech-tag">Louvain / Leiden</span>
+                <h4>网络社区发现</h4>
+                <dl>
+                  <dt>优点</dt>
+                  <dd>速度快，是普通网络划分与社区发现中的常用方法。</dd>
+                  <dt class="pain-point-label">不足</dt>
+                  <dd>主要依赖图拓扑，对属性与高阶关系支持有限。</dd>
+                  <dt>IntraHC 优势</dt>
+                  <dd>兼顾节点属性、高阶结构与聚类优化，适合复杂关系数据。</dd>
+                </dl>
+              </article>
+            </div>
+          </div>
+
+          <div class="results-table-wrap similar-compare-wrap mt-5">
+            <table class="results-compare-table similar-compare-table">
+              <thead>
+                <tr>
+                  <th>算法名称</th>
+                  <th>利用属性</th>
+                  <th>高阶关系</th>
+                  <th>端到端聚类</th>
+                  <th>结构发现</th>
+                  <th>交互展示</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>K-Means</td>
+                  <td>支持</td>
+                  <td>不支持</td>
+                  <td>不支持</td>
+                  <td>较弱</td>
+                  <td>一般</td>
+                </tr>
+                <tr>
+                  <td>谱聚类</td>
+                  <td>间接支持</td>
+                  <td>有限支持</td>
+                  <td>不支持</td>
+                  <td>较强</td>
+                  <td>一般</td>
+                </tr>
+                <tr>
+                  <td>GCN / GAT + K-Means</td>
+                  <td>支持</td>
+                  <td>有限支持</td>
+                  <td>不支持</td>
+                  <td>较强</td>
+                  <td>一般</td>
+                </tr>
+                <tr>
+                  <td>Louvain / Leiden</td>
+                  <td>弱支持</td>
+                  <td>不支持</td>
+                  <td>不支持</td>
+                  <td>较强</td>
+                  <td>一般</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>IntraHC（本系统）</td>
+                  <td>支持</td>
+                  <td>支持</td>
+                  <td>支持</td>
+                  <td>强</td>
+                  <td>支持</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="similar-highlight mt-4">
+            现有主流方法多聚焦于点特征聚类、普通图聚类或相似检索；本系统进一步实现高阶关系建模、局部判别增强与全局划分优化，更适合复杂关系数据的结构发现与智能分析。
+          </div>
+        </div>
+      </section>
+
+      <section class="subpage-section similar-section bg-light" id="academic">
+        <div class="container">
+          <div class="text-center mb-5 similar-heading">
+            <span class="similar-kicker">Academic Baselines</span>
+            <h2 class="section-heading text-uppercase">与同类超图聚类算法的对比</h2>
+            <h3 class="section-subheading text-muted">
+              同类研究通常在表示学习或聚类指导某一侧更强；IntraHC
+              同时关注超边内部判别性与全局可聚类性。
+            </h3>
+          </div>
+          <div class="row g-4 similar-card-grid">
+            <div class="col-md-6 col-xl-4">
+              <article class="similar-card h-100">
+                <span class="tech-tag">TriCL</span>
+                <h4>对比学习强基线</h4>
+                <p class="text-muted mb-0">
+                  通过节点、超边、图三个层次的对比学习增强表示，偏向表示学习后聚类，缺少聚类结果的直接训练约束。
+                </p>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <article class="similar-card h-100">
+                <span class="tech-tag">SE-HSSL</span>
+                <h4>自监督超图表示学习</h4>
+                <p class="text-muted mb-0">
+                  表征能力和训练效率较好，但本质上仍偏两阶段流程，最终聚类效果依赖后处理步骤。
+                </p>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <article class="similar-card h-100">
+                <span class="tech-tag">CAHC</span>
+                <h4>端到端属性超图聚类</h4>
+                <p class="text-muted mb-0">
+                  关注表示与聚类的联合优化，为端到端属性超图聚类提供基础框架。
+                </p>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <article class="similar-card h-100">
+                <span class="tech-tag">HOPER</span>
+                <h4>高阶局部结构保持</h4>
+                <p class="text-muted mb-0">
+                  强调跨视图对比、超边内对比与高阶局部结构保持，对局部语义保留有优势。
+                </p>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <article class="similar-card h-100">
+                <span class="tech-tag">LNAHC</span>
+                <h4>划分级聚类指导</h4>
+                <p class="text-muted mb-0">
+                  引入 ncut / cut-like 聚类指导，强调从划分质量层面优化隐空间。
+                </p>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <article class="similar-card h-100">
+                <span class="tech-tag">AHRC</span>
+                <h4>结构属性融合路线</h4>
+                <p class="text-muted mb-0">
+                  结合结构与属性信息，常与 random walk 或 modularity 思路相关，更偏传统结构优化。
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="results-table-wrap similar-compare-wrap mt-5">
+            <table class="results-compare-table similar-compare-table wide">
+              <thead>
+                <tr>
+                  <th>方法</th>
+                  <th>高阶关系建模</th>
+                  <th>对比学习</th>
+                  <th>超边内机制</th>
+                  <th>端到端聚类</th>
+                  <th>划分级指导</th>
+                  <th>差异化优势</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>TriCL</td>
+                  <td>支持</td>
+                  <td>支持</td>
+                  <td>部分支持</td>
+                  <td>较弱</td>
+                  <td>不突出</td>
+                  <td>强表示学习基线，但聚类目标不够直接。</td>
+                </tr>
+                <tr>
+                  <td>SE-HSSL</td>
+                  <td>支持</td>
+                  <td>支持</td>
+                  <td>不突出</td>
+                  <td>较弱</td>
+                  <td>不突出</td>
+                  <td>自监督表征能力强，仍依赖后处理聚类。</td>
+                </tr>
+                <tr>
+                  <td>CAHC</td>
+                  <td>支持</td>
+                  <td>有限支持</td>
+                  <td>不突出</td>
+                  <td>支持</td>
+                  <td>部分支持</td>
+                  <td>提供端到端属性超图聚类基础。</td>
+                </tr>
+                <tr>
+                  <td>HOPER / LNAHC / AHRC</td>
+                  <td>支持</td>
+                  <td>部分支持</td>
+                  <td>部分支持</td>
+                  <td>部分支持</td>
+                  <td>部分支持</td>
+                  <td>分别强化局部结构、划分目标或结构属性融合。</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>IntraHC（本系统）</td>
+                  <td>支持</td>
+                  <td>支持</td>
+                  <td>支持</td>
+                  <td>支持</td>
+                  <td>支持</td>
+                  <td>
+                    支持超图高阶建模、带属性的超边内对比学习、ncut-like
+                    聚类指导与端到端优化，同时具备交互式系统展示能力。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="subpage-section similar-section" id="products">
+        <div class="container">
+          <div class="text-center mb-5 similar-heading">
+            <span class="similar-kicker">Application Competitors</span>
+            <h2 class="section-heading text-uppercase">与现有应用型产品的对比</h2>
+            <h3 class="section-subheading text-muted">
+              现有平台多偏检索、推荐或网络浏览；本系统更强调高阶关系数据中的聚类发现、结构分析与可解释展示。
+            </h3>
+          </div>
+          <div class="row g-4">
+            <div class="col-lg-4">
+              <article class="similar-product-card h-100">
+                <span class="competitor-index">01</span>
+                <h4>论文相似发现平台</h4>
+                <p>常用于相关论文发现、引用网络探索和相似研究推荐，更偏检索与推荐。</p>
+                <strong>我们的差异化</strong>
+                <p>不仅做相似检索，还能基于高阶关系进行主题聚类与结构发现。</p>
+              </article>
+            </div>
+            <div class="col-lg-4">
+              <article class="similar-product-card h-100">
+                <span class="competitor-index">02</span>
+                <h4>科研关系探索平台</h4>
+                <p>常用于作者关系、引用扩展与研究脉络展示，更偏文献网络浏览。</p>
+                <strong>我们的差异化</strong>
+                <p>不仅展示关系，还可自动发现合作群体与潜在结构簇。</p>
+              </article>
+            </div>
+            <div class="col-lg-4">
+              <article class="similar-product-card h-100">
+                <span class="competitor-index">03</span>
+                <h4>内容 / 话题聚类平台</h4>
+                <p>常用于文本归类、主题发现与舆情聚合，多基于文本向量或主题模型。</p>
+                <strong>我们的差异化</strong>
+                <p>可同时利用样本属性、关系结构和群体结构，而不是只看文本相似度。</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subpage-section similar-section bg-light" id="advantages">
+        <div class="container">
+          <div class="text-center mb-5 similar-heading">
+            <span class="similar-kicker">Our Advantages</span>
+            <h2 class="section-heading text-uppercase">我们的创新性与实用性</h2>
+          </div>
+          <div class="row g-4 results-showcase-grid">
+            <div class="col-md-6 col-lg-4">
+              <div class="result-showcase-card">
+                <span class="result-showcase-index">01</span>
+                <div class="result-showcase-icon">
+                  <i class="fas fa-diagram-project"></i>
+                </div>
+                <h4>高阶关系建模</h4>
+                <p>
+                  传统方法多基于点特征或普通图关系，本系统采用超图结构建模多节点共同参与的高阶关系，更适合复杂样本关联场景。
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="result-showcase-card">
+                <span class="result-showcase-index">02</span>
+                <div class="result-showcase-icon">
+                  <i class="fas fa-layer-group"></i>
+                </div>
+                <h4>超边内对比学习</h4>
+                <p>
+                  在高阶关系传播过程中显式抑制过度同质化，增强节点局部判别性，让同一超边中的不同语义边界更清晰。
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="result-showcase-card">
+                <span class="result-showcase-index">03</span>
+                <div class="result-showcase-icon">
+                  <i class="fas fa-bullseye"></i>
+                </div>
+                <h4>ncut-like 聚类指导</h4>
+                <p>
+                  从簇划分结构和超图关系本身出发，引入 ncut-like 聚类指导，使模型直接学习低割边、高内聚的结构。
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="similar-highlight large mt-5">
+            本系统的优势不只是“学到更好的表示”，而是同时实现“局部更可分、整体更可聚类、结果更可展示”。
+          </div>
+        </div>
+      </section>
+
+      <section class="subpage-section app-section similar-scenario-section" id="scenarios">
+        <div class="container">
+          <div class="text-center app-heading">
+            <span class="similar-kicker">Application Scenarios</span>
+            <h2 class="section-heading text-uppercase">应用场景展示</h2>
+            <h3 class="section-subheading text-muted">
+              将高阶关系建模能力落到真实数据与前端交互中，覆盖论文、合作、新闻话题、小型属性网络与多模态关系网络。
+            </h3>
+          </div>
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <article class="app-card h-100">
+                <div class="app-visual visual-archives" aria-hidden="true">
+                  <span class="glass-plane plane-a"></span>
+                  <span class="glass-plane plane-b"></span>
+                  <i class="app-node n1"></i>
+                  <i class="app-node n2"></i>
+                  <i class="app-node n3"></i>
+                  <i class="app-node n4"></i>
+                  <i class="energy-line l1"></i>
+                  <i class="energy-line l2"></i>
+                  <i class="energy-line l3"></i>
+                </div>
+                <div class="app-content">
+                  <span class="app-index">01 / Cora · CiteSeer · PubMed</span>
+                  <h3>学术知识网络</h3>
+                  <p>
+                    面向相关论文发现、共引关系挖掘与学术主题聚类，适合包装成论文群组发现、学术主题分析和相关文献推荐。
+                  </p>
+                  <a class="scenario-link" href="cluster.html">进入分析</a>
+                </div>
+              </article>
+            </div>
+            <div class="col-lg-6">
+              <article class="app-card h-100">
+                <div class="app-visual visual-session" aria-hidden="true">
+                  <span class="session-halo"></span>
+                  <i class="geo-block cube-a"></i>
+                  <i class="geo-block cube-b"></i>
+                  <i class="geo-block cone-a"></i>
+                  <i class="geo-block prism-a"></i>
+                </div>
+                <div class="app-content">
+                  <span class="app-index">02 / DBLP</span>
+                  <h3>科研合作网络</h3>
+                  <p>
+                    面向科研合作群体发现、共作者挖掘与潜在合作推荐，适合展示作者关系、高阶合作结构与研究群体发现。
+                  </p>
+                  <a class="scenario-link" href="cluster.html">进入分析</a>
+                </div>
+              </article>
+            </div>
+            <div class="col-lg-6">
+              <article class="app-card h-100">
+                <div class="app-visual visual-bio" aria-hidden="true">
+                  <span class="slide-plane"></span>
+                  <i class="bio-path p1"></i>
+                  <i class="bio-node b1"></i>
+                  <i class="bio-node b2"></i>
+                  <i class="bio-node b3"></i>
+                  <i class="bio-node b4"></i>
+                </div>
+                <div class="app-content">
+                  <span class="app-index">03 / 20newsW100</span>
+                  <h3>新闻话题网络</h3>
+                  <p>
+                    面向新闻话题聚合、帖子自动归类与舆情主题发现，适合展示文本主题簇发现与复杂话题结构组织。
+                  </p>
+                  <a class="scenario-link" href="cluster.html">进入分析</a>
+                </div>
+              </article>
+            </div>
+            <div class="col-lg-6">
+              <article class="app-card h-100">
+                <div class="app-visual visual-traffic" aria-hidden="true">
+                  <span class="city-grid"></span>
+                  <i class="traffic-line t1"></i>
+                  <i class="traffic-line t2"></i>
+                  <i class="traffic-line t3"></i>
+                  <i class="traffic-node u1"></i>
+                  <i class="traffic-node u2"></i>
+                  <i class="traffic-node u3"></i>
+                  <i class="traffic-shield s1"></i>
+                  <i class="traffic-shield s2"></i>
+                </div>
+                <div class="app-content">
+                  <span class="app-index">04 / Zoo · Mushroom · NTU2012</span>
+                  <h3>属性与多模态关系网络</h3>
+                  <p>
+                    支持小规模属性聚类、教学演示、样本组别发现和关系结构探索，适合展示系统在复杂关系型数据上的迁移能力。
+                  </p>
+                  <a class="scenario-link" href="cluster.html">进入分析</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subpage-section similar-final-cta" id="summary">
+        <div class="container">
+          <div class="summary-card">
+            <div class="summary-text">
+              <span class="summary-label">Unified Framework</span>
+              <h2>面向高阶关系数据的统一聚类分析框架</h2>
+              <p>
+                本系统不仅能够在算法层面实现超图建模、超边内对比学习与聚类指导的一体化优化，也能够在应用层面映射到学术知识发现、科研合作分析、话题聚合与关系结构探索等多种场景。
+              </p>
+            </div>
+            <div class="summary-actions">
+              <a class="summary-btn primary" href="#page-top">返回顶部</a>
+              <a class="summary-btn outline" href="algorithm.html">查看方法说明</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer py-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <h6>IntraHC</h6>
+            <p class="mb-0">
+              Intra-hyperedge Contrastive Learning for End-to-End Attributed
+              Hypergraph Clustering.
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <h6>页面导航</h6>
+            <ul>
+              <li><a href="index.html">首页</a></li>
+              <li><a href="algorithm.html">算法方法</a></li>
+              <li><a href="results.html">实验结果</a></li>
+              <li><a href="similar-tech.html">同类技术</a></li>
+              <li><a href="resources.html">项目资源</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <h6>页面内容</h6>
+            <ul>
+              <li><a href="#mainstream">主流算法对比</a></li>
+              <li><a href="#academic">学术同类算法</a></li>
+              <li><a href="#products">应用竞品对比</a></li>
+              <li><a href="#scenarios">应用场景展示</a></li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="footer-bottom mt-4 pt-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2"
+        >
+          <small>Copyright &copy; IntraHC 2026</small>
+          <div>
+            <a class="me-3" href="#!">Privacy Policy</a>
+            <a href="#!">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
