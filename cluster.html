@@ -26,7 +26,7 @@
                         <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
                         <li class="nav-item"><a class="nav-link" href="algorithm.html">算法方法</a></li>
                         <li class="nav-item"><a class="nav-link" href="results.html">实验结果</a></li>
-                        <li class="nav-item"><a class="nav-link" href="similar-tech.html">同类技术</a></li>
+                        <li class="nav-item"><a class="nav-link" href="workflow.html">技术流程</a></li>
                         <li class="nav-item"><a class="nav-link" href="resources.html">项目资源</a></li>
                         <li class="nav-item nav-cta-item"><a class="nav-link nav-trial-btn active" href="cluster.html">立即试用</a></li>
                     </ul>
@@ -34,270 +34,197 @@
             </div>
         </nav>
 
-        <main class="cluster-shell">
-            <section class="hero-section" aria-label="产品首页">
+        <main class="cluster-shell simplified-trial">
+            <section class="hero-section simple-hero" aria-label="产品首页">
                 <div class="hero-background" aria-hidden="true"></div>
                 <div class="hero-left">
-                    <p class="hero-eyebrow">IntraHC 应用化试用平台</p>
-                    <h1>高阶关系数据的智能聚类分析平台</h1>
-                    <p class="hero-subtitle">面向论文知识网络、科研合作网络、新闻话题网络等复杂关系场景，IntraHC 能够从属性信息与高阶超图结构中自动发现潜在群体、关联对象与边界样本。</p>
-                    <p class="hero-desc">本页面读取离线训练后的聚类结果，不展示在线训练过程。系统以匿名节点编号进行交互展示，在保护数据合规性的同时，呈现模型对复杂高阶关系的组织、划分与解释能力。</p>
-                    <p class="hero-rule-note">依据大赛规则，这里不使用真实标签。</p>
+                    <p class="hero-eyebrow">IntraHC 交互式结果解释</p>
+                    <h1>面向高阶关系数据的聚类结果展示</h1>
+                    <p class="hero-subtitle">本页面用于展示 IntraHC 如何结合节点属性与超边结构，将复杂关系数据划分为若干潜在群体，并解释单个节点的聚类依据。</p>
+                    <p class="hero-desc">演示使用离线训练后的聚类结果，节点以匿名编号呈现。页面不使用真实标签参与交互解释，仅基于预测簇、嵌入相似性和共享超边关系进行说明。</p>
                     <div class="hero-actions">
-                        <button type="button" class="btn btn-primary" id="startAnalysisBtn">开始体验</button>
-                        <button type="button" class="btn btn-outline-primary" id="viewScenarioBtn">查看应用场景</button>
+                        <button type="button" class="btn btn-primary" id="startAnalysisBtn">进入结果解释</button>
+                        <button type="button" class="btn btn-outline-primary" id="viewScenarioBtn">选择应用场景</button>
                     </div>
                 </div>
-                <div class="hero-right">
-                    <section class="capability-card">
-                        <h3>应用能力概览</h3>
-                        <div class="capability-grid">
-                            <article>
-                                <strong>群体发现</strong>
-                                <p>自动识别潜在社区、主题群体或协作群体。</p>
-                            </article>
-                            <article>
-                                <strong>关系推荐</strong>
-                                <p>基于同簇关系、共享超边和嵌入相似性推荐相关对象。</p>
-                            </article>
-                            <article>
-                                <strong>边界识别</strong>
-                                <p>发现跨簇节点、低纯度超边和结构模糊区域。</p>
-                            </article>
-                            <article>
-                                <strong>结构解释</strong>
-                                <p>展示节点所在簇、共享超边邻居和局部高阶关系。</p>
-                            </article>
-                        </div>
-                    </section>
+                <div class="hero-right simple-steps">
+                    <article><strong>1. 场景定义</strong><span>明确节点、属性和超边在当前数据中的业务含义。</span></article>
+                    <article><strong>2. 聚类观察</strong><span>通过颜色区分预测簇，观察模型发现的潜在群体结构。</span></article>
+                    <article><strong>3. 节点解释</strong><span>选中节点后，从同簇相似性、共享超边和边界风险三个角度解释结果。</span></article>
                 </div>
             </section>
 
-            <section class="scenario-section" id="scenarioSection" aria-label="应用领域选择区">
+            <section class="scenario-section simple-scenario" id="scenarioSection" aria-label="应用领域选择区">
                 <header class="section-header">
-                    <h2>选择一个应用领域开始分析</h2>
-                    <p>不同领域对应不同类型的高阶关系数据。系统将自动加载相应的训练后聚类结果，并以匿名节点编号进行交互展示。</p>
+                    <h2>步骤一：选择应用场景</h2>
+                    <p>不同场景下，节点和超边的含义不同。例如，在论文网络中节点可表示论文，超边可表示共引、主题共现或共同关联；在合作网络中，超边可表示多位作者共同参与的一次合作关系。</p>
                 </header>
-                <div class="scenario-merged-layout">
-                    <div class="scenario-grid" id="applicationScenarioGrid"></div>
-                    <section class="hero-stats-card scenario-stats-card">
-                        <h3>运行概览</h3>
-                        <div class="stats-list">
-                            <div><span>当前应用</span><strong id="stageLabel">--</strong></div>
-                            <div><span>示例数据</span><strong id="sampleDatasetLabel">--</strong></div>
-                            <div><span>节点数</span><strong id="nodeCount">--</strong></div>
-                            <div><span>预测簇数</span><strong id="clusterCount">--</strong></div>
-                            <div><span>超边数</span><strong id="hyperedgeCount">--</strong></div>
-                            <div><span>ACC</span><strong id="heroAcc">--</strong></div>
-                            <div><span>NMI</span><strong id="heroNmi">--</strong></div>
-                        </div>
-                        <p id="datasetSummaryCard">等待选择应用领域...</p>
-                    </section>
-                </div>
+                <div class="scenario-grid" id="applicationScenarioGrid"></div>
             </section>
 
-            <section class="workspace-section" id="analysisMain" aria-label="交互式聚类结果分析">
-                <header class="section-header">
-                    <h2>交互式聚类结果分析</h2>
-                    <p>选择应用领域后，可以搜索匿名节点编号，查看该节点的预测簇、相关节点、共享超边邻居与边界风险。</p>
-                </header>
-
-                <div class="cluster-board">
+            <section class="workspace-section" id="analysisMain" aria-label="聚类结果演示">
+                <div class="cluster-board simple-board">
                     <div class="cluster-visual-stage">
-                        <div class="cluster-canvas-head">
-                            <h3>可视化工作台</h3>
-                            <p>采用局部关系视图，优先呈现当前节点及其关键结构邻域，确保交互稳定性与可解释性。</p>
-                        </div>
-
-                        <div class="view-tabs" id="analysisViewTabs" aria-label="视图切换">
-                            <button type="button" data-view="global" class="active">全局分析</button>
-                            <button type="button" data-view="hypergraph">超图关系</button>
-                            <button type="button" data-view="boundary">边界风险</button>
+                        <div class="cluster-canvas-head simple-canvas-head">
+                            <div>
+                                <h2>步骤二：观察聚类结构</h2>
+                                <p>每个点表示一个匿名节点，颜色表示模型预测的簇。整体视图用于观察簇的分布，选中节点后将展示其局部高阶关系。</p>
+                            </div>
+                            <div class="cluster-toolbar simple-toolbar">
+                                <button class="btn btn-outline-dark btn-sm" id="resetFocus" type="button">整体视图</button>
+                                <button class="btn btn-outline-dark btn-sm" id="relayoutView" type="button">重排布局</button>
+                                <button class="btn btn-outline-dark btn-sm" id="exportView" type="button">导出图片</button>
+                            </div>
                         </div>
 
                         <div class="canvas-layer-wrap" id="canvasContainer">
                             <canvas id="clusterCanvas"></canvas>
-                            <div class="cluster-empty hidden" id="canvasEmpty">请选择应用领域并输入节点编号，查看该节点的局部超图关系。</div>
+                            <div class="cluster-empty hidden" id="canvasEmpty">正在准备演示数据...</div>
                             <div class="cluster-loading hidden" id="canvasLoading">数据加载中...</div>
                             <div class="cluster-tooltip" id="clusterTooltip" role="status" aria-live="polite"></div>
                         </div>
 
-                        <div class="analysis-narrative" id="analysisNarrative">请选择应用领域并搜索节点后开始分析。</div>
-
-                        <div class="cluster-toolbar">
-                            <button class="btn btn-primary btn-sm text-uppercase" id="relayoutView" type="button">重排布局</button>
-                            <button class="btn btn-outline-dark btn-sm text-uppercase" id="resetFocus" type="button">重置视图</button>
-                            <button class="btn btn-outline-dark btn-sm text-uppercase" id="exportView" type="button">导出图片</button>
-                        </div>
+                        <div class="analysis-narrative" id="analysisNarrative">数据加载后，可先观察整体预测簇分布，再点击节点查看局部高阶关系解释。</div>
                     </div>
 
-                    <aside class="cluster-data-panel" aria-label="控制与节点解释">
-                        <div class="panel-title">
-                            <span>Analysis Workflow</span>
-                            <strong>当前节点解释工作流</strong>
-                        </div>
-
-                        <section class="panel-section">
-                            <h3>Step 1：选择应用领域</h3>
-                            <p class="step-explain">本步先确定业务语境和示例数据。不同领域的“节点”和“超边”含义不同，系统会据此加载对应的匿名节点、聚类结果和高阶关系。</p>
+                    <aside class="cluster-data-panel simple-panel" aria-label="演示控制与解释">
+                        <section class="panel-section primary-control">
+                            <h3>步骤三：选择解释对象</h3>
+                            <p class="step-explain">可以直接点击图中的节点，也可以输入匿名节点编号。系统将围绕该节点解释其预测簇归属、相似节点和高阶关系来源。</p>
                             <label>
-                                应用领域
+                                应用场景
                                 <select id="scenarioSelect"></select>
                             </label>
                             <label>
-                                示例数据
+                                数据集
                                 <select id="datasetSelect"></select>
                             </label>
-                        </section>
-
-                        <section class="panel-section">
-                            <h3>Step 2：选择分析视图</h3>
-                            <p class="step-explain">本步决定从哪个角度解释结果：全局分析看整体簇分布，超图关系看某个节点与同一超边内节点的连接，边界风险看低纯度或跨簇结构。</p>
-                            <div class="step-view-buttons" id="stepViewButtons">
-                                <button type="button" class="mini-action active" data-view="global">全局分析</button>
-                                <button type="button" class="mini-action" data-view="hypergraph">超图关系</button>
-                                <button type="button" class="mini-action" data-view="boundary">边界风险</button>
-                            </div>
-                            <label>
-                                着色模式
-                                <select id="colorMode">
-                                    <option value="cluster">预测簇着色</option>
-                                    <option value="purity">风险强度着色</option>
-                                </select>
-                            </label>
-                            <label>
-                                超边筛选
-                                <select id="edgeFilter">
-                                    <option value="all">全部超边</option>
-                                    <option value="high">高纯度超边</option>
-                                    <option value="medium">中等纯度超边</option>
-                                    <option value="low">低纯度超边</option>
-                                    <option value="mixed">跨簇超边</option>
-                                </select>
-                            </label>
-                            <label class="cluster-check">
-                                <input id="showHyperedges" type="checkbox" />
-                                显示超边链接
-                            </label>
-                            <p class="field-explain" id="hyperedgeExplain" hidden>超边表示“一组节点共同出现或共同关联”的高阶关系。它可用于解释推荐来源、发现同组关系邻居，并判断某条关系是否跨越多个簇。</p>
-                        </section>
-
-                        <section class="panel-section">
-                            <h3>Step 3：搜索或点击节点</h3>
-                            <p class="step-explain">本步把分析对象从“整体数据”收敛到“单个节点”。搜索或点击节点后，页面会解释它属于哪个簇、有哪些同簇相似节点、参与了哪些超边，以及是否靠近簇边界。</p>
                             <div class="search-row">
-                                <input id="nodeSearch" type="number" min="0" placeholder="输入节点 ID" />
+                                <input id="nodeSearch" type="number" min="0" placeholder="输入节点编号，例如 12" />
                                 <button class="mini-action" id="searchNode" type="button">定位</button>
                             </div>
-                            <section class="selection-card" id="selectionPanel" hidden>
-                                <h3>节点详情</h3>
-                                <p>搜索或点击任意节点后，这里将展示该节点的预测簇、同簇相似节点、共享超边邻居和边界风险。共享超边用于说明哪些节点共同参与同一组高阶关系。</p>
-                            </section>
+                            <p id="dataStatus">数据加载中...</p>
                         </section>
 
-                        <section class="panel-section">
-                            <h3>Step 4：当前节点快捷分析</h3>
-                            <p class="step-explain">本步用于追问当前节点“为什么这样聚类”。同簇相似节点解释嵌入空间相近性，共享超边邻居解释高阶结构关联，所在超边解释该节点参与的群体关系，边界风险解释它是否可能混在多个簇之间。</p>
-                            <div class="analysis-chips">
-                                <button type="button" data-action="node-similar">查看同簇相似节点</button>
-                                <button type="button" data-action="node-hyperedge-neighbors">查看共享超边邻居</button>
-                                <button type="button" data-action="node-incident-edges">查看节点所在超边</button>
-                                <button type="button" data-action="node-boundary-risk">查看边界风险</button>
-                                <button type="button" data-action="focus-selected-node">聚焦当前节点</button>
+                        <section class="hero-stats-card simple-stats">
+                            <h3>当前案例</h3>
+                            <div class="stats-list">
+                                <div><span>应用</span><strong id="stageLabel">--</strong></div>
+                                <div><span>数据</span><strong id="sampleDatasetLabel">--</strong></div>
+                                <div><span>节点</span><strong id="nodeCount">--</strong></div>
+                                <div><span>簇数</span><strong id="clusterCount">--</strong></div>
+                                <div><span>超边</span><strong id="hyperedgeCount">--</strong></div>
+                                <div><span>NMI</span><strong id="heroNmi">--</strong></div>
+                            </div>
+                            <p id="datasetSummaryCard">等待加载案例...</p>
+                            <strong class="hidden-metric" id="heroAcc">--</strong>
+                        </section>
+
+                        <section class="selection-card" id="selectionPanel" hidden>
+                            <h3>节点聚类解释</h3>
+                            <p>选择节点后，这里会解释其预测簇归属、同簇相似节点、共享超边邻居以及可能的边界风险。</p>
+                        </section>
+
+                        <section class="recommend-card simple-recommend">
+                            <h3>相关节点证据</h3>
+                            <div id="recommendationPanel" class="recommendation-panel">
+                                <p>请选择一个节点后查看相关节点。相关性由预测簇一致性、嵌入相似性和共享超边共同提供证据。</p>
                             </div>
                         </section>
 
-                        <p id="dataStatus">数据加载中...</p>
+                        <section class="reason-card simple-reason">
+                            <h3>解释依据</h3>
+                            <div class="reason-grid" id="recommendReasonPanel">
+                                <p class="panel-help">选择节点后，这里会说明预测簇、共享超边和嵌入相似性分别提供了什么证据。</p>
+                            </div>
+                        </section>
+
+                        <div class="analysis-chips simple-actions">
+                            <button type="button" data-action="focus-selected-node">局部高阶关系</button>
+                            <button type="button" data-action="node-similar">同簇相似节点</button>
+                            <button type="button" data-action="node-boundary-risk">边界风险分析</button>
+                        </div>
                     </aside>
                 </div>
             </section>
 
-            <section class="cluster-analysis-strip" id="analysisCards" aria-label="全局结构分析">
-                <section class="analysis-intro-card">
-                    <h3>全局结构分析</h3>
-                    <p>以下结果用于理解当前应用领域样例中的整体聚类结构，包括指标表现、跨簇超边、低纯度超边、边界节点和典型高阶关系。它们是全局统计结果，不一定与当前选中节点直接相关。</p>
-                </section>
+            <section class="explain-flow" aria-label="解释流程说明">
+                <article>
+                    <h3>节点表示什么？</h3>
+                    <p>节点是被聚类的基本对象，可对应论文、作者、新闻文本或其他样本。节点属性描述对象自身特征，图中位置由训练后的表示降维得到。</p>
+                </article>
+                <article>
+                    <h3>预测簇表示什么？</h3>
+                    <p>预测簇是模型在无监督条件下发现的潜在群体。颜色相同表示模型认为这些节点在属性特征和高阶关系结构上更接近。</p>
+                </article>
+                <article>
+                    <h3>超边关系有什么用？</h3>
+                    <p>普通边通常只描述两个节点之间的关系；超边可以同时连接多个节点，表达“一组对象共同出现、共同参与或共同关联”的高阶关系。它用于解释节点为什么被聚到某一簇、为什么推荐某些相关节点，以及哪些节点可能处在多个簇的边界位置。</p>
+                </article>
+            </section>
 
+            <section class="cluster-analysis-strip simple-metrics" aria-label="指标概览">
                 <section class="metric-card">
-                    <h3>指标概览</h3>
+                    <h3>结果概览</h3>
                     <div class="cluster-metrics" id="metricPanel"></div>
+                </section>
+                <section class="metric-card">
+                    <h3>结构规模</h3>
                     <div class="cluster-metrics cluster-hyperedge-metrics" id="hyperedgePanel"></div>
                 </section>
-
-                <section class="matrix-card">
-                    <h3>聚类结果解释矩阵</h3>
-                    <p class="card-caption">依据大赛规则，这里不使用真实标签，仅展示预测簇结构概览。</p>
-                    <div id="clusterMatrix" class="cluster-matrix"></div>
-                </section>
-
-                <section class="edge-list-card">
-                    <h3>低纯度与跨簇超边 Top 10</h3>
-                    <div id="topEdgeList" class="top-edge-list"></div>
-                </section>
-
-                <section class="edge-list-card">
-                    <h3>跨簇超边列表</h3>
-                    <div id="crossEdgeList" class="top-edge-list"></div>
-                </section>
-
-                <section class="edge-list-card">
-                    <h3>边界节点列表</h3>
-                    <div id="boundaryNodeList" class="top-edge-list"></div>
-                </section>
-
-                <section class="edge-list-card">
-                    <h3>最大规模超边列表</h3>
-                    <p class="card-caption">这些超边连接节点较多，代表高阶关系较密集区域。</p>
-                    <div id="maxHyperedgeList" class="top-edge-list"></div>
-                </section>
-
-                <section class="edge-list-card">
-                    <h3>高置信簇概览</h3>
-                    <div id="highConfidenceClusterList" class="top-edge-list"></div>
-                </section>
-
-                <section class="recommend-card">
-                    <h3>当前节点相关推荐</h3>
-                    <div id="recommendationPanel" class="recommendation-panel">
-                        <p>请选择一个节点后查看相关推荐。</p>
-                    </div>
-                </section>
-
-                <section class="reason-card">
-                    <h3>推荐依据</h3>
-                    <div class="reason-grid" id="recommendReasonPanel">
-                        <p class="panel-help">请选择一个节点后查看推荐依据。这里会解释同簇关系、共享超边和嵌入相似度分别提供了什么证据。</p>
-                    </div>
-                </section>
             </section>
 
-            <section class="bottom-cta">
-                <h3>准备将 IntraHC 用到你的关系数据场景中？</h3>
-                <p>先在当前样例中体验节点检索、关系推荐与边界分析，再根据你的业务关系图谱接入真实训练结果。</p>
+            <section class="bottom-cta simple-note">
+                <h3>评审展示说明</h3>
+                <p>建议按“场景含义、整体聚类、单点解释、超边证据”的顺序展示：先说明节点和超边在当前数据中的含义，再通过颜色观察预测簇，最后选择一个节点说明其聚类依据和边界风险。</p>
             </section>
+
+            <div class="hidden-data-sinks" hidden>
+                <div id="analysisViewTabs"></div>
+                <div id="stepViewButtons"></div>
+                <select id="colorMode"><option value="cluster">预测簇着色</option></select>
+                <select id="edgeFilter"><option value="all">全部超边</option></select>
+                <input id="showHyperedges" type="checkbox" />
+                <p id="hyperedgeExplain"></p>
+                <div id="clusterMatrix"></div>
+                <div id="topEdgeList"></div>
+                <div id="crossEdgeList"></div>
+                <div id="boundaryNodeList"></div>
+                <div id="maxHyperedgeList"></div>
+                <div id="highConfidenceClusterList"></div>
+            </div>
         </main>
 
         <footer class="site-footer py-5">
             <div class="container">
                 <div class="row g-4">
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-3">
                         <h6>IntraHC</h6>
                         <p class="mb-0">Intra-hyperedge Contrastive Learning for End-to-End Attributed Hypergraph Clustering.</p>
                     </div>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-3">
                         <h6>页面导航</h6>
                         <ul>
                             <li><a href="index.html">首页</a></li>
                             <li><a href="algorithm.html">算法方法</a></li>
                             <li><a href="results.html">实验结果</a></li>
-                            <li><a href="similar-tech.html">同类技术</a></li>
+                            <li><a href="workflow.html">技术流程</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-3">
                         <h6>项目内容</h6>
                         <ul>
                             <li><a href="resources.html">项目资源</a></li>
                         </ul>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h6>联系与社交</h6>
+                        <div class="d-flex gap-2 mb-2">
+                            <a class="btn btn-dark btn-social" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <p class="small mb-0">欢迎补充邮箱、GitHub、论文链接。</p>
                     </div>
                 </div>
                 <div class="footer-bottom mt-4 pt-3 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
